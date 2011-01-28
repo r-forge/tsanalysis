@@ -1,0 +1,782 @@
+
+\name{predict}
+\alias{predict.TSFmodel}
+\alias{predict.TSFestModel}
+
+\title{Predict factor scores from an object.}
+\usage{
+    \method{predict}{TSFmodel}(object, 
+           newdata = NULL, factorNames.=factorNames(object), ...)
+    \method{predict}{TSFestModel}(object, 
+           newdata = NULL, factorNames.=factorNames(object), ...)
+}
+\arguments{
+    \item{object}{an objectfrom which a matrix (predictor) can be extracted 
+            to apply to the data.}
+    \item{newdata}{data to which the predictor should be applied.}
+    \item{factorNames.}{names to be given to the calculated predicted factor 
+         score series.}
+}
+\description{
+   Predict factor scores using the predictor from object.
+   }
+
+\value{Predicted factor scores series.}
+\details{
+    If newdata is not supplied then it is extacted from object if possible 
+    (which is probably the old data), and otherwise an error is indicated. The 
+    predicted factor scores are given by newdata %*% t(LB), where LB is the 
+    predictor extracted from object. This is the Barlett predictor in TSFmodel
+    and TSFestModel objects.
+    }
+
+\seealso{
+   \code{\link[stats]{predict}},
+   \code{\link{factors}},
+   \code{\link{factorNames}},
+   \code{\link{TSFmodel}}
+   }
+\author{Paul Gilbert}
+\keyword{internal}
+
+
+\name{diff}
+\alias{diff.TSFmodel}
+\alias{diff.TSFestModel}
+\alias{diff.TSFexplained}
+\alias{diff.TSFfactors}
+
+\title{TSFA Specific Methods for diff}
+\usage{
+    \method{diff}{TSFmodel}(x, ...)
+    \method{diff}{TSFestModel}(x, ...)
+    \method{diff}{TSFexplained}(x, ...)
+    \method{diff}{TSFfactors}(x, ...)
+}
+\arguments{
+    \item{x}{an object.}
+}
+\description{
+   Difference the time series data in an object.
+}
+
+\value{An object in which the time series data has been differenced.}
+
+\seealso{
+   \code{\link{diff}},
+   \code{\link{factors}},
+   \code{\link{explained}},
+   \code{\link{factorNames}},
+   \code{\link{TSFmodel}},
+}
+\author{Paul Gilbert}
+\keyword{internal}
+
+
+\name{loadings}
+%%\alias{loadings}
+%%\alias{loadings.default}
+\alias{loadings.TSFmodel}
+\alias{loadings.TSFestModel}
+\alias{standardizedLoadings}
+\alias{standardizedLoadings.TSFestModel}
+\alias{DstandardizedLoadings}
+\alias{DstandardizedLoadings.TSFestModel}
+
+\title{Extract the loadings matrix from an object}
+\usage{
+%%    loadings(x)
+%%    \method{loadings}{default}(x)
+    \method{loadings}{TSFmodel}(x)
+    \method{loadings}{TSFestModel}(x)
+    standardizedLoadings(x)
+    \method{standardizedLoadings}{TSFestModel}(x)
+    DstandardizedLoadings(x)
+    \method{DstandardizedLoadings}{TSFestModel}(x)
+}
+\arguments{
+    \item{x}{an object.}
+}
+\description{
+   Extract the loadings matrix from an object.
+}
+
+\value{a loadings matrix.}
+\details{
+    The default method uses \code{stats::loadings}..
+}
+
+\seealso{
+   \code{stats::\link[stats]{loadings}},
+   \code{\link{factors}},
+   \code{\link{factorNames}},
+   \code{\link{TSFmodel}},
+}
+\author{Paul Gilbert}
+\keyword{internal}
+
+
+\name{tfplotFiles}
+\alias{tfplotFiles}
+
+\title{Plot to screen and files}
+\description{
+    Plot tframe or tframed objects to screen and files. 
+}
+
+\usage{
+    tfplotFiles(x, ..., baseName="xxx", 
+         postscriptArgs=list(file=paste(baseName,".ps", sep=""),
+	                horizontal=FALSE, width=6, height=8),
+         pngArgs=list(file=paste(baseName,".png", sep=""),
+	                width = 480, height = 480, pointsize=12, bg = "white"),
+	 ps2eps=TRUE, 
+	 plotFunction="tfplot", plotFunctionArgs)
+}
+
+\arguments{
+    \item{x}{an object to plot.}
+    \item{baseName}{character string indicating the base base part of generated
+            file name.}
+    \item{postscriptArgs}{arguments passed to \code{postscript}.}
+    \item{pngArgs}{arguments passed to \code{png}.}
+    \item{ps2eps}{logical indicating if an attempt should be made to call make a
+        \code{system} call to a function called ps2eps to convert the ps file.}
+    \item{plotFunction}{character string indicating the name of the plot
+        function to use.}
+    \item{plotFunctionArgs}{additional arguments passed to plotFunction.}
+    \item{...}{additional objects to be plotted.}
+}
+\value{None.}
+\details{
+    The plotFunction is used to put a plot on the current plot device 
+    (typically the screen) then alternate plot devices are activated and the
+    plot is recreated on those devices.  This is typically useful for generating
+    a postscript/eps file for a paper and a corresponding png file which is
+    often better for web use or presentations.
+}
+\sideffects{An object is plotted and files (ps, eps, png) with the 
+   plot are generated.}
+\seealso{
+    \code{\link[tframe]{tfplot}}
+    \code{\link{postscript}}
+    \code{\link{png}}
+}
+\examples{
+    tfplotFiles(ts(rnorm(100), start=c(1982,1), frequency=12),baseName="Fig1",
+        ps2eps=FALSE)
+}
+\keyword{programming}
+\keyword{utilities}
+\keyword{ts}
+
+\name{distribution.factorsEstEval}
+\alias{distribution.factorsEstEval}
+\alias{distribution.DfactorsEstEval}
+\title{Check Time Series Factors Idiosyncratic Component}
+\usage{
+    \method{distribution}{factorsEstEval}(obj, ..., bandwidth = "nrd0",
+        cumulate=TRUE, graphs.per.page = 5, Title=NULL)
+    \method{distribution}{DfactorsEstEval}(obj, ..., bandwidth = "nrd0",
+        cumulate=TRUE, graphs.per.page = 5, Title=NULL)
+}
+\arguments{
+    \item{obj}{EstEval object.}
+    \item{bandwidth}{bandwidth for distribution smoothing.}
+    \item{cumulate}{distribution or time series of SD.}
+    \item{graphs.per.page}{number of graphs on an output page.}
+    \item{Title}{string indicating a title for the plot.}
+    \item{...}{additional EstEval objects which will be plotted on the same
+        graph.}
+}
+\description{
+   Plot the distribution of the multiple estimates from EstEval, and possibly
+   multiple EstEval objects.
+}
+
+\examples{
+  data("CanadianMoneyData.asof.6Feb2004", package="CDNmoney")
+
+  ### Construct data
+  
+  cpi <- 100 * M1total / M1real
+  seriesNames(cpi) <- "CPI"
+  popm <- M1total / M1PerCapita
+  seriesNames(popm) <- "Population of Canada"
+  
+  z <- tframed(tbind(
+      MB2001,
+      MB486 + MB452 + MB453 ,
+      NonbankCheq,
+      MB472 + MB473 + MB487p,
+      MB475,
+      NonbankNonCheq + MB454 + NonbankTerm + MB2046 + MB2047 + MB2048 +
+      MB2057 + MB2058 + MB482),
+      names=c("currency", "personal cheq.", "NonbankCheq",
+      "N-P demand & notice", "N-P term", "Investment")
+      )
+
+  z <- tfwindow(z, start=c(1986,1))
+  if( all(c(2003,12) ==end(z))) z <-tfwindow(z, end=c(2003,11))
+  MBcomponents <- 1e8 * z/matrix(tfwindow(popm * cpi,tf=tframe(z)),periods(z),6)
+  
+  ### Specify "true" parameters and factors
+  
+  Omega <- diag(c(72.63, 1233, 87.33,
+              629.4, 3968, 12163))
+  
+  Boblq <- t(matrix(c( 
+     8.84,   5.20,
+    23.82, -12.57,
+     5.18,  -1.97,
+    36.78,  16.94,
+    -2.84,  31.02,
+     2.60,  47.63), 2,6))
+  
+  PhiOblq <- matrix(c( 1.0, 0.00949, 0.00949, 1.0),2,2)
+
+  etaBart <- MBcomponents \%*\% solve(Omega) \%*\% Boblq \%*\% (
+              solve( t(Boblq) \%*\% solve(Omega) \%*\% Boblq ) )
+
+  DetaBart <- diff(etaBart, lag=1)
+  SDE      <- cov(DetaBart)       
+  RR1 <- chol(SDE)      # upper triangular: SDE = RR1' RR1
+  RR2 <- chol(PhiOblq)  # ditto
+  PP  <- t(RR2) \%*\% solve(t(RR1))
+  Psi       <- 0.5 * Omega
+
+  etaTrue <- tframed(etaBart \%*\% t(PP), tf=tframe(MBcomponents))
+
+  ### run Monte Carlo  N.B. replications would typically be much larger
+
+  EE.ML5 <- EstEval(TSFmodel(Boblq, f=etaTrue, positive.measures=FALSE),
+    replications=5, quiet=FALSE,
+    simulation.args=list(Cov=Psi, noIC=TRUE),
+    estimation="estTSF.ML", estimation.args=list(2, BpermuteTarget=Boblq),
+    criterion ="TSFmodel")
+    
+  distribution(factors(EE.ML5))   
+  distribution(factors(EE.ML5), cumulate=FALSE)   
+  distribution(Dfactors(EE.ML5))   
+  distribution(Dfactors(EE.ML5), cumulate=FALSE)  
+}
+\seealso{
+   \code{\link[EvalEst]{EstEval}}
+   \code{\link{estTSF.ML}}
+}
+\author{Paul Gilbert}
+\concept{TSFA}
+\keyword{ts}
+
+\name{checkResiduals.TSFmodel}
+\alias{checkResiduals.TSFmodel}
+\title{Check Time Series Idiosyncratic Component}
+\usage{
+    \method{checkResiduals}{TSFmodel}(obj, ...)
+}
+\arguments{
+    \item{obj}{TSFmodel object for which idiosyncratic component should be
+       examined (as for a residual).}
+    \item{...}{arguments to be passed to other methods.}
+}
+\description{
+   Check the idiosyncratic component of a TSFmodel as if it were a residual.
+}
+
+
+\seealso{
+   \code{\link{TSFmodel}}
+   \code{\link{estTSF.ML}}
+}
+\author{Paul Gilbert}
+\concept{TSFA}
+\keyword{ts}
+
+\name{factors}
+\alias{factors}
+\alias{factors.TSFmodel}
+\alias{factors.TSFestModel}
+\alias{factors.EstEval}
+\alias{Dfactors}
+\alias{Dfactors.TSFmodel}
+\alias{Dfactors.TSFestModel}
+\alias{Dfactors.EstEval}
+
+\title{Extract Time Series Factors from an object}
+\usage{
+    factors(x)
+    \method{factors}{TSFmodel}(x)
+    \method{factors}{TSFestModel}(x)
+    \method{factors}{EstEval}(x)
+
+    Dfactors(x)
+    \method{Dfactors}{TSFmodel}(x)
+    \method{Dfactors}{TSFestModel}(x)
+    \method{Dfactors}{EstEval}(x)
+}
+\arguments{
+    \item{x}{an object.}
+}
+\description{
+   Extract time series factors or differenced time series factors from an object.
+}
+
+\value{factor or differenced factor series.}
+
+\seealso{
+   \code{\link{TSFmodel}},
+   \code{\link{estTSF.ML}},
+   \code{\link{simulate.TSFmodel}}
+}
+\author{Paul Gilbert}
+\concept{TSFA}
+\keyword{ts}
+
+\name{nfactors}
+\alias{nfactors}
+\alias{nfactors.TSFmodel}
+\alias{nfactors.TSFestModel}
+\alias{nfactors.TSFfactors}
+\alias{nfactors.EstEval}
+
+\title{Extract the Number of Time Series Factors from an object}
+\usage{
+    nfactors(x)
+    \method{nfactors}{TSFmodel}(x)
+    \method{nfactors}{TSFestModel}(x)
+    \method{nfactors}{TSFfactors}(x)
+    \method{nfactors}{EstEval}(x)
+}
+\arguments{
+    \item{x}{an object.}
+}
+\description{
+   Extract the number of time series factors from an object.
+}
+
+\value{an integer.}
+
+\seealso{
+   \code{\link{factors}},
+   \code{\link{factorNames}},
+   \code{\link{TSFmodel}},
+}
+\author{Paul Gilbert}
+\concept{TSFA}
+\keyword{ts}
+
+
+\name{factorNames}
+\alias{factorNames}
+\alias{factorNames.TSFmodel}
+\alias{factorNames.TSFestModel}
+\alias{factorNames.TSFfactors}
+\alias{factorNames.EstEval}
+\alias{seriesNames.TSFestModel}
+
+\title{Extract the Factors Names from an object}
+\usage{
+    factorNames(x)
+    \method{factorNames}{TSFmodel}(x)
+    \method{factorNames}{TSFestModel}(x)
+    \method{factorNames}{TSFfactors}(x)
+    \method{factorNames}{EstEval}(x)
+    \method{seriesNames}{TSFestModel}(x)
+}
+\arguments{
+    \item{x}{an object.}
+}
+\description{
+   Extract the factor (or series) names from an object.
+}
+
+\value{character vector of names.}
+
+\seealso{
+   \code{\link{factors}},
+   \code{\link{nfactors}},
+   \code{\link[tframe]{seriesNames}},
+   \code{\link{TSFmodel}},
+}
+\author{Paul Gilbert}
+\concept{TSFA}
+\keyword{ts}
+
+\name{TSFmodel}
+\alias{TSFmodel}
+\alias{TSFmodel.default}
+\alias{TSFmodel.TSFmodel}
+\alias{TSFmodel.TSFestModel}
+\title{Construct a Time Series Factor Model}
+\usage{
+    TSFmodel(obj, ...)
+    \method{TSFmodel}{default}(obj, f=NULL, Omega = NULL, Phi=NULL, LB = NULL, Df=NULL, 
+	 IC=0, positive.data=FALSE, break.points=NULL, names=NULL, ...)
+    \method{TSFmodel}{TSFmodel}(obj, ...)
+    \method{TSFmodel}{TSFestModel}(obj, ...)
+}
+\arguments{
+    \item{obj}{The weight matrix (B) in the default (constructor) method.
+	       In other methods, an object from which the model should be
+	       extracted.}
+    \item{f}{matrix of factor series.}
+    \item{Omega}{.}
+    \item{Phi}{.}
+    \item{LB}{Bartlett predictor.}
+    \item{Df}{depreciated}
+    \item{IC}{.}
+    \item{break.points}{a list of dates, one shorter than the list of weights,
+       indicating the start date of each successive weight matrix.}
+    \item{positive.data}{logical indicating if any resulting negative values
+       should be set to zero.}
+    \item{names}{vector of strings indicating names to be given to output
+       series.}
+    \item{...}{arguments passed to other objects.}
+}
+\description{
+   The default method constructs a TSFmodel. Other methods extract a 
+   TSFmodel from an object.
+}
+
+\value{A TSFmodel.}
+
+\seealso{
+   \code{\link{simulate.TSFmodel}},
+   \code{\link[dse]{simulate}},
+   \code{\link{estTSF.ML}}
+   \code{\link{estTSF.ML}}
+}
+\author{Paul Gilbert}
+\concept{TSFA}
+\keyword{ts}
+
+
+\name{simulate.TSFmodel}
+\alias{simulate.TSFmodel}
+\alias{explained}
+\alias{explained.TSFmodel}
+\alias{explained.TSFestModel}
+
+\title{Simulate a Time Series Factor Model}
+\usage{
+    explained(object, ...)
+    \method{explained}{TSFmodel}(object, names=object$names, ...)
+    \method{explained}{TSFestModel}(object, ...)
+    \method{simulate}{TSFmodel}(model,
+        rng=NULL, noise=NULL, sd=1, Cov=NULL, noise.model=NULL, noIC=FALSE, ...)
+}
+\arguments{
+    \item{object}{A TSFmodel or TSFestModel.}
+    \item{model}{A TSFmodel or TSFestModel.}
+    \item{names}{A vector of strings to use for the output series.}
+    \item{rng}{see \code{\link[tframe]{makeTSnoise}}.}
+    \item{noise}{see \code{\link[tframe]{makeTSnoise}}.}
+    \item{sd}{see \code{\link[tframe]{makeTSnoise}}.}
+    \item{Cov}{see \code{\link[tframe]{makeTSnoise}}.}
+    \item{noise.model}{see \code{\link[tframe]{makeTSnoise}}.}
+    \item{noIC}{logical  defunct DO NOT USE THIS FLAG.}
+    \item{...}{arguments passed to other methods.}
+}
+\description{
+   Simulate time series data using factors and weights. \code{simulate} sets RNG
+   information and calls explained.
+}
+\details{
+  \code{simulate.TSFmodel} generates artifical data (measures) with given factors
+  and weights. For the simple case, this is done by
+     \code{factors \%*\% weights + noise}
+  If \code{constant} is not \code{0.0} then it should be a vector of length equal
+  to the number of generated measures (the number of columns in \code{weights})
+  or a scalar which is replicated to this length. The elements of \code{constant}
+  are added to the corresponding columns of the measures.
+  If \code{scale} is not \code{1.0} then it should be a vector of length equal
+  to the number of generated measures (the number of columns in \code{weights})
+  or a scalar which is replicated to this length. The elements of \code{scale}
+  multiply the corresponding columns of the measures (after code{constant}
+  is added).
+
+  In the more complicated case, where breakpoints are added,  a list of weights are
+  used with the change starting at each date in the list \code{break.points}. The
+  first weight matrix is used beginning at start(factors) and ending one period before
+  \code{break.points[[1]]}
+
+  For the default method \code{obj} should be time series to be used as factors.
+  \code{obj}can also be a distillate object (as returned by \code{distill}, in
+  which case the information to do a simulation is extracted from the object.
+}
+\value{A time series matrix.}
+\examples{
+  f <- matrix(c(2+sin(pi/100:1),5+3*sin(2*pi/5*(100:1))),100,2)
+  w <- t(matrix(c(0.9, 0.1,
+		  0.8, 0.2,
+		  0.7, 0.3,
+                  0.5, 0.5, 
+		  0.3, 0.7,
+ 		  0.1, 0.9), 2,6))
+
+  z	<- simulate(TSFmodel(f, w, positive.measures=TRUE, sd=0.01))
+  tfplot(z)
+}
+
+\seealso{
+   \code{\link{estTSF.ML}},
+   \code{\link[dse]{simulate}},
+   \code{\link{tfplot.TSFmodel}}, 
+}
+\author{Paul Gilbert}
+\concept{TSFA}
+\keyword{ts}
+
+
+\name{summaryStats}
+\alias{summaryStats}
+\alias{summaryStats.TSFmodelEstEval}
+
+\title{Summary Statistics Calculations}
+\usage{
+    summaryStats(object, ...)
+    \method{summaryStats}{TSFmodelEstEval}(object, ...)
+}
+\arguments{
+    \item{object}{a TSFestModel object to summarize.}
+    \item{...}{further arguments passed to other methods.}
+}
+
+\value{a list passed of statistics.}
+\description{
+   Calculates various statistics from an object returned by EstEval. This
+   function is for use by the summary and tfplot methods and would not typically
+   be called by a user.
+}
+\seealso{
+   \code{\link[EvalEst]{EstEval}}
+   \code{\link{summary.TSFmodelEstEval}}
+   \code{\link{tfplot.TSFmodelEstEval}}
+}
+\author{Paul Gilbert}
+\concept{TSFA}
+\keyword{ts}
+
+
+\name{summary.TSFestModel}
+\alias{summary.TSFestModel}
+\alias{summary.TSFmodelEstEval}
+\alias{print.summary.TSFestModel}
+\alias{print.summary.TSFmodelEstEval}
+
+\title{Summary Method for TSFestModel}
+\usage{
+    \method{summary}{TSFestModel}(object, ...)
+    \method{summary}{TSFmodelEstEval}(object, ...)
+    \method{print}{summary.TSFestModel}(x, ...)
+    \method{print}{summary.TSFmodelEstEval}(x, digits = options()$digits, ...)
+}
+\arguments{
+    \item{object}{a TSFestModel object to summarize.}
+    \item{x}{a summary.TSFestModel to print.}
+    \item{digits}{precision of printed numbers.}
+    \item{...}{further arguments passed to other methods.}
+}
+
+\value{a summary object.}
+\description{
+   Summary method for object returned by estimation methods like
+   Chi squared
+   delta -
+   CFI - comparitive fit index
+   pvalue (relative to saturated model)
+   pvalVsNull - pvalue relative to the zero factor model
+   \code{estTSF.ML}.
+}
+\seealso{
+   \code{\link{estTSF.ML}}
+   \code{\link[base]{summary}}
+}
+\author{Paul Gilbert}
+\concept{TSFA}
+\keyword{ts}
+
+
+\name{tfplot.TSFmodel}
+\alias{tfplot.TSFmodel}
+\alias{tfplot.TSFestModel}
+\alias{tfplot.TSFfactors}
+\alias{tfplot.TSFexplained}
+\alias{tfplot.TSFmodelEstEval}
+
+\title{Plot Time Series Factors}
+\usage{
+   \method{tfplot}{TSFmodel}(x, ..., tf=tfspan(x), start=tfstart(tf), end=tfend(tf), 
+		 series = seq(nfactors(x)), 
+		 Title = "Model factors", 
+		 lty = 1:5, lwd = 1, pch = NULL, col = 1:6, cex = NULL,
+		 xlab = NULL, ylab = factorNames(x), xlim = NULL, ylim = NULL, 
+		 graphs.per.page = 5,
+                 par=NULL, mar = par()$mar, reset.screen = TRUE)
+   \method{tfplot}{TSFestModel}(x, ...)
+   \method{tfplot}{TSFfactors}(x,..., tf=tfspan(x), start=tfstart(tf), end=tfend(tf), 
+		 series=seq(nfactors(x)),
+		 Title="Estimated factors (dashed) and true (solid)", 
+		 lty = c("dashed", "solid"), lwd = 1, pch = NULL, col = 1:6, cex = NULL,
+		 xlab=NULL, ylab=factorNames(x), xlim = NULL, ylim = NULL, 
+		 graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE)
+   \method{tfplot}{TSFexplained}(x,..., tf=tfspan(x), start=tfstart(tf), end=tfend(tf), 
+		 series=seq(nseries(x)),
+		 Title="Explained (dashed) and actual data (solid)", 
+		 lty = c("dashed", "solid"), lwd = 1, pch = NULL, col = 1:6, cex = NULL,
+		 xlab=NULL, 
+		 ylab=seriesNames(x), 
+		 xlim = NULL, ylim = NULL,
+		 graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE)
+   \method{tfplot}{TSFmodelEstEval}(x, diff.=FALSE,  percentChange.=FALSE,
+        PCcentered.=FALSE, summary.=TRUE, ...)
+}
+\arguments{
+    \item{x}{a TSFmodel or TSFestModel object to be plotted.}
+    \item{diff.}{logical indicating if differenced data should be plotted.}
+    \item{percentChange.}{logical indicating if percent change data 
+          should be plotted.}
+    \item{PCcentered.}{logical indicating if centered percent change data 
+          should be plotted.}
+    \item{summary.}{logical indicating if mean and 1 SD bounds should be 
+         plotted in place of all estimates.}
+    \item{tf}{See generic tfplot method}
+    \item{start}{See generic tfplot method}
+    \item{end}{See generic tfplot method}
+    \item{series}{See generic tfplot method}
+    \item{Title}{string to use for title of factors plot.}
+    \item{lty}{See generic tfplot method}
+    \item{lwd}{See generic tfplot method}
+    \item{pch}{See generic tfplot method}
+    \item{col}{See generic tfplot method}
+    \item{cex}{See generic tfplot method}
+    \item{xlab}{See generic tfplot method}
+    \item{ylab}{See generic tfplot method}
+    \item{xlim}{See generic tfplot method}
+    \item{ylim}{See generic tfplot method}
+    \item{graphs.per.page}{See generic tfplot method}
+    \item{par}{See generic tfplot method}
+    \item{mar}{See generic tfplot method}
+    \item{reset.screen}{See generic tfplot method}
+    \item{...}{other objects to plot (currently unused).}
+}
+\description{Plot time series factors.}
+
+\details{Plot time series factors. Plotting arguments are passed to tfplot.}
+
+\examples{
+}
+
+\seealso{
+   \code{\link{TSFmodel}},
+   \code{\link{estTSF.ML}},
+   \code{\link{simulate.TSFmodel}},
+   \code{\link[tframe]{tfplot}}
+}
+\author{Paul Gilbert}
+\concept{TSFA}
+\keyword{ts}
+
+
+ 
+\name{estTSF.ML}
+\alias{estTSF.ML}
+\alias{estTSF.R2M}
+\alias{estTSF.MCV}
+
+\title{Estimate Time Series Factor Model}
+\usage{
+    estTSF.ML(y, p, diff.=TRUE,
+                rotation=if(p==1) "none" else "quartimin", 
+		methodArgs=NULL, normalize=TRUE, 
+		BpermuteTarget=NULL,
+                factorNames=paste("factor", seq(p)))
+    estTSF.R2M(y, p, diff.=TRUE, 
+                rotation=if(p==1) "none" else "quartimin", 
+		methodArgs=NULL, normalize=TRUE, 
+		BpermuteTarget=NULL,
+                factorNames=paste("factor", seq(p)))
+    estTSF.MCV(y, p, diff.=TRUE,
+                rotation=if(p==1) "none" else "oblimin", 
+		methodArgs=NULL, normalize=TRUE, 
+		BpermuteTarget=NULL,
+                factorNames=paste("factor", seq(p)))
+}
+\arguments{
+    \item{y}{a time series matrix.}
+    \item{p}{integer indication number of factors to estimate.}
+    \item{diff.}{logical indicating model should be estimated with 
+           differenced data.}
+    \item{rotation}{character vector indicating the factor 
+         rotation method (see GPArotation for options.}
+    \item{methodArgs}{list passed to GPFoblq, and then to the rotation method, 
+          specifying arguments for the rotation criteria. See GPFoblq.}
+    \item{normalize}{Passed to GPFoblq. TRUE means do Kaiser normalization before
+          rotation and then undo it after completing rotatation. FALSE means do 
+	  no normalization. See GPFoblq for other possibilities.}
+    \item{BpermuteTarget}{matrix of loadings. If supplied, this is used to permute the
+                 order of estimated factors and change signs in order to 
+		 compare properly.}
+    \item{factorNames}{vector of strings indicating names to be given factor
+       series.}
+}
+
+\description{
+   A TSFmodel is estimated. 
+}
+
+\value{A TSFestModel object which is a list containing TSFmodel, the data, and
+       some information about the estimation.}
+
+\details{
+  ADD MORE HERE
+  }
+\reference{
+  Tom Wansbeek and Erik Meijer (2000) \emph{Measurement 
+   Error and Latent Variables in Econometrics}, Amsterdam: North-Holland.
+
+  Paul D. Gilbert and Erik Meijer,  Time Series Factor Analaysis with an Application to Measuring Money, ",
+     Common Features in London. Proceedings of a conference held by ,
+     Cass Business School, City of London, December 2004.,
+     <http://www.cass.city.ac.uk/conferences/cfl/index.html>
+  }
+
+\seealso{
+   \code{\link{TSFmodel}},
+   \code{\link[GPArotation]{rotations}},
+   \code{\link{factanal}}
+}
+\author{Paul Gilbert and Erik Meijer}
+\concept{TSFA}
+\keyword{ts}
+
+
+\name{permusign}
+\alias{permusign}
+
+
+\title{Internal Utility to Permute the Loadings Matrix.}
+\usage{
+    permusign(B, Btarget, Phi=diag(1,ncol(B)))
+}
+\arguments{
+    \item{B}{proposed loadings matrix.}
+    \item{Btarget}{target loadings matrix.}
+    \item{Phi}{proposed Phi matrix.}
+}
+\description{
+   Internal Utility to Permute the Loadings Matrix. Working only for dim 2.
+}
+
+\value{list with a permuted and sign changed loadings matrix and the
+    corresponding Phi matrix.}
+
+\seealso{
+   \code{\link{factors}},
+   \code{\link{factorNames}},
+   \code{\link{TSFmodel}},
+}
+\author{Paul Gilbert}
+\keyword{internal}
+
+
