@@ -1,0 +1,23 @@
+import("numDeriv")
+S3method("print", "curvature")
+S3method("print", "curvatureArray")
+
+export("project")
+
+export("span")
+S3method("span", "default")
+
+export("curvature")
+S3method("curvature", "default")
+S3method("curvature", "Darray")
+
+export("effectiveCurvature")
+export("curvatureStats")
+export("relCurvature")
+
+S3method("curvature", "TSestModel")
+S3method("genD", "TSestModel")
+S3method("genD", "ARMA")
+S3method("genD", "innov")
+S3method("hessian", "TSestModel")
+S3method("span", "TSestModel")
