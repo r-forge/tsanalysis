@@ -1,0 +1,16 @@
+\documentclass[english]{article}
+\newcommand{\proglang}{\emph}
+\newcommand{\pkg}{\emph}
+\newcommand{\code}{\emph}
+\begin{document}
+%\VignetteIndexEntry{dse2}
+\SweaveOpts{eval=TRUE,echo=TRUE,results=hide,fig=FALSE,keep.source=TRUE}
+\begin{Scode}{echo=FALSE,results=hide}
+ options(continue="  ")
+\end{Scode}
+
+This package (dse2 from the dse bundle) has been superceded by packages dse
+and EvalEst. Please use those instead. Parts of dse2 are now in the package 
+dse, but most of the functons are in EvalEst.
+
+\end{document}
