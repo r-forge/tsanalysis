@@ -1,0 +1,5 @@
+               dse1  version 2009.10-1
+
+o  Package dse1 in the dse discontinued bundle has been replaced by package 
+     dse. This package dse1 is only to provide transition convenience by 
+     requiring dse.

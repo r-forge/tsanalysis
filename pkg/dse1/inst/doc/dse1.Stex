@@ -1,0 +1,15 @@
+\documentclass[english]{article}
+\newcommand{\proglang}{\emph}
+\newcommand{\pkg}{\emph}
+\newcommand{\code}{\emph}
+\begin{document}
+%\VignetteIndexEntry{dse1}
+\SweaveOpts{eval=TRUE,echo=TRUE,results=hide,fig=FALSE,keep.source=TRUE}
+\begin{Scode}{echo=FALSE,results=hide}
+ options(continue="  ")
+\end{Scode}
+
+This package (dse1 from the dse bundle) has been superceded by package dse.
+Please use that instead.
+
+\end{document}
