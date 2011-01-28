@@ -1,0 +1,13 @@
+Package: monitor
+Version: 2010.5-1
+Date: 2010-05-01
+Title: Dynamic Systems Estimation - monitoring extensions
+Description: Multivariate Time Series - monitoring extensions
+Depends: R (>= 2.5.0), methods, tframe (>= 2007.5-3), dse (>= 2007.10-1), EvalEst (>= 2007.10-1), TSdbi (>= 2010.5-1)
+Suggests: stats, setRNG (>= 2004.4-1), TSpadi (>= 2010.5-1), TSMySQL (>= 2010.5-1)
+Imports: methods, TSdbi (>= 2010.5-1), DBI
+LazyLoad: yes
+License: GPL-2 | file LICENSE
+Author: Paul Gilbert <pgilbert@bank-banque-canada.ca>
+Maintainer: Paul Gilbert <pgilbert@bank-banque-canada.ca>
+URL: http://www.bank-banque-canada.ca/pgilbert

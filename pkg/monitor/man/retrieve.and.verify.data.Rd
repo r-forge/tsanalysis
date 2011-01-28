@@ -1,0 +1,45 @@
+\name{retrieve.and.verify.data}
+\alias{retrieve.and.verify.data}
+\title{Retrieve and Verify Data}
+\description{Retrieve data from a database and verify a subset.}
+\usage{
+    retrieve.and.verify.data(data.names, 
+       verification.data=verification.data, fuzz=1e-10)
+}
+\arguments{
+    \item{data.names}{An object of class TSdata indicating databases and series.}
+    \item{verification.data}{An object of class TSdata.}
+    \item{fuzz}{
+    A (small) real number indicating the size of errors to tolerate.}
+}
+\value{An object of class TSdata containing data from the data bases is returned.
+}
+\section{Side Effects}{
+If errors larger than fuzz are found then some warning messages are printed
+and the series in question can be plotted.
+}
+\details{
+The data from the data base is compared with verification.data, which would
+normally be a subset (e.g. a subset used for model estimation). The
+comparison is done  on the sub-sample for which verification data is
+available. This provides
+a mechanism for detecting large data revisions or re-basing.
+}
+\seealso{
+\code{\link{IOseriesIDs}},
+\code{\link{seriesIDs}}
+\code{\link[TSdbi]{TSget}}
+}
+\examples{
+   con <- TSfinddb(c("padi","MySQL"), dbname="ets")
+   if(!is.null(con)) {
+     options(TSconnection=con)
+     dnames <- IOseriesIDs(output="V1")
+     d <- TSget(dnames)
+     retrieve.and.verify.data(dnames, verification.data=d)
+     }
+}
+%\keyword{DSE}
+\keyword{ts}
+
+

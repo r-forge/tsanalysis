@@ -1,0 +1,80 @@
+import("tframe")
+
+export(
+   "Sys.mail",
+   "dateParsed",
+   "file.date.info",
+   "is.S",
+   "combinationMonitoring",
+   "combineAndForecast",
+   "reconstruct.combinedForecast",
+   "construct.data.to.override.horizon",
+   "get.overriding.data",
+   "restrict.overriding.data",
+   "simpleMonitoring",
+   "checkForValueChanges",
+   "checkForFileDateChanges",
+   "watch.data",
+   "tags",
+   "tags<-",
+   "tagged",
+   "is.tagged",
+   "fprint")
+
+S3method("tfplot", "combinedForecast")
+S3method("tfwindow", "tagged")
+S3method("tbind", "tagged")
+S3method("splice", "tagged")
+S3method("selectSeries", "tagged")
+S3method("tframe<-", "tagged")
+
+S3method("tagged", "default")
+S3method("tagged", "TSdata")
+S3method("fprint", "tagged")
+S3method("testEqual", "tagged")
+
+
+
+export("seriesIDs")
+export("is.seriesIDs")
+export("print.seriesIDs")
+
+S3method("tframe", "seriesIDs")
+S3method("tfperiods", "seriesIDs")
+S3method("tfstart", "seriesIDs")
+S3method("tfend", "seriesIDs")
+S3method("tffrequency", "seriesIDs")
+S3method("seriesNames", "seriesIDs")
+
+S3method("print", "seriesIDs")
+
+#####  below is moved from dsepadi via dseTSdbi ###########
+importFrom("stats", "tsp")
+import("TSdbi")
+import("dse")
+
+
+export("retrieve.and.verify.data")
+
+export("IOseriesIDs")
+export("is.IOseriesIDs")
+export("IOseriesIDs2")
+
+S3method("tsp", "IOseriesIDs")
+
+#S3method("periods", "IOseriesIDs")
+#S3method("inputData", "IOseriesIDs")
+#S3method("periodsInput", "IOseriesIDs")
+#S3method("outputData", "IOseriesIDs")
+#S3method("periodsOutput", "IOseriesIDs")
+S3method("print", "IOseriesIDs")
+
+
+## S4 methods
+exportMethods(
+   "TSget",
+   "TSdates",
+   "TSmeta"
+   )
+
+export("refresh")

@@ -1,0 +1,17 @@
+The original monitor files are 
+
+combmon.R   simpmon.R  tagmat.R and 
+combmon.help  simpmon.help  tagmat.help
+
+The files  seriesIDs.R  and seriesIDs.Rd  are a partially attempt
+to replace tfpadi and TSpadi with something more meaninful to use
+on top of TSdbi.
+
+The files
+BOCfm.R  dsepadi.R tfpadi.R and 
+BOCfm.help  dsepadi.help  tfpadi.help
+
+are moved from dsepadi (and padi?) via  temporary aborted attempt at a
+package dseTSdbi (which eventually seemed unnecessary). 
+Most (but not all) of these can probably be cleaned out/up.
+The NAMESPACE file also includes thes functions.
