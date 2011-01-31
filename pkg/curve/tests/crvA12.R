@@ -43,10 +43,15 @@ cat("DSE curvature test A 12a..\n")
 
    tst  <- curvatureVAR[-9]
    error <- max(abs(good-tst))
-   cat("max. error ", max(error))
+   print(good, digits=18)
+   print(tst,  digits=18)
+   
+   cat("max. error ", max(error), "\n")
      
    if (any(is.na(error)) || any(is.nan(error)) || fuzz.large < error) 
-     {printTestValue(c(tst), digits=18); all.ok <- F }
+     {all.ok <- F
+     cat("test failed!\n") 
+     }
 
 cat("DSE curvature test A 12b..\n")
   func.residual <- function(coefficients,Shape,data)
@@ -62,18 +67,25 @@ cat("DSE curvature test A 12b..\n")
         method="Richardson", method.args=list(d=0.01, eps=1e-4, r=6, v=2),
         show.details=FALSE)$stats
 
-  if (! testEqual(curvatureVAR.def2, curvatureVAR.def))
-     {print(curvatureVAR.def,  digits=18)
-      print(curvatureVAR.def2, digits=18)
-      all.ok <- F 
+  print(curvatureVAR.def,  digits=18)
+  print(curvatureVAR.def2, digits=18)
+      
+  if (! testEqual(curvatureVAR.def2, curvatureVAR.def)) {
+     all.ok <- F
+     cat("test failed!\n")
      }
-
-   good <- curvatureVAR[-9]
-   tst  <- curvatureVAR.def[-9]
-   error <- max(abs(good-tst))
-   cat("max. error ", max(error))
-     
-   if (any(is.na(error)) || any(is.nan(error)) || fuzz.small < error) 
-     {printTestValue(c(tst), digits=18); all.ok <- F }
+ 
+  good <- curvatureVAR[-9]
+  tst  <- curvatureVAR.def[-9]
+  error <- max(abs(good-tst))
+  
+  print(good, digits=18)
+  print(tst,  digits=18)
+  cat("max. error ",error, "\n")
+    
+  if (any(is.na(error)) || any(is.nan(error)) || fuzz.small < error) { 
+    all.ok <- F
+    cat("test failed!\n")
+    }
 
   if (! all.ok) stop("some tests FAILED")
