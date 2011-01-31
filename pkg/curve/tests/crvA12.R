@@ -70,7 +70,7 @@ cat("DSE curvature test A 12b..\n")
   print(curvatureVAR.def,  digits=18)
   print(curvatureVAR.def2, digits=18)
       
-  if (! testEqual(curvatureVAR.def2, curvatureVAR.def)) {
+  if (! testEqual(curvatureVAR.def2, curvatureVAR.def, fuzz=1e-15)) {
      all.ok <- F
      cat("test failed!\n")
      }
