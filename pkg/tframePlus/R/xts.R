@@ -1,33 +1,32 @@
-is.tframed.zoo <- function(x) {TRUE}
+is.tframed.xts <- function(x) {TRUE}
 
-tframe.zoo <- function (x) {
+tframe.xts <- function (x) {
   tf <- index(x)
-  class(tf) <- c( "zootframe", class(tf), "tframe")
+  class(tf) <- c( "xtstframe", class(tf), "tframe")
   tf
   }
 
-tfUnSet.zoo <- function(x)      {zoo:::coredata(x)}
-tfSet.zootframe <- function(value, x) { 
-  if(periods(value) != periods(x)) stop("number of periods of observations must correspond to number of periods indicated by tframe.")
-  class(value) <- class(value)[class(value) != "zootframe"]
-  zoo:::zoo(x, value) }
+tfUnSet.xts <- function(x)      {xts:::coredata(x)}
+tfSet.xtstframe <- function(value, x) { 
+  class(value) <- class(value)[class(value) != "xtstframe"]
+  xts:::xts(x, value) }
 
-"seriesNames<-.zoo" <- function (x, value) 
+"seriesNames<-.xts" <- function (x, value) 
   {if (is.matrix(x)) dimnames(x) <- list(NULL, value)
    else attr(x, "seriesNames") <- value
    x
   }
 
-tfperiods.zoo <- function(x)  NROW(x)
+tfperiods.xts <- function(x)  NROW(x)
 
-tfstart.zootframe <- function(x) x[1]
-tfend.zootframe   <- function(x) x[length(x)]
-tfperiods.zootframe   <- function(x) length(x)
-periods.zootframe     <- function(x) length(x)
+tfstart.xtstframe <- function(x) x[1]
+tfend.xtstframe   <- function(x) x[length(x)]
+tfperiods.xtstframe   <- function(x) length(x)
+periods.xtstframe     <- function(x) length(x)
 
-tfL.zoo <- function (x, p = 1) lag(x, k = -p)
+tfL.xts <- function (x, p = 1) lag(x, k = -p)
 
-tfwindow.zoo <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE)
+tfwindow.xts <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE)
   {# With the default warn=T warnings will be issued if no truncation takes
    #  place because start or end is outside the range of data.
    if (!warn) 
@@ -40,7 +39,7 @@ tfwindow.zoo <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE
    y
   }
 
-tfExpand.zoo <- function(x, add.start = 0, add.end = 0){
+tfExpand.xts <- function(x, add.start = 0, add.end = 0){
    idx <- time(x)
    r <- as.matrix(coredata(x))
    if (add.start > 0 ) {
@@ -51,10 +50,10 @@ tfExpand.zoo <- function(x, add.start = 0, add.end = 0){
      idx <- c(idx, end(x) + seq(add.end))
      r <- rbind(r, matrix(NA,add.end, ncol(r)))
      }
-   zoo(r, order.by = idx) 
+   xts(r, order.by = idx) 
    }
 
-tbind.zoo <- function(x, ..., pad.start=TRUE, pad.end=TRUE, warn=TRUE)
+tbind.xts <- function(x, ..., pad.start=TRUE, pad.end=TRUE, warn=TRUE)
  {nm <- seriesNames(x)
   ref <- attr(x, "TSrefperiod")
   for (z in list(...)) {
