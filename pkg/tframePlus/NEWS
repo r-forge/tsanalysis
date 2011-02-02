@@ -1,3 +1,10 @@
+Changes in tframePlus version 2011.2-1
+
+   o	Added methods and tests for xts series.
+
+   o	Added a check that periods of the data correspond to periods of the
+   	tframe for zoo constructor (otherwise recycling happens without warning)
+
 Changes in tframePlus version 2010.4-1
 
    o	Added argument dateHeader to TSwriteXLS.
