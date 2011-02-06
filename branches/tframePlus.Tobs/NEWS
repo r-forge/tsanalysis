@@ -1,0 +1,74 @@
+Changes in tframePlus version 2011.2-1
+
+   o	Added methods and tests for xts series.
+
+   o	Added a check that periods of the data correspond to periods of the
+   	tframe for zoo constructor (otherwise recycling happens without warning)
+
+Changes in tframePlus version 2010.4-1
+
+   o	Added argument dateHeader to TSwriteXLS.
+
+   o	Fixed bug in TSwriteXLS with rounding problem causing incorrectly 
+	mapping of some ts dates into correct month.
+
+
+Changes in tframePlus version 2009.10-2
+
+   o	Fixed workaround in TSwriteXLS using save() when WriteXLS does not
+   	find an adequate perl instalation.
+
+   o	Added perl functionality test.
+
+
+Changes in tframePlus version 2009.10-1
+
+   o	Standardized NEWS format for new function news().
+
+   o	Fixed a few documentation problems found by R-2.10.0 (beta) quality checks.
+
+   o	fixed rollAggregate problem with zoo daily/weekly data.
+
+   o	fixed tfSet.zootframe drop class zootframe when gernerating zoo object. 
+
+   o	fixed tfExpand.zoo to have correct number of NA columns and avoid warning. 
+
+
+Changes in tframePlus version 2009.06-1
+
+   o	added function TSwriteXLS to write time series to .xls files. 
+
+   o	added function as.weekly (which is still somewhat limited).
+
+   o	added function rollAggregate.
+
+   o	added methods tfL.zoo  and tfExpand.zoo.
+
+
+Changes in tframePlus version 2009.04-1
+
+   o	Added function as.annually. 
+
+
+Changes in tframePlus version 2009.02-1
+
+   o	Cleaned up consistent with tframe so that data classes are not defined 
+	unless absolutely necessary. 
+
+   o	Also, in line with trying to use methods for existing classes, 
+	seriesNames() now uses dimnames[[2]] for matrices, and a class method if
+	that is available. A "seriesNames" attribute is still set if there is
+	no class methods available, as for vectors.
+
+   o	removed a try-error check for a condition that would never happen.
+
+   o	added tfI for mulivariate series integration.
+
+
+Changes in tframePlus version 2008.5-1
+
+   o	First release. This package splits some new/experimental/less stable
+	pieces out of tframe. It also include extensions for zoo and its, so 
+	the core tframe package does not need them. For older NEWS see the 
+	tframe NEWS file.
+
