@@ -60,3 +60,32 @@ S3method("tfSet","itstframe")
 S3method("tfwindow","its")
 S3method("tbind","its")
 S3method("time","its")
+
+S3method("is.tframed","timeSeries")
+##S3method("tfstart","timeSeries")
+S3method("tfstart","timeSeriestframe")
+##S3method("tfend","timeSeries")
+S3method("tfend","timeSeriestframe")
+S3method("tfperiods","timeSeriestframe")
+S3method("periods","timeSeriestframe")
+#S3method("periods","timeSeries")
+S3method("tframe","timeSeries")
+S3method("tfSet","timeSeriestframe")
+S3method("tfwindow","timeSeries")
+S3method("tbind","timeSeries")
+
+S3method("tfL","timeSeries")
+S3method("tfExpand","timeSeries")
+
+## S4 methods
+exportMethods(
+   "is.tframed",
+   "tframe",
+   "tfwindow",
+   "tbind",
+   "tfL",
+   "tfExpand",
+   "seriesNames<-",
+#   "periods",
+   "tfperiods"
+   )
