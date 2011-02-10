@@ -1,11 +1,11 @@
 Package: tframePlus
 Version: 2011.2-1
-Date: 2010-11-2
+Date: 2011-02-11
 Title: Time Frame coding kernel extensions
 Description:  Extensions and additional tframe utilities.
 Depends: R (>= 2.5.0), tframe
 Imports: tframe,  methods, timeSeries
-Suggests: zoo, xts, its, timeSeries, methods, WriteXLS(>= 1.7.0)
+Suggests: zoo, xts, its, tis, timeSeries, methods, WriteXLS(>= 1.7.0)
 LazyLoad: yes
 License: GPL-2 | file LICENSE
 Author: Paul Gilbert <pgilbert@bank-banque-canada.ca>

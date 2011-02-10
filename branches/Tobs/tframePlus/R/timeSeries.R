@@ -1,6 +1,3 @@
-require("tframe")
-require("timeSeries")
-
 is.tframed.timeSeries <- function(x) {TRUE}
 setGeneric("is.tframed")
 setMethod("is.tframed", "timeSeries", is.tframed.timeSeries)
