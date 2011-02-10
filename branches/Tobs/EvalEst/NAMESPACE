@@ -34,7 +34,7 @@ S3method("seriesNamesInput", "MonteCarloSimulations")
 S3method("seriesNamesOutput", "MonteCarloSimulations")
 S3method("nseriesInput", "MonteCarloSimulations")
 S3method("nseriesOutput", "MonteCarloSimulations")
-S3method("periods", "MonteCarloSimulations")
+S3method("Tobs", "MonteCarloSimulations")
 S3method("tframe", "MonteCarloSimulations")
 
 S3method("TSestModel", "coefEstEval")

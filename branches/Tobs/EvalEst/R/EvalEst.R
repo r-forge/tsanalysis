@@ -219,7 +219,7 @@ nseriesInput.MonteCarloSimulations <- function(x)
 
 tframe.MonteCarloSimulations <- function(x) tframe(x$simulations)
 
-periods.MonteCarloSimulations <- function(x) periods(tframe(x))
+Tobs.MonteCarloSimulations <- function(x) Tobs(tframe(x))
 
 seriesNamesOutput.MonteCarloSimulations <- function(x)
    {dimnames(x$simulations)[[2]]}
@@ -266,7 +266,7 @@ print.summary.MonteCarloSimulations <- function(x, digits=options()$digits, ...)
  {#  (... further arguments, currently disregarded)
   cat("Object class MonteCarloSimulations\n")
   cat(x$description, "\n")
-  cat("periods=",x$sampleT, "variables=", x$p,"simulations=",x$simulations,"\n")
+  cat("Tobs=",x$sampleT, "variables=", x$p,"simulations=",x$simulations,"\n")
   cat("rng= ", x$rng, "\n")
   if (!is.null(x$summary.stats))   print(x$summary.stats, digits=digits)
   invisible(x)
@@ -532,7 +532,7 @@ tfplot.EstEval <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf),
     {truth <- sweep(truth,2, colMeans(truth))
      ylab <- paste(ylab, "(mean removed)")
     }
-  r <- matrix(NA,periods(truth), N)
+  r <- matrix(NA,Tobs(truth), N)
   for (j in series) {
   	for (i in 1:N)  r[,i] <- x$result[[i]][,j]
 	if (remove.mean) r <- sweep(r,2, colMeans(r))

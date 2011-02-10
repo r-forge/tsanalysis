@@ -77,8 +77,8 @@ as.weekly <- function(x, FUN=sum, na.rm=FALSE, foldFrom=end(x), periodicity = 7)
    # 7 for 7 day weeks.  tested only with daily to weekly, 
    #  periodicity <- 1/frequency(x) unfortunately does not work for daily
    #drop <- length(x) %% periodicity
-   addst <- periodicity - (periods(tfwindow(x, end= foldFrom)) %% periodicity) 
-   adden <- (periods(tfwindow(x, start= foldFrom))-1) %% periodicity 
+   addst <- periodicity - (Tobs(tfwindow(x, end= foldFrom)) %% periodicity) 
+   adden <- (Tobs(tfwindow(x, start= foldFrom))-1) %% periodicity 
    x <- tfExpand.zoo(x, add.start=addst, add.end  =adden)
    r <- as.matrix(x)
    #if (drop > 0) r <- r[ -(1:drop),, drop=FALSE]
@@ -125,7 +125,7 @@ as.annually <- function (x, FUN=sum, na.rm=FALSE, ...){
 
 rollAggregate <- function(x, FUN=sum, na.rm=FALSE, aggPeriods=4, ...){
    r <- as.matrix(x)
-   N <- periods(x)
+   N <- Tobs(x)
    rr <- array(NA, c(N, NCOL(r), aggPeriods))
    rr[,,1] <- r
    for (i in 1:(aggPeriods-1)) rr[(1+i):N,,(1+i)] <- r[1:(N-i),]

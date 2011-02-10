@@ -49,8 +49,8 @@
   ok <- all(seriesNames(z) == c("random 1", "random 2"))
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("multivariate seriesNames failed!\n") 
-  # periods(z) will be 220 except in the random case of two equal time stamps
-  y <- rnorm(periods(z)) 
+  # Tobs(z) will be 220 except in the random case of two equal time stamps
+  y <- rnorm(Tobs(z)) 
   tframe(y) <- tframe(z)  
   ok <- all(tframe(y) == tframe(z))
   all.ok <- all.ok & ok 
@@ -64,7 +64,7 @@
   if (ok) cat("ok\n") else cat("failed!\n") 
 
   cat("tframe zoo test 7 ... ")
-  y <- rnorm(periods(z))
+  y <- rnorm(Tobs(z))
   tframe(y) <- tframe(z)  
   ok <- is.tframed(y) & (inherits(y, "zoo")) & (start(y) == start(z))
   all.ok <- all.ok & ok 

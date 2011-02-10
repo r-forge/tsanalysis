@@ -3,7 +3,7 @@
 \alias{tfstart.itstframe}
 \alias{tfend.its}
 \alias{tfend.itstframe}
-\alias{periods.itstframe}
+\alias{Tobs.itstframe}
 \alias{time.its}
 
 \alias{tframe.its}

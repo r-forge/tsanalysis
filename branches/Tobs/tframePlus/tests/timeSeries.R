@@ -44,15 +44,15 @@
   cat("tframe timeSeries test 5 ... ")
   #  irregular series at random observation times
   # original z and the generated rnorm() series here do not have observations
-  # at the same time, so the result (probably) has 220 periods.
+  # at the same time, so the result (probably) has 220 Tobs.
   z <- tbind(z, timeSeries(rnorm(120),
           as.POSIXct(Sys.time() + sort(round(runif(120)*1e8)), "GMT")))
   seriesNames(z) <- c("random 1", "random 2")
   ok <- all(seriesNames(z) == c("random 1", "random 2"))
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("multivariate seriesNames failed!\n") 
-  # periods(z) will be 220 except in the random case of two equal time stamps
-  y <- rnorm(tfperiods(z))  # SHOULD USE periods(z) HERE, BUT CONFLICT WITH timeSeries
+  # Tobs(z) will be 220 except in the random case of two equal time stamps
+  y <- rnorm(tfTobs(z))  # SHOULD USE Tobs(z) HERE, BUT CONFLICT WITH timeSeries
   tframe(y) <- tframe(z)  
   ok <- all(tframe(y) == tframe(z))
   all.ok <- all.ok & ok 
@@ -66,7 +66,7 @@
   if (ok) cat("ok\n") else cat("failed!\n") 
 
   cat("tframe timeSeries test 7 ... ")
-  y <- rnorm(tfperiods(z)) # SHOULD USE periods(z) HERE, BUT CONFLICT WITH timeSeries
+  y <- rnorm(tfTobs(z)) # SHOULD USE Tobs(z) HERE, BUT CONFLICT WITH timeSeries
   tframe(y) <- tframe(z)  
   ok <- is.tframed(y) & (inherits(y, "timeSeries")) & (start(y) == start(z))
   all.ok <- all.ok & ok 

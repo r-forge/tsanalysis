@@ -1,11 +1,11 @@
-\name{periodsMonteCarloSimulations}
-\alias{periods.MonteCarloSimulations}
+\name{TobsMonteCarloSimulations}
+\alias{Tobs.MonteCarloSimulations}
 \alias{tframe.MonteCarloSimulations}
 
-\title{Tframe or Number of Periods}
-\description{Return the number of periods or the tframe.}
+\title{Tframe or Number of Observations}
+\description{Return the number of Observations or the tframe.}
 \usage{
-    \method{periods}{MonteCarloSimulations}(x)
+    \method{Tobs}{MonteCarloSimulations}(x)
     \method{tframe}{MonteCarloSimulations}(x)
     }
 

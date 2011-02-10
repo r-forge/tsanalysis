@@ -3,12 +3,15 @@ Known Bugs
 
    o	None for the moment.
 
+Changes in curve version 2009.10-2
+
+   o	Changed periods() to Tobs() consistent with changes in tframe.
+
 Changes in curve version 2009.10-1
 
    o	Standardized NEWS format for new function news().
 
    o	Fixed a few documentation problems found by R-2.10.0 (beta) quality checks.
-
 
 Changes in curve version 2007.4-1
 

@@ -16,13 +16,13 @@ tfSet.itstframe <- function(value, x) {its:::its(x, value)}
   }
 
 tfstart.its <- function(x) its:::dates(x)[1] # start(x) returns character rather than a date
-tfend.its   <- function(x) its:::dates(x)[periods(x)]
+tfend.its   <- function(x) its:::dates(x)[Tobs(x)]
 time.its    <- function(x, ...) its:::dates(x, ...)
 
 tfstart.itstframe <- function(x) x[1]
 tfend.itstframe   <- function(x) x[length(x)]
-tfperiods.itstframe   <- function(x) length(x)
-periods.itstframe     <- function(x) length(x)
+tfTobs.itstframe   <- function(x) length(x)
+Tobs.itstframe     <- function(x) length(x)
 
 tfwindow.its <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE)
   {# With the default warn=T warnings will be issued if no truncation takes
@@ -32,7 +32,7 @@ tfwindow.its <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE
       on.exit(options(opts))
      }
    d <- its:::dates(x)
-   i <- rep(TRUE, periods(x))
+   i <- rep(TRUE, Tobs(x))
    if(!is.null(start)) i <- i &  
              (d >= if(is.character(start)) as.POSIXct(start) else start)
    if(!is.null(end))   i <- i &  

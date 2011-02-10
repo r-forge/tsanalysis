@@ -8,7 +8,7 @@ tframe.zoo <- function (x) {
 
 tfUnSet.zoo <- function(x)      {zoo:::coredata(x)}
 tfSet.zootframe <- function(value, x) { 
-  if(periods(value) != periods(x)) stop("number of periods of observations must correspond to number of periods indicated by tframe.")
+  if(Tobs(value) != Tobs(x)) stop("number of Tobs of observations must correspond to number of Tobs indicated by tframe.")
   class(value) <- class(value)[class(value) != "zootframe"]
   zoo:::zoo(x, value) }
 
@@ -18,12 +18,12 @@ tfSet.zootframe <- function(value, x) {
    x
   }
 
-tfperiods.zoo <- function(x)  NROW(x)
+tfTobs.zoo <- function(x)  NROW(x)
 
 tfstart.zootframe <- function(x) x[1]
 tfend.zootframe   <- function(x) x[length(x)]
-tfperiods.zootframe   <- function(x) length(x)
-periods.zootframe     <- function(x) length(x)
+tfTobs.zootframe   <- function(x) length(x)
+Tobs.zootframe     <- function(x) length(x)
 
 tfL.zoo <- function (x, p = 1) lag(x, k = -p)
 

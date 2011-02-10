@@ -2,7 +2,7 @@ require("tframe")
 require("timeSeries")
 
 is.tframed.timeSeries <- function(x) {TRUE}
-
+setGeneric("is.tframed")
 setMethod("is.tframed", "timeSeries", is.tframed.timeSeries)
 
 tframe.timeSeries <- function (x) {
@@ -30,16 +30,15 @@ tfSet.timeSeriestframe <- function(value, x) {
   }
 setMethod("seriesNames<-", "timeSeries", get("seriesNames<-.timeSeries"))
 
-tfperiods.timeSeries <- function(x)  NROW(x)
-setMethod("tfperiods", "timeSeries", tfperiods.timeSeries)
+tfTobs.timeSeries <- function(x)  NROW(x)
+setMethod("tfTobs", "timeSeries", tfTobs.timeSeries)
 
 tfstart.timeSeriestframe <- function(x) x[1]
 tfend.timeSeriestframe   <- function(x) x[length(x)]
-tfperiods.timeSeriestframe   <- function(x) length(x)
-periods.timeSeriestframe     <- function(x) length(x)
-# FATAL CONFLICT: the timeSeries package defines periods differently. 
-#periods.timeSeries     <- function(x) NROW(x)
-#setMethod("periods", "timeSeries", periods.timeSeries)
+tfTobs.timeSeriestframe   <- function(x) length(x)
+Tobs.timeSeriestframe     <- function(x) length(x)
+#Tobs.timeSeries     <- function(x) NROW(x)
+#setMethod("Tobs", "timeSeries", Tobs.timeSeries)
 
 tfL.timeSeries <- function (x, p = 1) lag(x, k = -p)
 setMethod("tfL", "timeSeries", tfL.timeSeries)

@@ -17,12 +17,12 @@ tfSet.xtstframe <- function(value, x) {
    x
   }
 
-tfperiods.xts <- function(x)  NROW(x)
+tfTobs.xts <- function(x)  NROW(x)
 
 tfstart.xtstframe <- function(x) x[1]
 tfend.xtstframe   <- function(x) x[length(x)]
-tfperiods.xtstframe   <- function(x) length(x)
-periods.xtstframe     <- function(x) length(x)
+tfTobs.xtstframe   <- function(x) length(x)
+Tobs.xtstframe     <- function(x) length(x)
 
 tfL.xts <- function (x, p = 1) lag(x, k = -p)
 

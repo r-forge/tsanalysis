@@ -3,8 +3,8 @@
 \alias{tfstart.zootframe}
 %%\alias{tfend.zoo}
 \alias{tfend.zootframe}
-\alias{tfperiods.zoo}
-\alias{periods.zootframe}
+\alias{tfTobs.zoo}
+\alias{Tobs.zootframe}
 
 \alias{tframe.zoo}
 \alias{tfSet.zootframe}
@@ -20,7 +20,7 @@
     \method{tfstart}{zootframe}(x)
 %%    \method{tfend}{zoo}(x)
     \method{tfend}{zootframe}(x)
-    \method{tfperiods}{zoo}(x)
+    \method{tfTobs}{zoo}(x)
     \method{tframe}{zoo}(x)
     \method{tfSet}{zootframe}(value, x) 
     \method{tfwindow}{zoo}(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE)

@@ -17,13 +17,13 @@
 \alias{frequency.tframed}
 \alias{frequency.tframe}
 
-\alias{tfperiods}
-\alias{tfperiods.default}
-\alias{tfperiods.stamped}
-\alias{periods}
-\alias{periods.default}
-\alias{periods.tframed}
-\alias{periods.tframe}
+\alias{tfTobs}
+\alias{tfTobs.default}
+\alias{tfTobs.stamped}
+\alias{Tobs}
+\alias{Tobs.default}
+\alias{Tobs.tframed}
+\alias{Tobs.tframe}
 
 
 \alias{tftime}
@@ -52,13 +52,13 @@
     tffrequency(x)
     \method{tffrequency}{default}(x)
 
-    periods(x)
-    \method{periods}{default}(x)
-    \method{periods}{tframed}(x)
-    \method{periods}{tframe}(x)
-    tfperiods(x)
-    \method{tfperiods}{default}(x)
-    \method{tfperiods}{stamped}(x)
+    Tobs(x)
+    \method{Tobs}{default}(x)
+    \method{Tobs}{tframed}(x)
+    \method{Tobs}{tframe}(x)
+    tfTobs(x)
+    \method{tfTobs}{default}(x)
+    \method{tfTobs}{stamped}(x)
 
     \method{time}{tframed}(x, ...)
     \method{time}{tframe}(x, ...)
@@ -90,7 +90,7 @@
     \code{\link[stats]{start}}
     \code{\link[stats]{end}}
     \code{\link[stats]{frequency}}
-    \code{\link{periods}}
+    \code{\link{Tobs}}
     \code{\link[stats]{time}}
     \code{\link{lag}}
     \code{\link{diff}}
@@ -101,7 +101,7 @@
     z <- tframed(matrix(rnorm(200), 100,2), 
             tf=list(start=c(1982,1), frequency=12))
     tfend(z)
-    periods(z)
+    Tobs(z)
     time(z)
 }
 
