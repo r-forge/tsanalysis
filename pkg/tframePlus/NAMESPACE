@@ -31,7 +31,6 @@ S3method("tfL","zoo")
 S3method("tfExpand","zoo")
 
 
-
 S3method("is.tframed","xts")
 ##S3method("tfstart","xts")
 S3method("tfstart","xtstframe")
@@ -60,3 +59,18 @@ S3method("tfSet","itstframe")
 S3method("tfwindow","its")
 S3method("tbind","its")
 S3method("time","its")
+
+
+S3method("is.tframed","tis")
+##S3method("tfstart","tis")
+S3method("tfstart","tistframe")
+##S3method("tfend","tis")
+S3method("tfend","tistframe")
+S3method("tfperiods","tistframe")
+S3method("periods","tistframe")
+S3method("tframe","tis")
+S3method("tfSet","tistframe")
+S3method("tfwindow","tis")
+S3method("tbind","tis")
+
+
