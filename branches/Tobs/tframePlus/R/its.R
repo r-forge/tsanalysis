@@ -19,9 +19,10 @@ tfstart.its <- function(x) its:::dates(x)[1] # start(x) returns character rather
 tfend.its   <- function(x) its:::dates(x)[Tobs(x)]
 time.its    <- function(x, ...) its:::dates(x, ...)
 
+Tobs.its <- function(x)  NROW(x)
+
 tfstart.itstframe <- function(x) x[1]
 tfend.itstframe   <- function(x) x[length(x)]
-tfTobs.itstframe   <- function(x) length(x)
 Tobs.itstframe     <- function(x) length(x)
 
 tfwindow.its <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE)

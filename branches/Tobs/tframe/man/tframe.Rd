@@ -124,7 +124,7 @@
     \code{\link{tfstart}},
     \code{\link{tfend}},
     \code{\link{tffrequency}},
-    \code{\link{tfTobs}},
+    \code{\link{Tobs}},
     \code{\link{tftime}},
     \code{\link{tfL}}
 }

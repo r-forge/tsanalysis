@@ -52,7 +52,7 @@
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("multivariate seriesNames failed!\n") 
   # Tobs(z) will be 220 except in the random case of two equal time stamps
-  y <- rnorm(tfTobs(z))  # SHOULD USE Tobs(z) HERE, BUT CONFLICT WITH timeSeries
+  y <- rnorm(Tobs(z))  
   tframe(y) <- tframe(z)  
   ok <- all(tframe(y) == tframe(z))
   all.ok <- all.ok & ok 
@@ -66,7 +66,7 @@
   if (ok) cat("ok\n") else cat("failed!\n") 
 
   cat("tframe timeSeries test 7 ... ")
-  y <- rnorm(tfTobs(z)) # SHOULD USE Tobs(z) HERE, BUT CONFLICT WITH timeSeries
+  y <- rnorm(Tobs(z)) 
   tframe(y) <- tframe(z)  
   ok <- is.tframed(y) & (inherits(y, "timeSeries")) & (start(y) == start(z))
   all.ok <- all.ok & ok 

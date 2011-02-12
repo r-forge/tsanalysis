@@ -15,9 +15,10 @@ tfSet.tistframe <- function(value, x) {
 tfstart.tis <- function(x) tis:::start(x)
 tfend.tis   <- function(x) tis:::end(x)
 
+Tobs.tis <- function(x)  NROW(x)
+
 tfstart.tistframe <- function(x) x[1]
 tfend.tistframe   <- function(x) x[length(x)]
-tfTobs.tistframe   <- function(x) length(x)
 Tobs.tistframe     <- function(x) length(x)
 
 tfwindow.tis <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE)

@@ -18,11 +18,10 @@ tfSet.zootframe <- function(value, x) {
    x
   }
 
-tfTobs.zoo <- function(x)  NROW(x)
+Tobs.zoo <- function(x)  NROW(x)
 
 tfstart.zootframe <- function(x) x[1]
 tfend.zootframe   <- function(x) x[length(x)]
-tfTobs.zootframe   <- function(x) length(x)
 Tobs.zootframe     <- function(x) length(x)
 
 tfL.zoo <- function (x, p = 1) lag(x, k = -p)

@@ -17,13 +17,11 @@
 \alias{frequency.tframed}
 \alias{frequency.tframe}
 
-\alias{tfTobs}
-\alias{tfTobs.default}
-\alias{tfTobs.stamped}
 \alias{Tobs}
 \alias{Tobs.default}
 \alias{Tobs.tframed}
 \alias{Tobs.tframe}
+\alias{Tobs.stamped}
 
 
 \alias{tftime}
@@ -56,9 +54,7 @@
     \method{Tobs}{default}(x)
     \method{Tobs}{tframed}(x)
     \method{Tobs}{tframe}(x)
-    tfTobs(x)
-    \method{tfTobs}{default}(x)
-    \method{tfTobs}{stamped}(x)
+    \method{Tobs}{stamped}(x)
 
     \method{time}{tframed}(x, ...)
     \method{time}{tframe}(x, ...)

@@ -27,15 +27,13 @@ tfSet.timeSeriestframe <- function(value, x) {
   }
 setMethod("seriesNames<-", "timeSeries", get("seriesNames<-.timeSeries"))
 
-tfTobs.timeSeries <- function(x)  NROW(x)
-setMethod("tfTobs", "timeSeries", tfTobs.timeSeries)
 
 tfstart.timeSeriestframe <- function(x) x[1]
 tfend.timeSeriestframe   <- function(x) x[length(x)]
-tfTobs.timeSeriestframe   <- function(x) length(x)
+
 Tobs.timeSeriestframe     <- function(x) length(x)
-#Tobs.timeSeries     <- function(x) NROW(x)
-#setMethod("Tobs", "timeSeries", Tobs.timeSeries)
+Tobs.timeSeries     <- function(x) NROW(x)
+setMethod("Tobs", "timeSeries", Tobs.timeSeries)
 
 tfL.timeSeries <- function (x, p = 1) lag(x, k = -p)
 setMethod("tfL", "timeSeries", tfL.timeSeries)

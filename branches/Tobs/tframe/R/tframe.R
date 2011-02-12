@@ -31,19 +31,22 @@ start.tframed     <- function(x, ...) tfstart(tframe(x))
 end.tframed       <- function(x, ...) tfend(tframe(x)) 
 frequency.tframed <- function(x, ...) tffrequency(tframe(x)) 
 time.tframed      <- function(x, ...) tftime(tframe(x)) 
-Tobs.tframed   <- function(x)      tfTobs(tframe(x)) 
+Tobs.tframed   <- function(x)      Tobs(tframe(x)) 
 
 start.tframe     <- function(x, ...) tfstart(x)
 end.tframe       <- function(x, ...) tfend(x) 
 frequency.tframe <- function(x, ...) tffrequency(x) 
 time.tframe      <- function(x, ...) tftime(x) 
-Tobs.tframe   <- function(x)      tfTobs(x)
+Tobs.tframe   <- function(x) # formerly default for tfTobs
+  {if (is.null(x)) return(NULL) else
+   if (!is.tframe(x)) x <- tframe(x)
+   1+round((x[2]-x[1])*x[3])
+  }
 
 tfstart     <- function(x) UseMethod("tfstart")
 tfend       <- function(x) UseMethod("tfend")
 tffrequency <- function(x) UseMethod("tffrequency")
 tftime <- function(x) UseMethod("tftime")
-tfTobs <- function(x) UseMethod("tfTobs")
 
 
 # these server two purposes. One is a method for tframe's. Two is a consistent
@@ -74,11 +77,6 @@ tftime.default      <- function(x)
    #tframed(x[1]+(seq(Tobs(x))-1)/x[3], tf=x)
    if (is.tframe(x)) tframed(x[1]+(seq(Tobs(x))-1)/x[3], tf=x)
    else time(x)
-  }
-tfTobs.default   <- function(x)
-  {if (is.null(x)) return(NULL) else
-   if (!is.tframe(x)) x <- tframe(x)
-   1+round((x[2]-x[1])*x[3])
   }
 
 
@@ -431,7 +429,7 @@ tfExpand.tframe <- function(x, add.start=0, add.end=0)
 
 checktframeConsistent <- function(tf, x) UseMethod("checktframeConsistent")
 
-checktframeConsistent.default <- function(tf, x) tfTobs(tf) == Tobs(x)
+checktframeConsistent.default <- function(tf, x) Tobs(tf) == Tobs(x)
 
 testEqualtframes <- function(tf1, tf2) UseMethod("testEqualtframes")
 
@@ -557,7 +555,7 @@ latestEndIndex.tframe <- function(x, ...)
 testEqualtframes.stamped <- function(tf1, tf2)
   {all(tf1$stamp == tf2$stamp)}
 
-tfTobs.stamped <- function(x) length(tframe(x))
+Tobs.stamped <- function(x) length(tframe(x))
 
 ###############################################
 
