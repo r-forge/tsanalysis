@@ -5,6 +5,8 @@ importFrom("stats","frequency")
 importFrom("stats","time")
 importFrom("stats","aggregate")
 
+importFrom("timeSeries","timeSeries")
+
 ## not generic
 export(
   "TSwriteXLS",
@@ -81,13 +83,13 @@ S3method("tfstart","timeSeriestframe")
 S3method("tfend","timeSeriestframe")
 S3method("Tobs","timeSeries")
 S3method("Tobs","timeSeriestframe")
-#S3method("tframe","timeSeries")
+S3method("tframe","timeSeries")
 S3method("tfSet","timeSeriestframe")
-#S3method("tfwindow","timeSeries")
-#S3method("tbind","timeSeries")
+S3method("tfwindow","timeSeries")
+S3method("tbind","timeSeries")
 
-#S3method("tfL","timeSeries")
-#S3method("tfExpand","timeSeries")
+S3method("tfL","timeSeries")
+S3method("tfExpand","timeSeries")
 
 ## S4 methods
 exportMethods(

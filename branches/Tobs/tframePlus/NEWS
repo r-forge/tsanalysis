@@ -1,6 +1,10 @@
-Changes in tframePlus version 2011.2-1
+Changes in tframePlus version 2011.2-2
 
-   o	Added methods and tests for timeSeries series.
+   o	Converted both periods() and tfperiods() to Tobs(). (The distinction is
+   	no longer needed.)
+
+   o	Added methods and tests for timeSeries series. S4 methods also require
+   	NAMESPACE exports.
 
    o	Added methods and tests for tis series (as used by package fame).
 

@@ -22,7 +22,7 @@ tfSet.timeSeriestframe <- function(value, x) {
   timeSeries:::timeSeries(x, charvec=value) }
 
 "seriesNames<-.timeSeries" <- function (x, value) 
-  {names(x) <- value
+  {colnames(x) <- value
    x
   }
 setMethod("seriesNames<-", "timeSeries", get("seriesNames<-.timeSeries"))
@@ -45,11 +45,13 @@ tfwindow.timeSeries <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), wa
      {opts <- options(warn = -1)
       on.exit(options(opts))
      }
-   if(is.null(start)) start <- start(x)
-   if(is.null(end))   end   <- end(x)
-   y <- .window.timeSeries(x, start=start, end=end)
+   y <- if(is.null(start) & is.null(end)) x
+   else if(is.null(start)) .window.timeSeries(x, end=end)
+   else if(is.null(end))   .window.timeSeries(x, start=start)
+   else                    .window.timeSeries(x, start=start, end=end)
+
    seriesNames(y) <- seriesNames(x)
-   attr(y, "TSrefperiod") <- attr(x, "TSrefperiod")
+   #attr(y, "TSrefperiod") <- attr(x, "TSrefperiod")
    y
   }
 setMethod("tfwindow", "timeSeries", tfwindow.timeSeries)
@@ -71,18 +73,18 @@ setMethod("tfExpand", "timeSeries", tfExpand.timeSeries)
 
 tbind.timeSeries <- function(x, ..., pad.start=TRUE, pad.end=TRUE, warn=TRUE)
  {nm <- seriesNames(x)
-  ref <- attr(x, "TSrefperiod")
+  #ref <- attr(x, "TSrefperiod")
   for (z in list(...)) {
     if (!is.null(z)) {
       nm  <- c(nm,  seriesNames(z))
-      ref <- c(ref, attr(z, "TSrefperiod"))
+      #ref <- c(ref, attr(z, "TSrefperiod"))
       x <- cbind(x, z)
       }
     }
   if (!pad.start | !pad.end)
      x <- trimNA(x, startNAs= !pad.start, endNAs= !pad.end)
   seriesNames(x) <- nm
-  attr(x, "TSrefperiod") <- ref
+  #attr(x, "TSrefperiod") <- ref
   x
  }  
 setMethod("tbind", "timeSeries", tbind.timeSeries)
