@@ -8,6 +8,8 @@ Changes in tframePlus version 2011.2-2
 
    o	Added methods and tests for tis series (as used by package fame).
 
+   o	Added tests for its series and fixed tbind.its bug (it did not work).
+
    o	Added methods and tests for xts series.
 
    o	Added a check that periods of the data correspond to periods of the

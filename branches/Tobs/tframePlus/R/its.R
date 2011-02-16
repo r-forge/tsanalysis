@@ -7,7 +7,10 @@ tframe.its <- function (x) {
   }
 
 tfUnSet.its <- function(x)      {x@.Data}
-tfSet.itstframe <- function(value, x) {its:::its(x, value)}
+tfSet.itstframe <- function(value, x) {
+   class(value) <- class(value)[class(value) != "itstframe"]
+   its:::its(x, value)
+   }
 
 "seriesNames<-.its" <- function (x, value) 
   {if (is.matrix(x)) dimnames(x) <- list(NULL, value)
@@ -48,7 +51,7 @@ tbind.its <- function(x, ..., pad.start=TRUE, pad.end=TRUE, warn=TRUE)
   for (z in list(...)) {
     if (!is.null(z)) {
       nm <- c(nm, seriesNames(z))
-      x <- union(x, z)
+      x <- its:::union(x, z)
       }
     }
   if (!pad.start | !pad.end)

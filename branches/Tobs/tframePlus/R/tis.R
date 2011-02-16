@@ -2,12 +2,13 @@ is.tframed.tis <- function(x) {TRUE}
 
 tframe.tis <- function (x) {
   tf <- time(x)
+  attr(tf, "start") <- attr(x, "start")
   class(tf) <- c( "tistframe", class(tf), "tframe")
   tf
   }
 
 tfSet.tistframe <- function(value, x) {
-   r <- tis:::tis(x, value) 
+   r <- tis:::tis(x, start=attr(value, "start") )
    if (inherits(r, "try-error")) {r <- x ; attr(r, "tframe") <- value}
    r
    }
@@ -34,7 +35,7 @@ tbind.tis <- function(x, ..., pad.start=TRUE, pad.end=TRUE, warn=TRUE)
   for (z in list(...)) {
     if (!is.null(z)) {
       nm <- c(nm, seriesNames(z))
-      x <- union(x, z)
+      x <- cbind(x, z)
       }
     }
   if (!pad.start | !pad.end)

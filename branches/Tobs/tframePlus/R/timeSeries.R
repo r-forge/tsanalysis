@@ -46,9 +46,9 @@ tfwindow.timeSeries <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), wa
       on.exit(options(opts))
      }
    y <- if(is.null(start) & is.null(end)) x
-   else if(is.null(start)) .window.timeSeries(x, end=end)
-   else if(is.null(end))   .window.timeSeries(x, start=start)
-   else                    .window.timeSeries(x, start=start, end=end)
+   else if(is.null(start)) window(x, start=start(x), end=end   )
+   else if(is.null(end))   window(x, start=start,    end=end(x))
+   else                    window(x, start=start,    end=end   )
 
    seriesNames(y) <- seriesNames(x)
    #attr(y, "TSrefperiod") <- attr(x, "TSrefperiod")
