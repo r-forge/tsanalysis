@@ -1,7 +1,7 @@
 is.tframed.timeSeries <- function(x) {TRUE}
 setGeneric("is.tframed")
 setMethod("is.tframed", "timeSeries", is.tframed.timeSeries)
-
+  
 tframe.timeSeries <- function (x) {
   tf <- as.POSIXct(time(x))
   tfc <-  class(tf)
