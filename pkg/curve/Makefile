@@ -1,7 +1,11 @@
 PREREQ_PACS=dse numDeriv
+PREREQ_PACS=tframe
 
-include ../Makevars
+#  ../Makevars goes up real pth not sym link, so
+QC=${shell cd ../ ; pwd}
+
+include $(QC)/Makevars
 
 default:	$(DEFAULT)
 
-include ../Makerules
+include $(QC)/Makerules
