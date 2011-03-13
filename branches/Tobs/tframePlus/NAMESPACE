@@ -76,7 +76,7 @@ S3method("tfSet","tistframe")
 S3method("tfwindow","tis")
 S3method("tbind","tis")
 
-#S3method("is.tframed","timeSeries")
+S3method("is.tframed","timeSeries")
 ##S3method("tfstart","timeSeries")
 S3method("tfstart","timeSeriestframe")
 ##S3method("tfend","timeSeries")
@@ -90,6 +90,11 @@ S3method("tbind","timeSeries")
 
 S3method("tfL","timeSeries")
 S3method("tfExpand","timeSeries")
+
+##exportClasses(
+##   ""
+##   )
+
 
 ## S4 methods
 exportMethods(

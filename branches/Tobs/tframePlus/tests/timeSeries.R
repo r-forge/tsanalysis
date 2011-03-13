@@ -77,6 +77,10 @@
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("failed!\n") 
 
+  cat("tframe timeSeries test 9... ")
+  tfplot(z, start=start(z))
+  cat("ok\n") 
+
 
  cat("All tframe timeSeries tests completed")
  if (all.ok) cat(" OK\n") else cat(", some FAILED!\n") 
