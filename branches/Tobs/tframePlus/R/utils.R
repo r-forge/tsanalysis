@@ -25,6 +25,25 @@ tfpersp <- function (x, tf=tfspan(x), start=tfstart(tf), end=tfend(tf),
        ltheta=ltheta, lphi=lphi) #, col = fcol, shade = 0.4,...)
     }
 
+changeTSrepresentation <- function(x, newRepresentation){
+   if (mode(newRepresentation) == "character")  
+       if (newRepresentation == "tis") {
+          require("tis")
+          r <- do.call("as.tis", list(x)) 
+          }
+       else {
+  	  require("zoo")
+  	  dates <- as.Date(time(x))
+          r <- do.call(newRepresentation, list(x, dates))
+          }
+    else {
+       require("zoo")
+       dates <- as.Date(time(x))
+       r <- newRepresentation(x, dates)
+       }
+   r
+   }
+
 TSwriteXLS <- function(x, ..., FileName="R.xls", SheetNames=NULL,
                dateHeader="date", verbose = FALSE){
   # consider tempfile() in overwrite case 

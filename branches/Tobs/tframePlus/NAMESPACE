@@ -9,6 +9,7 @@ importFrom("timeSeries","timeSeries")
 
 ## not generic
 export(
+  "changeTSrepresentation",
   "TSwriteXLS",
   "rollAggregate",
   "tfI",
