@@ -3,8 +3,8 @@
 \alias{tfstart.xtstframe}
 %%\alias{tfend.xts}
 \alias{tfend.xtstframe}
-\alias{tfperiods.xts}
-\alias{periods.xtstframe}
+\alias{Tobs.xts}
+\alias{Tobs.xtstframe}
 
 \alias{tframe.xts}
 \alias{tfSet.xtstframe}
@@ -20,7 +20,7 @@
     \method{tfstart}{xtstframe}(x)
 %%    \method{tfend}{xts}(x)
     \method{tfend}{xtstframe}(x)
-    \method{tfperiods}{xts}(x)
+    \method{Tobs}{xts}(x)
     \method{tframe}{xts}(x)
     \method{tfSet}{xtstframe}(value, x) 
     \method{tfwindow}{xts}(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE)

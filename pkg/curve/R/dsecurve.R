@@ -62,11 +62,11 @@ genD.ARMA <- function(func, x=coef(func),
    if(2 != method.args$v) stop("current code requires v=2 (default)")
    model <- Shape
    n <-length(c(outputData(data))) # this has the same length as the residual
-   sampleT <-periods(data) 
+   sampleT <-Tobs(data) 
    ps <-dim(model$A)[3]
    ms <-dim(model$C)[3]
    #ns <-ps  # this could be 1 except for TREND 
-   TREND <- if (is.null(model$TREND)) matrix(0,periods(data), ps) else model$TREND
+   TREND <- if (is.null(model$TREND)) matrix(0,Tobs(data), ps) else model$TREND
    is  <- max(ms,ps)
    loc   <- match(model$location,       c("A","B","C","t"))
    cloc  <- match(model$const.location, c("A","B","C","t"))
@@ -123,7 +123,7 @@ genD.ARMA <- function(func, x=coef(func),
             as.integer(ms),     #  input dimension m  #17
             as.integer(ps),     # output dimension p 
             as.integer(sampleT),   
-            as.integer(periods(data)), 
+            as.integer(Tobs(data)), 
             u=u, 
             y=outputData(data),   
             #   model$parm is passed above as x (it is the parameter for curvature calculation)   
@@ -178,7 +178,7 @@ genD.innov <- function(func, x=coef(func),
    if(2 != method.args$v) stop("current code requires v=2 (default)")
    model <- Shape
    n <-length(c(outputData(data))) # this has the same length as the residual
-   sampleT <-periods(data) 
+   sampleT <-Tobs(data) 
    ns <-dim(model$F)[2]
    ps <-dim(model$H)[1]
    ms <-dim(model$G)[2]
@@ -241,7 +241,7 @@ genD.innov <- function(func, x=coef(func),
             as.integer(ms),     #  input dimension m  
             as.integer(ps),     # output dimension p 
             as.integer(sampleT),   
-            as.integer(periods(data)), 
+            as.integer(Tobs(data)), 
             u=u, 
             y=outputData(data),   #22
             #   model$parm is passed above as x (it is the parameter for curvature calculation)   

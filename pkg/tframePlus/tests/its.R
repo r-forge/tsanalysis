@@ -1,5 +1,5 @@
   require("tframePlus")
-  if(!require("zoo")) stop("zoo not available, tests failed.")    
+  if(!require("its")) stop("its not available, tests failed.")    
 
 
  Sys.info()
@@ -10,40 +10,40 @@
 
 
   all.ok <-  TRUE
-  cat("tframe zoo test 1 ... ")
-  z <- zoo(rnorm(100), 
+  cat("tframe its test 1 ... ")
+  z <- its(rnorm(100), 
      as.POSIXct(Sys.time() + sort(round(runif(100)*1e8)), "GMT")) 
   seriesNames(z) <- "random example"
   ok <- all(seriesNames(z) == c("random example"))
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("unvariate seriesNames failed!\n") 
-  ok <- is.tframed(z) & (inherits(z, "zoo"))
+  ok <- is.tframed(z) & (inherits(z, "its"))
   all.ok <- ok
   if (ok) cat("ok\n") else cat("failed!\n") 
 
 
-  cat("tframe zoo test 2 ... ")
+  cat("tframe its test 2 ... ")
   plot(z)
   tfplot(z)
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("failed!\n") 
 
-  cat("tframe zoo test 3 ... ")
+  cat("tframe its test 3 ... ")
   y <- rnorm(100)
   tframe(y) <- tframe(z)  
-  ok <- is.tframed(y) & (inherits(y, "zoo")) & (start(y) == start(z))
+  ok <- is.tframed(y) & (inherits(y, "its")) & (start(y) == start(z))
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("failed!\n") 
 
-  cat("tframe zoo test 4 ... ")
+  cat("tframe its test 4 ... ")
   ok <- all(tframe(y) == tframe(z))
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("failed!\n") 
 
 
-  cat("tframe zoo test 5 ... ")
+  cat("tframe its test 5 ... ")
   #  irregular series at random observation times
-  z <- tbind(z, zoo(rnorm(120),
+  z <- tbind(z, its(rnorm(120),
           as.POSIXct(Sys.time() + sort(round(runif(120)*1e8)), "GMT")))
   seriesNames(z) <- c("random 1", "random 2")
   ok <- all(seriesNames(z) == c("random 1", "random 2"))
@@ -56,26 +56,26 @@
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("failed!\n") 
 
-  cat("tframe zoo test 6... ")
+  cat("tframe its test 6... ")
   plot(z)
   tfplot(z)
-  ok <- is.tframed(z) & (inherits(z, "zoo"))
+  ok <- is.tframed(z) & (inherits(z, "its"))
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("failed!\n") 
 
-  cat("tframe zoo test 7 ... ")
+  cat("tframe its test 7 ... ")
   y <- rnorm(Tobs(z))
   tframe(y) <- tframe(z)  
-  ok <- is.tframed(y) & (inherits(y, "zoo")) & (start(y) == start(z))
+  ok <- is.tframed(y) & (inherits(y, "its")) & (start(y) == start(z))
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("failed!\n") 
 
-  cat("tframe zoo test 8 ... ")
+  cat("tframe its test 8 ... ")
   ok <- all(tframe(y) == tframe(z))
   all.ok <- all.ok & ok 
   if (ok) cat("ok\n") else cat("failed!\n") 
 
 
- cat("All tframe zoo tests completed")
+ cat("All tframe its tests completed")
  if (all.ok) cat(" OK\n") else cat(", some FAILED!\n") 
  
