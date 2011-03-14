@@ -1,4 +1,4 @@
-Changes in tframePlus version 2011.2-2
+Changes in tframePlus version 2011.3-1
 
    o	Converted both periods() and tfperiods() to Tobs(). (The distinction is
    	no longer needed.)

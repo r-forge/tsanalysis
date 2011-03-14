@@ -1,3 +1,8 @@
+Changes in EvalEst version 2011.3-1
+
+   o	Changed periods() and tfperiods() to Tobs() to be consistent with
+   	changes in tframe.
+
 Changes in EvalEst version 2010.02-1
 
    o	Fixed a few documentation problems found by R-2.10.1 quality checks.

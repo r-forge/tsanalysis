@@ -3,9 +3,10 @@ Known Bugs
 
    o	None for the moment.
 
-Changes in curve version 2009.10-2
+Changes in curve version 2011.3-1
 
-   o	Changed periods() to Tobs() consistent with changes in tframe.
+   o	Changed periods() and tfperiods() to Tobs() to be consistent with
+   	changes in tframe.
 
 Changes in curve version 2009.10-1
 
