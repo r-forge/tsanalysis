@@ -40,7 +40,7 @@ export("is.seriesIDs")
 export("print.seriesIDs")
 
 S3method("tframe", "seriesIDs")
-S3method("tfperiods", "seriesIDs")
+S3method("Tobs", "seriesIDs")
 S3method("tfstart", "seriesIDs")
 S3method("tfend", "seriesIDs")
 S3method("tffrequency", "seriesIDs")
@@ -62,11 +62,11 @@ export("IOseriesIDs2")
 
 S3method("tsp", "IOseriesIDs")
 
-#S3method("periods", "IOseriesIDs")
+#S3method("Tobs", "IOseriesIDs")
 #S3method("inputData", "IOseriesIDs")
-#S3method("periodsInput", "IOseriesIDs")
+#S3method("TobsInput", "IOseriesIDs")
 #S3method("outputData", "IOseriesIDs")
-#S3method("periodsOutput", "IOseriesIDs")
+#S3method("TobsOutput", "IOseriesIDs")
 S3method("print", "IOseriesIDs")
 
 

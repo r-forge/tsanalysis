@@ -41,7 +41,7 @@ setClassUnion("OptionalCharacter", c("character", "NULL"))
 #setClass("IOseriesIDs", representation( 
 #     input = "OptionalseriesIDs, output = "OptionalseriesIDs)
 
-# The problem here is that I need :periodsInput.IOseriesIDs etc to dispatch as
+# The problem here is that I need :TobsInput.IOseriesIDs etc to dispatch as
 #  an S3 class for IOseriesIDs and TSdates, etc to dispatch as S4.
 
 # Date IS NOT A DEFINED CLASS
@@ -147,9 +147,9 @@ tsp.IOseriesIDs <- function(x)
    o
 }
 
-#periodsInput.IOseriesIDs <- function(x) periods( inputData(x))  
-#periodsOutput.IOseriesIDs <- function(x) periods(outputData(x))  
-#periods.IOseriesIDs <- function(x) periods(outputData(x))
+#TobsInput.IOseriesIDs <- function(x) Tobs( inputData(x))  
+#TobsOutput.IOseriesIDs <- function(x) Tobs(outputData(x))  
+#Tobs.IOseriesIDs <- function(x) Tobs(outputData(x))
 
  
 #inputData.IOseriesIDs <- function(x, series=seq(length=nseriesInput(x)))

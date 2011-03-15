@@ -4,7 +4,7 @@
 \alias{[.seriesIDs}
 \alias{print.seriesIDs}
 \alias{tframe.seriesIDs}
-\alias{tfperiods.seriesIDs}
+\alias{Tobs.seriesIDs}
 \alias{tfstart.seriesIDs}
 \alias{tfend.seriesIDs}
 \alias{tffrequency.seriesIDs}
@@ -19,7 +19,7 @@
     is.seriesIDs(obj)
     \method{print}{seriesIDs}(x, ...)
     \method{tframe}{seriesIDs}(x)
-    \method{tfperiods}{seriesIDs}(x)
+    \method{Tobs}{seriesIDs}(x)
     \method{tfstart}{seriesIDs}(x, ...)
     \method{tfend}{seriesIDs}(x, ...)
     \method{tffrequency}{seriesIDs}(x, ...)
@@ -64,7 +64,7 @@ Other functions provide methods for this class of object.
     \code{\link[TSdbi]{TSget}},
     \code{\link[base]{print}}
     \code{\link[tframe]{tframe}}, 
-    \code{\link[tframe]{tfperiods}}, 
+    \code{\link[tframe]{Tobs}}, 
     \code{\link[tframe]{tfstart}},
     \code{\link[tframe]{tfend}},
     \code{\link[tframe]{tffrequency}},

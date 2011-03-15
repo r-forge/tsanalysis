@@ -42,8 +42,8 @@ checkForValueChanges <- function(data.names, verification.data,
    # which series are changed:
    if (is.null(seriesNamesInput(data.names))) in.up <- NULL
    else
-     {ld <-periodsInput(data)
-      lv <-periodsInput(verification.data)
+     {ld <-TobsInput(data)
+      lv <-TobsInput(verification.data)
       l <- max(ld, lv)
       if (ld < l)
         inputData(data) <- ts(rbind(inputData(data),  
@@ -63,8 +63,8 @@ checkForValueChanges <- function(data.names, verification.data,
      }
    if (is.null(seriesNamesOutput(data.names))) out.up <- NULL
    else
-     {ld <-periodsOutput(data)
-      lv <-periodsOutput(verification.data)
+     {ld <-TobsOutput(data)
+      lv <-TobsOutput(verification.data)
       l <- max(ld, lv)
       if (ld < l)
         outputData(data) <- ts(rbind(outputData(data), 

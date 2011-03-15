@@ -146,7 +146,7 @@ construct.data.to.override.horizon <- function(new.data, model,
  if (any(is.na(outputData(con.data))))    
    {z <- TSdata(input = inputData(con.data),
                 output= trimNA(outputData(new.data$data)))
-    pred <- l(model,z, predictT= periodsOutput(con.data))$estimates$pred
+    pred <- l(model,z, predictT= TobsOutput(con.data))$estimates$pred
     z <-splice.tagged(outputData(con.data),pred, 
                     tag1=con.data$output.tags, tag2=forecast.tag)
     outputData(con.data) <- z
@@ -178,16 +178,16 @@ get.overriding.data <- function(file="overriding.data",
   second.out <- (1:length(z))[z == second.output & !is.na(z)] 
   if (0== length(second.out))
      stop(paste("Cannot find keying string:", second.output," in file", file))
-  periodsInput <- (first.out-(first.in+m))/m     
-  zz <- matrix(z[first.in:(first.out-1)],(periodsInput+1),m)
+  TobsInput <- (first.out-(first.in+m))/m     
+  zz <- matrix(z[first.in:(first.out-1)],(TobsInput+1),m)
   input.names <- zz[1,]
-  input <-  matrix( as.numeric(zz[2:(1+periodsInput),]), periodsInput,m)
+  input <-  matrix( as.numeric(zz[2:(1+TobsInput),]), TobsInput,m)
   dimnames(input) <- list(NULL,input.names)
   input <- tframed(input, list(start=as.integer(z[1:2]),frequency=12))
-  periodsOutput<- second.out-(first.out+1)
-  zz <- matrix(z[first.out:length(z)],(periodsOutput+1),p)
+  TobsOutput<- second.out-(first.out+1)
+  zz <- matrix(z[first.out:length(z)],(TobsOutput+1),p)
   output.names <- zz[1,]
-  output <-  matrix( as.numeric(zz[2:(1+periodsOutput),]), periodsOutput,p)
+  output <-  matrix( as.numeric(zz[2:(1+TobsOutput),]), TobsOutput,p)
   dimnames(output) <- list(NULL,output.names)
   output <- tframed(output, list(start=as.integer(z[1:2]),frequency=12))
   TSdata(input=input , output=output)

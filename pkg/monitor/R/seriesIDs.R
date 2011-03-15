@@ -44,7 +44,7 @@ tfend.seriesIDs <- function(x, ...)
      {if(is.null(attr(x, "end")))   NA else attr(x, "end")}
 tffrequency.seriesIDs <- function(x, ...)
      {if(is.null(attr(x, "frequency")))   NA else attr(x, "frequency")}
-tfperiods.seriesIDs <- function(x) NA  # could be better
+Tobs.seriesIDs <- function(x) NA  # could be better
 seriesNames.seriesIDs <- function(x) {dimnames(x)[[2]]}
 # nseries default should work
  
