@@ -12,4 +12,4 @@ require("tframePlus")
  seriesNames(zz) <- "annual ser"
  ok <- TSwriteXLS(z, zz, FileName="test.xls",  SheetNames=c("monthly", "annual"))
 
- unlink("test.xls"") 
+ unlink("test.xls") 
