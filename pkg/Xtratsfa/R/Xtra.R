@@ -9,10 +9,10 @@ estTSF.R2M <- function(y, p, diff.=TRUE,
 
       if (p < 1) stop("number of factors must be a positive integer.")
       
-      Sigma  <- if (diff.) (crossprod(diff(y)))/(periods(y) - 1)
-                      else (crossprod(y))/(periods(y))
+      Sigma  <- if (diff.) (crossprod(diff(y)))/(Tobs(y) - 1)
+                      else (crossprod(y))/(Tobs(y))
       z <- factanal(covmat = Sigma, factors=p, scores="none",
-        	           rotation="none", n.obs=(periods(y) - diff.))
+        	           rotation="none", n.obs=(Tobs(y) - diff.))
 
       estConverged <- z$converged
 
@@ -87,9 +87,9 @@ estTSF.MCV <- function(y, p, diff.=TRUE,
       #zz <- if (diff.) diff(y) else y
       #zz <- sweep(zz,2,colMeans(zz), "-")
       #Sigma <- cov(zz) which is the same as
-      #Sigma  <- crossprod(zz)/(periods(zz) - 1)
-      #Sigma  <- crossprod(zz)/(periods(zz))
-      #Sigma  <- crossprod(if (diff.) diff(y) else y)/(periods(y)-diff.)
+      #Sigma  <- crossprod(zz)/(Tobs(zz) - 1)
+      #Sigma  <- crossprod(zz)/(Tobs(zz))
+      #Sigma  <- crossprod(if (diff.) diff(y) else y)/(Tobs(y)-diff.)
  
       # estimate from mean + covariance structure 
       z <- EFA.ML.mcs(if(diff.) diff(y) else y, p)
