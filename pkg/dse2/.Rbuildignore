@@ -4,6 +4,8 @@
 (^|.*/)zot$
 TMP$
 FLAGS$
+^Rplots(.*).pdf$
+inst/doc/Rplots(.*).pdf$
 mansrc$
 inst/doc/(^|.*)\.tex$
 inst/doc/(^|.*)\.R$
