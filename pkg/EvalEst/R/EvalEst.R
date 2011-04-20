@@ -92,7 +92,7 @@ generateSSmodel <- function(m,n,p, stable=FALSE)
      else G <- NULL
      H <- matrix(runif(n*p, min=-1,max=1),p,n)
      K <- matrix(runif(n*p, min=-1,max=1),n,p)
-     model <- SS(F=FF, G=G,H=H,K=K)
+     model <- SS(F.=FF, G=G,H=H,K=K)
      if (stable) {if (max(Mod(roots(model))) <  1.0) break()}
      else        {if (max(Mod(roots(model))) <= 1.0) break()}
     }
