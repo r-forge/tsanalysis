@@ -3,7 +3,7 @@
 # the case when tfOnePlot is used directly (to put matrix on one plot.
 # If that can be done then this can be part of tfOnePlot
 
-(I don't think tfOnePlot needs to support ...)
+# (I don't think tfOnePlot needs to support ...)
 
 tfOne<- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         Title=NULL, lty=1:5, lwd=1,
@@ -54,7 +54,10 @@ expandMtoW <- function(x, fromStart=start(x), notreleased=-7000, na=-99999){
 
    #as.Date(0) = Thursday Jan 1, 1970
    # from 1970 to end of x + a bit
-   fridays <- as.Date(1) + 7 *  0:(53* (1+ end(x)[1] - 1970) )
+   fridays <- as.Date(1, origin="1970-01-01") + 7* 0:(53* (1+ end(x)[1] -1970))
+   #require("tis") also defines month and year
+   year <- function(x) {1900 + as.POSIXlt(x)$year}
+   month <- function(x) {1 + as.POSIXlt(x)$mon}
    # window to span of x
    st <-  (year(fridays)  < start(x)[1]) | 
          ((year(fridays) == start(x)[1]) & (month(fridays) < start(x)[2]))
@@ -87,8 +90,11 @@ expandQtoW <- function(x, fromStart, notreleased=-7000, na=-99999){
 
    #as.Date(0) = Thursday Jan 1, 1970
    # from 1970 to end of x + a bit
-   fridays <- as.Date(1) + 7 *  0:(53* (1+ end(x)[1] - 1970) )
+   fridays <- as.Date(1, origin="1970-01-01") + 7* 0:(53* (1+ end(x)[1] -1970))
    # window to span of x
+   #require("tis") also defines month and year
+   year <- function(x) {1900 + as.POSIXlt(x)$year}
+   month <- function(x)   {1 + as.POSIXlt(x)$mon}
    q <- ceiling(month(fridays)/3)
    st <-  (year(fridays)  < start(x)[1]) | 
          ((year(fridays) == start(x)[1]) & (q < start(x)[2]))
@@ -115,6 +121,7 @@ expandQtoW <- function(x, fromStart, notreleased=-7000, na=-99999){
 extractDtoW <- function(x, fromStart, notreleased=-7000, na=-99999){
      # extract daily data from the last Friday of a week to 
      # give a weekly Friday series with na inserted where there is no data.
+     # NEED NA="THURSDAY" OPTION
    if (1 != frequency(x)) stop("data must be daily.")
    require("zoo")
    x <- tfwindow(x, start=fromStart)
@@ -122,7 +129,10 @@ extractDtoW <- function(x, fromStart, notreleased=-7000, na=-99999){
 
    #as.Date(0) = Thursday Jan 1, 1970
    # from 1970 to end of x + a bit
-   fridays <- as.Date(1) + 7 *  0:(53* (1+ year(end(x)) - 1970) )
+   #require("tis") also defines month and year
+   year <- function(x) {1900 + as.POSIXlt(x)$year}
+   month <- function(x)   {1 + as.POSIXlt(x)$mon}
+   fridays <- as.Date(1, origin="1970-01-01") + 7* 0:(53*(1+ year(end(x))-1970))
    # window to span of x
    st <-  fridays  < time(x)[1]
    en <-  fridays  > time(x)[Tobs(x)]
