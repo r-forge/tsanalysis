@@ -44,10 +44,11 @@ tfOne<- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
 # Note that there is no need to account for the observation lag, the data is
 #  entered as NA if it is not available, and the filter fills it in.
 
-expandMtoW <- function(x, fromStart=start(x), notreleased=-7000, na=-99999){
+expandMtoW <- function(x, fromStart=start(x), notreleased=NA, na=NA){
      # assign monthly data into the last Friday of a month to 
      # give a weekly Friday series with na inserted where there is no data.
      # notreleased is for values which will eventually be available.
+     # notreleased=-7000, na=-99999 is used in some programs
    if (12 != frequency(x)) stop("data must be monthly.")
    x <- tfwindow(x, start=fromStart)
    require("zoo")
@@ -80,10 +81,11 @@ expandMtoW <- function(x, fromStart=start(x), notreleased=-7000, na=-99999){
    r
    }
 
-expandQtoW <- function(x, fromStart, notreleased=-7000, na=-99999){
+expandQtoW <- function(x, fromStart, notreleased=NA, na=NA){
      # assign quarterly data into the last Friday of a quarter to 
      # give a weekly Friday series with na inserted where there is no data.
      # notreleased is for values which will eventually be available.
+     # notreleased=-7000, na=-99999 is used in some programs
    if (4 != frequency(x)) stop("data must be quarterly.")
    x <- tfwindow(x, start=fromStart)
    require("zoo")
@@ -118,10 +120,11 @@ expandQtoW <- function(x, fromStart, notreleased=-7000, na=-99999){
    }
 
 
-extractDtoW <- function(x, fromStart, notreleased=-7000, na=-99999){
-     # extract daily data from the last Friday of a week to 
-     # give a weekly Friday series with na inserted where there is no data.
-     # NEED NA="THURSDAY" OPTION
+extractWeekly.daily <- function(x, fromStart, day=5, notreleased=NA, na=NA){
+     # extract  data from day of the week, 1=Monday, default 5=Friday to 
+     # give a weekly series with na inserted where there is no data.
+     # NEED NA=-1 OPTION for previous day (Thursday)
+     #  notreleased=-7000, na=-99999 is used in some programs
    if (1 != frequency(x)) stop("data must be daily.")
    require("zoo")
    x <- tfwindow(x, start=fromStart)
@@ -130,9 +133,8 @@ extractDtoW <- function(x, fromStart, notreleased=-7000, na=-99999){
    #as.Date(0) = Thursday Jan 1, 1970
    # from 1970 to end of x + a bit
    #require("tis") also defines month and year
-   year <- function(x) {1900 + as.POSIXlt(x)$year}
-   month <- function(x)   {1 + as.POSIXlt(x)$mon}
-   fridays <- as.Date(1, origin="1970-01-01") + 7* 0:(53*(1+ year(end(x))-1970))
+   fridays <- as.Date(day-4, origin="1970-01-01") + 
+                    7 * 0:(53*(1+ 1900 + as.POSIXlt(end(x))$year - 1970))
    # window to span of x
    st <-  fridays  < time(x)[1]
    en <-  fridays  > time(x)[Tobs(x)]
