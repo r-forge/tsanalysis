@@ -11,6 +11,7 @@ importFrom("timeSeries","timeSeries")
 export(
   "changeTSrepresentation",
   "TSwriteXLS",
+  "TSwriteCSV",
   "rollAggregate",
   "tfI",
   "tfpersp",

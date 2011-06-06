@@ -90,6 +90,68 @@ TSwriteXLS <- function(x, ..., FileName="R.xls", SheetNames=NULL,
   rr
   }
 
+TSwriteCSV <- function(x, FileName="R.csv",  dateFormat=1, dateHeader="date"){
+  #dateFormat  0=none 1="Jan 1969"   2=1969,1   3=1969,"Jan"
+  tm <- time(x)
+  y <- floor(time(tm))
+  if (frequency(x) == 4) {
+     p <- cycle(tm)
+     pp <- c("Q1", "Q2", "Q3", "Q4")[p]
+     dt <- paste(pp, y)
+     if ( dateFormat==0){
+       seriesData <- data.frame(x)
+       names(seriesData) <- c(seriesNames(x))
+       }
+     else if ( dateFormat==1){
+       seriesData <- data.frame(date=dt, x)
+       names(seriesData) <- c(dateHeader, seriesNames(x))
+       }
+     else if ( dateFormat==2){
+       seriesData <- data.frame(year=y, period=p, x)
+       names(seriesData) <- c("year", "period", seriesNames(x))
+       }
+     else if ( dateFormat==3){
+       seriesData <- data.frame(year=y, quarter=pp, x)
+       names(seriesData) <- c("year", "quarter", seriesNames(x))
+       }
+     else stop("dateFormat not supported.")
+     }
+  else if (frequency(x) == 12) {
+     p <- cycle(tm)
+     pp <- c("Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")[p]
+     dt <- paste(pp, y)
+     if ( dateFormat==0){
+       seriesData <- data.frame(x)
+       names(seriesData) <- c(seriesNames(x))
+       }
+     else if ( dateFormat==1){
+       seriesData <- data.frame(date=dt, x)
+       names(seriesData) <- c(dateHeader, seriesNames(x))
+       }
+     else if ( dateFormat==2){
+       seriesData <- data.frame(year=y, period=p, x)
+       names(seriesData) <- c("year",  "period",  seriesNames(x))
+       }
+     else if ( dateFormat==3){
+       seriesData <- data.frame(year=y, month=pp, x)
+       names(seriesData) <- c("year",  "month",   seriesNames(x))
+       }
+     else stop("dateFormat not supported.")
+     }
+  else  { # annual, daily and weekly are freq 1
+     if ( dateFormat==0){
+       seriesData <- data.frame(x ) 
+       names(seriesData) <- c(seriesNames(x))
+       }
+     else if ( dateFormat==1){
+       seriesData <- data.frame(date=tm, x ) 
+       names(seriesData) <- c(dateHeader, seriesNames(x))
+       }
+     else stop("dateFormat not supported for this data's dates.")
+     }
+  write.csv(seriesData, file=FileName, row.names = FALSE) 
+  }
+
 as.weekly <- function(x, FUN=sum, na.rm=FALSE, foldFrom=end(x), periodicity = 7){
    # To weekly by periodicity groupings backward from foldFrom
    # and  drop any partial week from the beginning

@@ -1,3 +1,7 @@
+Changes in tframePlus version 2011.6-1
+
+   o	Added TSwriteCSV for writing csv files of time series data.
+
 Changes in tframePlus version 2011.3-1
 
    o	Converted both periods() and tfperiods() to Tobs(). (The distinction is
