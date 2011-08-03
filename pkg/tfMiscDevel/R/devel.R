@@ -45,10 +45,6 @@ tfOne<- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
 #  entered as NA if it is not available, and the filter fills it in.
 
 expandMtoW <- function(x, fromStart=start(x), notreleased=NA, na=NA){
-     # assign monthly data into the last Friday of a month to 
-     # give a weekly Friday series with na inserted where there is no data.
-     # notreleased is for values which will eventually be available.
-     # notreleased=-7000, na=-99999 is used in some programs
    if (12 != frequency(x)) stop("data must be monthly.")
    x <- tfwindow(x, start=fromStart)
    require("zoo")
@@ -82,10 +78,6 @@ expandMtoW <- function(x, fromStart=start(x), notreleased=NA, na=NA){
    }
 
 expandQtoW <- function(x, fromStart, notreleased=NA, na=NA){
-     # assign quarterly data into the last Friday of a quarter to 
-     # give a weekly Friday series with na inserted where there is no data.
-     # notreleased is for values which will eventually be available.
-     # notreleased=-7000, na=-99999 is used in some programs
    if (4 != frequency(x)) stop("data must be quarterly.")
    x <- tfwindow(x, start=fromStart)
    require("zoo")
@@ -121,10 +113,7 @@ expandQtoW <- function(x, fromStart, notreleased=NA, na=NA){
 
 
 extractWeekly.daily <- function(x, fromStart, day=5, notreleased=NA, na=NA){
-     # extract  data from day of the week, 1=Monday, default 5=Friday to 
-     # give a weekly series with na inserted where there is no data.
-     # NEED NA=-1 OPTION for previous day (Thursday)
-     #  notreleased=-7000, na=-99999 is used in some programs
+    # NEED NA=-1 OPTION for previous day (Thursday)
    if (1 != frequency(x)) stop("data must be daily.")
    require("zoo")
    x <- tfwindow(x, start=fromStart)

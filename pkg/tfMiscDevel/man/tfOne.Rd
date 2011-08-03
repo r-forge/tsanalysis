@@ -9,7 +9,7 @@
         Title=NULL, lty=1:5, lwd=1,
         pch=NULL, col=1:6, cex=NULL, xlab=NULL, ylab=NULL,
         xlim=NULL, ylim=NULL, par=NULL, lastObs=TRUE, source = NULL,
-	 footnote=NULL, legend = NULL, legend.loc = "topleft", ...)
+	 footnote=NULL, legend = NULL, legend.loc = "topleft")
 }
 
 \arguments{
