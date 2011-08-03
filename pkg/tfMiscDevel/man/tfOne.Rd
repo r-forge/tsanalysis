@@ -8,7 +8,8 @@
     tfOne(x, tf=tfspan(x), start=tfstart(tf), end=tfend(tf),
         Title=NULL, lty=1:5, lwd=1,
         pch=NULL, col=1:6, cex=NULL, xlab=NULL, ylab=NULL,
-        xlim=NULL, ylim=NULL, par=NULL, lastObs=TRUE, footnote=NULL, ...)
+        xlim=NULL, ylim=NULL, par=NULL, lastObs=TRUE, source = NULL,
+	 footnote=NULL, legend = NULL, legend.loc = "topleft", ...)
 }
 
 \arguments{
@@ -19,7 +20,7 @@
 }
 \value{a plot.}
 \details{
-  May replace tfOnePlot. Adds last obs, foot note, legend?
+  May replace tfOnePlot. Adds last obs, footnote, legend?
 }
 
 \seealso{
