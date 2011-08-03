@@ -44,6 +44,10 @@ tfOne<- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
 # Note that there is no need to account for the observation lag, the data is
 #  entered as NA if it is not available, and the filter fills it in.
 
+# can these be combined with as.weekly in tframePlus?
+
+#  need also conversion to daily
+
 expandMtoW <- function(x, fromStart=start(x), notreleased=NA, na=NA){
    if (12 != frequency(x)) stop("data must be monthly.")
    x <- tfwindow(x, start=fromStart)
