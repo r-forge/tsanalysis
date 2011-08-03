@@ -5,7 +5,7 @@
 \description{Integrate multivariate time series using cumsum}
 
 \usage{
-    tfOne(x, tf=tfspan(x), start=tfstart(tf), end=tfend(tf),
+    tfOne(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         Title=NULL, lty=1:5, lwd=1,
         pch=NULL, col=1:6, cex=NULL, xlab=NULL, ylab=NULL,
         xlim=NULL, ylim=NULL, par=NULL, lastObs=TRUE, source = NULL,

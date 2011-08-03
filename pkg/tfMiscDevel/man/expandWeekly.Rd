@@ -1,5 +1,7 @@
 \name{expandWeekly}
-\alias{tfOne}
+\alias{expandMtoW}
+\alias{expandQtoW}
+\alias{extractWeekly.daily}
 
 \title{Generate Weekly Time Series}
 \description{Generate weekly time series by expanding or extracting from a
