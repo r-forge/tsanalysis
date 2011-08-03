@@ -1,6 +1,6 @@
 Package: tframePlus
-Version: 2011.6-1
-Date: 2011-06-06
+Version: 2011.8-1
+Date: 2011-08-03
 Title: Time Frame coding kernel extensions
 Description:  Extensions and additional tframe utilities.
 Depends: R (>= 2.5.0), tframe
