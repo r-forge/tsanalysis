@@ -1,3 +1,7 @@
+Changes in EvalEst version 2011.11-1
+
+   o	updated maintainer email address.
+
 Changes in EvalEst version 2011.3-2
 
    o	Fixed partial matching of "F" to "F." generating note in R-2.13.0

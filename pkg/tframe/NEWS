@@ -1,3 +1,7 @@
+Changes in tframe version 2011.11-1
+
+   o	updated maintainer email address.
+
 Changes in tframe version 2011.8-1
 
    o	Removed ... argument from tfOnePlot, since it seems unnecessary.

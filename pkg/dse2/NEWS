@@ -1,5 +1,9 @@
-               dse2  version 2009.10-1
+Changes in dse2 version 2011.11-1
 
-o  Package dse2 in the dse discontinued bundle has been replaced by packages 
-     dse and EvalEst. This package dse2 is only to provide transition 
-     convenience by requiring dse and EvalEst.
+   o	updated maintainer email address.
+
+dse2  version 2009.10-1
+
+   o  Package dse2 in the dse discontinued bundle has been replaced by packages 
+        dse and EvalEst. This package dse2 is only to provide transition 
+        convenience by requiring dse and EvalEst.
