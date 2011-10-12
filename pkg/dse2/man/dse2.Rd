@@ -18,9 +18,3 @@ The only purpose of this package is to prevent breaking older code that loads
 package dse2 from the old dse bundle. This package dse2 simple requires package
 EvalEst.
 }
-
-\author{
-Paul Gilbert <pgilbert@bank-banque-canada.ca>
-
-Maintainer: Paul Gilbert <pgilbert@bank-banque-canada.ca>  
-}

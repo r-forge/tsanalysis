@@ -19,7 +19,7 @@ Depends: \tab R (>= 2.0.0), GPArotation, setRNG (>= 2004.4-1), tframe (>=
          \tab dse (>= 2006.1-1), EvalEst (>= 2006.1-1)\cr
 Suggests: \tab CDNmoney\cr
 License: \tab GPL Version 2.\cr
-URL: \tab http://www.bank-banque-canada.ca/pgilbert\cr
+URL: \tab http://tsanalysis.r-forge.r-project.org/\cr
 }
 
 The main functions are:
@@ -40,10 +40,10 @@ An overview of how to use the package is available in the vignette
 }
 
 \author{
-Paul Gilbert <pgilbert@bank-banque-canada.ca> and
+Paul Gilbert <pgilbert.ttv9z@ncf.ca> and
 Erik Meijer  <meijer@rand.org>
 
-Maintainer: Paul Gilbert <pgilbert@bank-banque-canada.ca>  
+Maintainer: Paul Gilbert <pgilbert.ttv9z@ncf.ca>  
 }
 \references{
   Gilbert, Paul D. and Meijer, Erik (2005)

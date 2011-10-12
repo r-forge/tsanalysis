@@ -18,9 +18,3 @@ The only purpose of this package is to prevent breaking older code that loads
 package dse1 from the old dse bundle. This package dse1 simple requires package
 dse.
 }
-
-\author{
-Paul Gilbert <pgilbert@bank-banque-canada.ca>
-
-Maintainer: Paul Gilbert <pgilbert@bank-banque-canada.ca>  
-}
