@@ -52,9 +52,7 @@ Maintainer: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
   Available from \url{http://som.eldoc.ub.rug.nl/reports/themeF/2005/05F10/}.
 
   Gilbert, Paul D. and Meijer, Erik (2006) Money and Credit Factors.
-  Bank of Canada Working Paper 2006-3, 
-  Available from 
-  \url{http://www.bank-banque-canada.ca/en/res/wp/wp(y)_2006.html}.
+  Bank of Canada Working Paper 2006-3, available at \url{http://www.bankofcanada.ca/2006/03/publications/research/working-paper-2006-3/}.
 }
 \keyword{ package }
 \keyword{ ts }
