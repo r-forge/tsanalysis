@@ -3,11 +3,8 @@
 ###    should be moved to help files.
 ###
 
-.onLoad  <- function(library, section) {
+.onAttach  <- function(libname, pkgname) {
    .DSEflags(list(COMPILED=TRUE, DUP=TRUE))
-   # next require is necessary for bundle check to run examples,  
-   # but does not seem to be necessary when packages are not bundled
-   require("tframe")
    invisible(TRUE)
    }
 
@@ -21,7 +18,7 @@
        }
 })
 
-# With NAMESPACEs use .onLoad instead of .First.Lib 
+# With NAMESPACEs use .onAttach instead of .First.Lib 
 #.First.lib <- function(library, section) {
 #   assign(".DSEflags()$COMPILED", TRUE, env = .GlobalEnv)
 #   assign(".DSEDUP",      TRUE, env = .GlobalEnv)
@@ -894,7 +891,7 @@ toSSaugment.ARMA <- function(model, fuzz=1e-14, ...) {
      }                     
    descr<-c(model$description,
             " Converted to state space by state augmentation.")
-   SS(F=FF,G=G,H=H,K=K,z0=z0,description=descr,
+   SS(F.=FF,G=G,H=H,K=K,z0=z0,description=descr,
          input.names= seriesNamesInput(model),
         output.names=seriesNamesOutput(model))        
  }
@@ -3406,7 +3403,7 @@ MittnikReduction.from.Hankel <- function(M, data=NULL, nMax=NULL,
       for (i in 1:n) 
         {if(m!=0) z <-largeModel$G[1:i,,drop=FALSE]
          else     z <-NULL
-         z <-SS(F=largeModel$F[1:i,1:i,drop=FALSE],G=z,
+         z <-SS(F.=largeModel$F[1:i,1:i,drop=FALSE],G=z,
                   H=largeModel$H[,1:i,drop=FALSE],K= largeModel$K[1:i,,drop=FALSE])
          z <-informationTestsCalculations(l(z,data, warn=warn))
          values <-rbind(values, z)
@@ -3419,7 +3416,7 @@ MittnikReduction.from.Hankel <- function(M, data=NULL, nMax=NULL,
 #      forloop <- function(largeModel, data, warn=TRUE)
 #           {if(!is.null(largeModel$G)) z <-largeModel$G[1:forloop.i,,drop=FALSE]
 #            else                       z <-NULL
-#            z <-SS(F=largeModel$F[1:forloop.i,1:forloop.i,drop=FALSE],G=z,
+#            z <-SS(F.=largeModel$F[1:forloop.i,1:forloop.i,drop=FALSE],G=z,
 #                     H=largeModel$H[  , 1:forloop.i, drop=FALSE],
 #                     K=largeModel$K[1:forloop.i,,drop=FALSE])
 #            informationTestsCalculations(l(z,data, warn=warn))
@@ -3459,7 +3456,7 @@ MittnikReduction.from.Hankel <- function(M, data=NULL, nMax=NULL,
     if(m==0) z <-NULL 
       else   z <-largeModel$G[1:n,,drop=FALSE]
     model <- SS(description="nested model a la Mittnik",
-          F=largeModel$F[1:n,1:n,drop=FALSE],G=z,
+          F.=largeModel$F[1:n,1:n,drop=FALSE],G=z,
           H=largeModel$H[,1:n,drop=FALSE],K= largeModel$K[1:n,,drop=FALSE], 
           names=seriesNames(data))
     l(model,data, warn=warn)          
@@ -3542,7 +3539,7 @@ SVDbalanceMittnik <- function(M, m, n=NULL)
   #   0 == max(abs(shifted.Hkl - o.mtr[,1:n] %*% (FF-K%*%H) %*% c.mtr[1:n,]))
   #   0 != max(abs(shifted.Hkl))
   model<-SS(description="nested-balanced model a la Mittnik",
-              F=FF,G=G,H=H,K= K)
+              F.=FF,G=G,H=H,K= K)
   list(crit=svd.crit,model=model)
 }
 
@@ -3553,7 +3550,7 @@ MittnikReducedModels <- function(largeModel)
   largeModel <- balanceMittnik(largeModel, n=dim(largeModel$F)[1])
   r <- vector("list", dim(largeModel$F)[1])
   for (j in 1:length(r))
-    r[[j]] <- SS(F=largeModel$F[1:j,1:j,drop=FALSE],
+    r[[j]] <- SS(F.=largeModel$F[1:j,1:j,drop=FALSE],
                 G=if(is.null(largeModel$G)) NULL else largeModel$G[1:j,,drop=FALSE],
                 H=largeModel$H[  , 1:j, drop=FALSE],   K= largeModel$K[1:j,,drop=FALSE])
   r
