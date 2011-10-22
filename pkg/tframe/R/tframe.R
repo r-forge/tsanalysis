@@ -181,6 +181,15 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
      if( inherits(tline, "ts")) tline <- unclass(tline)
      # formerly matplot with tline not a matrix was used, but this does
      # not plot (non-ts) dates as well as plot.
+     if (lastObs) {
+ 	if(frequency(x) == 12)dt <- paste(c("Jan", "Feb","Mar","Apr","May",
+ 	   "Jun","Jul","Aug","Sep","Oct","Nov","Dec")[end(x)[2]],end(x)[1],
+ 	       collapse=" ")
+ 	else if(frequency(x) == 4)dt <- paste(
+ 		 c("Q1", "Q2","Q3","Q4")[end(x)[2]],end(x)[1], collapse=" ")
+ 	else   dt <- end(x)
+ 	last <- paste("Last observation:", dt)
+       }
      N <- nseries(x)
      if (1 == N) x <- as.matrix(x)
      else {
@@ -200,17 +209,8 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
     if (!is.null(source) && (is.null(options()$Plotsource) ||
         options()$Plotsource)) 
 	     mtext(source, side=1, line = 2, adj=0, cex=0.7)	
-    if (lastObs) {
-       if(frequency(x) == 12)dt <- paste(c("Jan", "Feb","Mar","Apr","May",
-          "Jun","Jul","Aug","Sep","Oct","Nov","Dec")[end(x)[2]],end(x)[1],
-	      collapse=" ")
-       else if(frequency(x) == 4)dt <- paste(
-                c("Q1", "Q2","Q3","Q4")[end(x)[2]],end(x)[1], collapse=" ")
-       else   dt <- end(x)
-       last <- paste("Last observation:", dt)
-       mtext(last, side=1, line = 2, adj=1, cex=0.7)
-       }
-    # footnote will go on another line with \n
+    if (lastObs) mtext(last, side=1, line = 2, adj=1, cex=0.7)
+     # footnote will go on another line with \n
     if (!is.null(footnote) && (is.null(options()$Plotfootnote) ||
         options()$Plotfootnote)) 
 	     mtext(footnote, side=1, line = 3, adj=0, cex=0.7)	
