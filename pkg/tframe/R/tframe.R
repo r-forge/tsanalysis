@@ -117,10 +117,13 @@ tfspan <- function(x, ...)
 
 
 tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tfend(tf),
-       series=seq(nseries(x)), Title=NULL,
+       series=seq(nseries(x)), 
+       Title=NULL, title=Title, subtitle=NULL,
        lty = 1:5, lwd = 1, pch = NULL, col = 1:6, cex = NULL,
        xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL,
-       graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE)
+       graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE,
+       lastObs=FALSE, source=NULL,
+       footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL)
     {#  ... before other args means abbreviations do not work, but otherwise
      # positional matching seems to kick in and an object to be plotted gets used
      #  for start.
@@ -149,7 +152,13 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
 #     tf <- tframe(tfwindow(x, start=start, end=end))
 # would be nice if this could expand tf (tfwindow only truncates - need a
 # replacement that expands too.)
-     if(length(xlab) == 1) xlab <- rep(xlab, nseries(x))
+     N <- nseries(x)
+     if(length(xlab)          < N) xlab          <- rep(xlab, N)
+     if(length(subtitle)      < N) subtitle      <- rep(subtitle, N)
+     if(length(footnoteRight) < N) footnoteRight <- rep(footnoteRight, N)
+     if(length(footnoteLeft)  < N) footnoteLeft  <- rep(footnoteLeft, N)
+     if(length(source)        < N) source        <- rep(source, N)
+
      for (i in series)
        {if(mode(i)=="character") i <- match(i, names)
 	z <-  selectSeries(x, series=i)
@@ -157,16 +166,18 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
     	   z <- tbind(z, selectSeries(d, series=i)) 
 	tfOnePlot(z, tf=tf, start=start, end=end,
 	          lty=lty, lwd=lwd, pch=pch, col=col, cex=cex,
-		  xlab=xlab[i], ylab=ylab[i], xlim=xlim[[i]], ylim=ylim[[i]])
-        if(!is.null(Title) && (i==1) && (is.null(options()$PlotTitles)
-                || options()$PlotTitles)) title(main = Title)
-	}
+		  xlab=xlab[i], ylab=ylab[i], xlim=xlim[[i]], ylim=ylim[[i]],
+		  lastObs=lastObs, source=source[i],subtitle=subtitle[i],
+		  footnoteLeft=footnoteLeft[i], footnoteRight=footnoteRight[i])
+        if(!is.null(title) && (i==1) && (is.null(options()$PlotTitles)
+                || options()$PlotTitles)) title(main = title)	
+    	}
     
   invisible()
  }
 
 tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf), 
-         Title=NULL, subtitle=NULL, lty=1:5, lwd=1, pch=NULL, col=1:6, cex=NULL,
+         Title=NULL, title=Title, subtitle=NULL, lty=1:5, lwd=1, pch=NULL, col=1:6, cex=NULL,
         xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL, par=NULL,
 	lastObs=FALSE,  
 	source=NULL,
@@ -208,21 +219,21 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
      if (2 <= N) for (i in 2:N) lines(tline, x[,i],
        type="l", lty=lty[i], lwd=lwd[i], pch=pch[i], col=col[i], par=par)
     }
-    if (!is.null(Title) && (is.null(options()$PlotTitles) ||
-        options()$PlotTitles)) title(main = Title)	
-    if (!is.null(subtitle) && (is.null(options()$Plotsubtitles) ||
-        options()$Plotsubtitles)) title(main = subtitle, line=0.5, 
+    if (!is.null(title) && (is.null(options()$PlotTitles) ||
+        options()$PlotTitles)) title(main = title)	
+    if (!is.null(subtitle) && (is.null(options()$PlotSubtitles) ||
+        options()$PlotSubtitles)) title(main = subtitle, line=0.5, 
 	  cex.main=0.8 *par("cex.main"), font.main=0.5 *par("font.main"))	
-    if (!is.null(source) && (is.null(options()$Plotsource) ||
-        options()$Plotsource)) 
+    if (!is.null(source) && (is.null(options()$PlotSources) ||
+        options()$PlotSourcse)) 
 	     mtext(source, side=1, line = 2, adj=0, cex=0.7)	
     if (lastObs) mtext(last, side=1, line = 2, adj=1, cex=0.7)
      # footnote will go on another line with \n
-    if (!is.null(footnoteLeft) && (is.null(options()$Plotfootnote) ||
-        options()$Plotfootnote)) 
+    if (!is.null(footnoteLeft) && (is.null(options()$PlotFootnotes) ||
+        options()$PlotFootnotes)) 
 	     mtext(footnoteLeft, side=1, line = 3, adj=0, cex=0.7)	
-    if (!is.null(footnoteRight) && (is.null(options()$Plotfootnote) ||
-        options()$Plotfootnote)) 
+    if (!is.null(footnoteRight) && (is.null(options()$PlotFootnotes) ||
+        options()$PlotFootnotes)) 
 	     mtext(footnoteRight, side=1, line = 3, adj=1, cex=0.7)	
     if (!is.null(legend)) legend(legend.loc, inset = c(0.05, .05), 
        col=col, lty=lty, cex=0.7, legend=legend)
