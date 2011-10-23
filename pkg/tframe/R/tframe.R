@@ -166,13 +166,17 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
  }
 
 tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf), 
-         Title=NULL, lty=1:5, lwd=1, pch=NULL, col=1:6, cex=NULL,
+         Title=NULL, subtitle=NULL, lty=1:5, lwd=1, pch=NULL, col=1:6, cex=NULL,
         xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL, par=NULL,
-	lastObs=FALSE,  source=NULL, footnote=NULL,
+	lastObs=FALSE,  
+	source=NULL,
+	footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
 	legend=NULL, legend.loc="topleft"){
   if (!is.tframed(x)) UseMethod("plot")
   else
-    {if (!is.null(start)) x <- tfwindow(x, start=start, warn=FALSE)
+    {#if(is.null(source)) source <- 
+     #        if(is.null(options("TSsource"))) NULL else(options()$TSsource)(x)
+     if (!is.null(start)) x <- tfwindow(x, start=start, warn=FALSE)
      if (!is.null(end))   x <- tfwindow(x, end=end, warn=FALSE)
      if(is.null(xlab)) xlab <- ""
      if(is.null(ylab)) ylab <- paste(seriesNames(x), collapse="  ")
@@ -206,14 +210,20 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
     }
     if (!is.null(Title) && (is.null(options()$PlotTitles) ||
         options()$PlotTitles)) title(main = Title)	
+    if (!is.null(subtitle) && (is.null(options()$Plotsubtitles) ||
+        options()$Plotsubtitles)) title(main = subtitle, line=0.5, 
+	  cex.main=0.8 *par("cex.main"), font.main=0.5 *par("font.main"))	
     if (!is.null(source) && (is.null(options()$Plotsource) ||
         options()$Plotsource)) 
 	     mtext(source, side=1, line = 2, adj=0, cex=0.7)	
     if (lastObs) mtext(last, side=1, line = 2, adj=1, cex=0.7)
      # footnote will go on another line with \n
-    if (!is.null(footnote) && (is.null(options()$Plotfootnote) ||
+    if (!is.null(footnoteLeft) && (is.null(options()$Plotfootnote) ||
         options()$Plotfootnote)) 
-	     mtext(footnote, side=1, line = 3, adj=0, cex=0.7)	
+	     mtext(footnoteLeft, side=1, line = 3, adj=0, cex=0.7)	
+    if (!is.null(footnoteRight) && (is.null(options()$Plotfootnote) ||
+        options()$Plotfootnote)) 
+	     mtext(footnoteRight, side=1, line = 3, adj=1, cex=0.7)	
     if (!is.null(legend)) legend(legend.loc, inset = c(0.05, .05), 
        col=col, lty=lty, cex=0.7, legend=legend)
   invisible(x)
@@ -740,6 +750,10 @@ aggregate.tframed <- function (x, ...)
     tframed(r, tf=tframe(r), names=nm)
    }
 
+# Note 1. This is generic so methods can be defined on series within an object,
+# as in TSdata and TSestModel. For different types of series, eg zoo, it
+# should not be necessary to define methods for this, that should be done with
+# lower level utilities like tfL and diff, which should be used here.
 ytoypc <- function(obj, names=paste("y to y %ch", seriesNames(obj))) 
    UseMethod("ytoypc")
  
@@ -751,6 +765,7 @@ ytoypc.default <- function (obj, names=paste("y to y %ch", seriesNames(obj)) ){
 }
 
 
+# See Note 1 above
 percentChange <- function(obj, ...) UseMethod("percentChange")
 
 percentChange.default <- function(obj, base=NULL, lag=1, 
@@ -758,8 +773,10 @@ percentChange.default <- function(obj, base=NULL, lag=1,
 {#  (... further arguments, currently disregarded)
    cls <- class(obj)
    # note next has to be applied to a shorter object in the end
-   if (is.tframed(obj)) tf <- list(end=tfend(obj), frequency=tffrequency(obj))
-   else tf <- NULL
+   #if (is.tframed(obj)) tf <- list(end=tfend(obj), frequency=tffrequency(obj))
+   #else tf <- NULL
+   if (!is.tframed(obj)) stop("percentChange only works on tframed objects.")
+   tf <- tframe(diff(obj, lag=lag)) # not very efficient
    if (is.null(dim(obj)))
      {vec <- TRUE
       obj <- matrix(obj, length(obj),1)
@@ -773,18 +790,20 @@ percentChange.default <- function(obj, base=NULL, lag=1,
    pchange <-100*(mm[(lag+1):N,,drop=FALSE] - 
                     mm[1:(N-lag),,drop=FALSE])/mm[1:(N-lag),,drop=FALSE]
    if (vec) pchange <- pchange[,1]
-   #class(pchange) <- cls[cls != "tframed"]
-   if (!is.null(tf)) tframed(pchange, tf) else pchange
+   tframed(pchange, tf) 
 }
 
+# See Note 1 above
 annualizedGrowth <- function(obj, ...) UseMethod("annualizedGrowth")
 
 annualizedGrowth.default <- function(obj, lag=1, freqLagRatio=frequency(obj)/lag,
         names=paste("Annual Growth of", seriesNames(obj)), ...) {
-  r <- 100*((as.ts(obj)/tfL(as.ts(obj), p= lag))^freqLagRatio - 1)
+  if (!is.tframed(obj)) stop("annualizedGrowth only works on tframed objects.")
+  d <- tfL(obj, p= lag)
+  r <- 100*((obj / d )^freqLagRatio - 1)
   if(is.null(options()$ModSeriesNames) || options()$ModSeriesNames)
         seriesNames(r) <- names
-  r
+  tframed(r, tframe(diff(obj, lag=lag))) # not very efficient
   }
 
 ###############################################

@@ -16,9 +16,10 @@
        xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL, 
        graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE)
     tfOnePlot(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
-        Title=NULL, lty=1:5, lwd=1, pch=NULL, col=1:6, cex=NULL,
+        Title=NULL,  subtitle=NULL, lty=1:5, lwd=1, pch=NULL, col=1:6, cex=NULL,
         xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL, par=NULL,
-	lastObs=FALSE,  source=NULL, footnote=NULL,
+	lastObs=FALSE,  source=NULL, 
+	footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
 	legend=NULL, legend.loc="topleft")
 }
 
@@ -31,6 +32,7 @@
     end.}
     \item{series}{series to be plotted. (passed to selectSeries)}
     \item{Title}{string to use for plot title (but see details).}
+    \item{subtitle}{string to use for plot subtitle (but see details).}
     \item{lty}{passed to plot. See also par.)}
     \item{lwd}{passed to plot. See also par.)}
     \item{pch}{passed to plot. See also par.)}
@@ -43,7 +45,9 @@
     \item{lastObs}{Logical indicating if the date of the last observation
         should be printed below the graph, flushed right.}
     \item{source}{String printed below the graph, flushed left.}
-    \item{footnote}{String printed below lastObs and source, flushed left.}
+    \item{footnote}{Synonym for footnoteLeft.}
+    \item{footnoteLeft}{String printed below lastObs and source, flushed left.}
+    \item{footnoteRight}{String printed below lastObs and source, flushed right.}
     \item{legend}{NULL (indicating no legend) or a vector strings to be used
        for a legend (see legend)}
     \item{legend.loc}{indication of placement of the legend (see legend)}
