@@ -28,14 +28,12 @@
 
 DSEversion <- function() 
   {if (!is.R()) return("version cannot be determined.") else
-   z <- c("setRNG", "tframe", "dse","EvalEst", "dsepadi","monitor", 
-          "curve", "CDNmoney", "tsfa", "TSdbi", "padi")
+   z <- c("setRNG", "tframe", "dse","EvalEst",  
+          "curve", "CDNmoney", "tsfa", "TSdbi")
    z <- z[ z %in% library()$results[,1] ]
    r <- NULL
    for (pac in z ) 
-     if (as.numeric(version$major)+0.1*as.numeric(version$minor) < 1.9 )
-           r <- c(r, package.description(pac, fields="Version"))
-     else  r <- c(r,  packageDescription(pac, fields="Version"))
+     r <- c(r,  packageDescription(pac, fields="Version"))
    names(r) <- z
    r
   }
