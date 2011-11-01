@@ -1,4 +1,4 @@
-.onLoad  <- function(library, section) { invisible(require("numDeriv")) }
+#.onAttach  <- function(libname, pkgname){ invisible(require("numDeriv")) }
 
 ############################################################################
 
