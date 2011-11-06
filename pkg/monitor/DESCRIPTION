@@ -1,5 +1,5 @@
 Package: monitor
-Version: 2011.11-1
+Version: 2011.11-2
 Title: Dynamic Systems Estimation - monitoring extensions
 Description: Multivariate Time Series - monitoring extensions
 Depends: R (>= 2.5.0), methods, tframe (>= 2007.5-3), dse (>= 2007.10-1), EvalEst (>= 2007.10-1), TSdbi (>= 2010.5-1)
