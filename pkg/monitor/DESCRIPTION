@@ -1,5 +1,5 @@
 Package: monitor
-Version: 2011.11-2
+Version: 2012.3-1
 Title: Dynamic Systems Estimation - monitoring extensions
 Description: Multivariate Time Series - monitoring extensions
 Depends: R (>= 2.5.0), methods, tframe (>= 2007.5-3), dse (>= 2007.10-1), EvalEst (>= 2007.10-1), TSdbi (>= 2010.5-1)
@@ -7,6 +7,7 @@ Suggests: stats, setRNG (>= 2004.4-1), TSpadi (>= 2010.5-1), TSMySQL (>= 2010.5-
 Imports: methods, TSdbi (>= 2010.5-1), DBI
 LazyLoad: yes
 License: GPL-2 | file LICENSE
+Copyright: 1993-1996,1998-2011 Bank of Canada. 1997,2012 Paul Gilbert
 Author: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
 Maintainer: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
 URL: http://tsanalysis.r-forge.r-project.org/

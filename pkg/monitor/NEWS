@@ -1,8 +1,12 @@
 Known Bugs
 
+   o	this package is not yet released on CRAN (R-forge only).
+
    o	None for the moment.
 
-Changes in monitor version 2011.11-1
+Changes in monitor version 2012.3-1
+
+   o	additional cleanup of tests.
 
    o	updated maintainer email address.
 
