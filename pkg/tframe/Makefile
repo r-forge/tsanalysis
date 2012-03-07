@@ -5,6 +5,6 @@ QC=${shell cd ../ ; pwd}
 
 include $(QC)/Makevars 
 
-default:	$(DEFAULT)
+default: $(DEFAULT)
 
 include $(QC)/Makerules

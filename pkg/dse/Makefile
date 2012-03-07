@@ -8,6 +8,6 @@ OPTIONAL_PREREQ=src/dsefor.f
 
 include $(QC)/Makevars
 
-default:	$(DEFAULT)
+default: $(DEFAULT)
 
 include $(QC)/Makerules

@@ -1,9 +1,10 @@
 PREREQ_PACS=GPArotation setRNG tframe dse EvalEst CDNmoney
 
-include ../Makevars
+#  ../Makevars goes up real path not sym link, so
+QC=${shell cd ../ ; pwd}
 
-default:	$(DEFAULT)
+include $(QC)/Makevars 
 
-PRETESTLIB=$(CODE_PREREQS) $(CODESCAN)
+default: $(DEFAULT)
 
-include ../Makerules
+include $(QC)/Makerules
