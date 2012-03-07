@@ -156,11 +156,15 @@ combination.monitor.function.tests <- function( verbose=TRUE, synopsis=TRUE,
   Sys.sleep(15) # just in case a previous server has not yet died
 
 if ( ! require("TSpadi")) 
-       warning("Warning: package TSpadi is needed") else {
-    #m <- dbDriver("MySQL")
-    m <- dbDriver("padi")
-    con <- try(TSconnect(m, dbname="ets")) # no user/passwd/host
-    if( inherits(con, "try-error")) warning("Warning: ets is needed.") else {
-    options(TSconnection=con)
-    combination.monitor.function.tests(verbose=TRUE)
-    }
+      warning("Warning: package TSpadi is needed") 
+    else {
+      #m <- dbDriver("MySQL")
+      m <- dbDriver("padi")
+      con <- try(TSconnect(m, dbname="ets")) # no user/passwd/host
+      if( inherits(con, "try-error"))
+         warning("Warning: ets is needed.")
+      else {
+        options(TSconnection=con)
+        combination.monitor.function.tests(verbose=TRUE)
+        }
+      }

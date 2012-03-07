@@ -3,7 +3,7 @@
 # Simple monitoring functions and data checking        <<<<<<<<<<<<
 
 ###########################################################################
-.onLoad <- function(library, section) require("TSdbi")
+#.onLoad <- function(library, section) require("TSdbi")
 
 
 checkForValueChanges <- function(data.names, verification.data,
