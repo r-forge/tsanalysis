@@ -6,7 +6,7 @@ Depends: R (>= 2.5.0), methods, tframe (>= 2007.5-3), dse (>= 2007.10-1), EvalEs
 Suggests: stats, setRNG (>= 2004.4-1), TSpadi (>= 2010.5-1), TSMySQL (>= 2010.5-1)
 Imports: methods, TSdbi (>= 2010.5-1), DBI
 LazyLoad: yes
-License: GPL-2 | file LICENSE
+License: GPL-2
 Copyright: 1993-1996,1998-2011 Bank of Canada. 1997,2012 Paul Gilbert
 Author: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
 Maintainer: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
