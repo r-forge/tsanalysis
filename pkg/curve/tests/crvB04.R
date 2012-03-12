@@ -147,18 +147,13 @@ cat("DSE curvature test B 6 ...")
 	        188.387895177827971, 92.9017650583947585, 1.00005841302234355) #defaulat Solaris
 	      
 
-   tst  <- curvatureARMA[-9]
+ # relaxed from fuzz.small to 10*fuzz.small for R 1.4.1 in Linux and then to 1.0
+  tst  <- curvatureARMA[-9]
    error <- max(abs(good - tst))
 
    print(good, digits=18)
+    cat("max. error ",error, "\n")
    print(tst,  digits=18)
-   cat("max. error ",error, "\n")
-
-# relaxed from fuzz.small to 10*fuzz.small for R 1.4.1 in Linux an then to 1.0
-   if (any(is.na(error)) || any(is.nan(error)) || 
-        (if (Sys.info()[["sysname"]] == "Linux")1.0 else fuzz.small) < error)
-     {all.ok <- F  
-      cat("test failed!\n")
-     }
-
+   if (any(is.na(error)) || any(is.nan(error)) || (if (Sys.info()[["sysname"]] == 
+	"Linux")1.0 else fuzz.small) < error) {all.ok <- F ; cat("test failed!\n") }
   if (! all.ok) stop("some tests FAILED")
