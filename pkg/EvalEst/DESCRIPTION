@@ -1,4 +1,5 @@
 Package: EvalEst
+Version: 2012.3-1
 Title: Dynamic Systems Estimation - extensions
 Description:  EvalEst provides functions for evalating (time series) model
 	estimation methods. These facilitate monte carlo experiments of repeated
@@ -6,7 +7,6 @@ Description:  EvalEst provides functions for evalating (time series) model
 	looking at the distribution of the results from these experiments,
 	including model roots (which are an equivalence class invariant).
 Depends: R (>= 2.5.0), setRNG, tframe (>= 2007.5-3), dse (>= 2007.10-1)
-Version: 2011.11-2
 LazyLoad: yes
 License: GPL-2 | file LICENSE
 Author: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
