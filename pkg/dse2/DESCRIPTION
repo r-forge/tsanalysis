@@ -1,9 +1,9 @@
 Package: dse2
+Version: 2011.11-3
 Title: DSE (unbundled transition package).
 Description: This package is only to aid transition to the unbundled dse 
 	package. It has no functions, but simply requires package EvalEst.
 Depends: EvalEst
-Version: 2011.11-2
 LazyLoad: yes
 License: GPL-2 | file LICENSE
 Author: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
