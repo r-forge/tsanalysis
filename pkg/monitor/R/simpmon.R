@@ -214,7 +214,7 @@ simpleMonitoring <- function(model, data.names,
 
  # Step 4 - clean-up
     if (!is.null(save.as)) 
-       assign(save.as,list(model=model, data=data, pred=pred), env = .GlobalEnv)
+       assign(save.as,list(model=model, data=data, pred=pred), envir = .GlobalEnv)
     on.exit()
     #return latest data for comparison next time. Note - the forecast is NOT
     # returned (but may be saved above).

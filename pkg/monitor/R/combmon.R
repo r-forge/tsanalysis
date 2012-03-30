@@ -394,7 +394,7 @@ combinationMonitoring <- function(model, data.names,
 
  # Step 4 - clean-up
     if (!is.null(save.as)) 
-      {assign(save.as, combinedForecast, env = .GlobalEnv)
+      {assign(save.as, combinedForecast, envir = .GlobalEnv)
 #       file.copy( graphics.file, save.as)   # save graph
       } 
     if (updated.data[[1]] ) previous.data$data   <- updated.data$data
