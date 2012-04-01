@@ -9,7 +9,10 @@ tframe.xts <- function (x) {
 tfUnSet.xts <- function(x)      {xts:::coredata(x)}
 tfSet.xtstframe <- function(value, x) { 
   class(value) <- class(value)[class(value) != "xtstframe"]
-  xts:::xts(x, value) }
+  r <- xts:::xts(x, value)  
+  seriesNames(r) <- seriesNames(x)
+  r
+ }
 
 "seriesNames<-.xts" <- function (x, value) 
   {if (is.matrix(x)) dimnames(x) <- list(NULL, value)

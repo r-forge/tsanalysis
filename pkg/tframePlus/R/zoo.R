@@ -10,7 +10,10 @@ tfUnSet.zoo <- function(x)      {zoo:::coredata(x)}
 tfSet.zootframe <- function(value, x) { 
   if(Tobs(value) != Tobs(x)) stop("number of Tobs of observations must correspond to number of Tobs indicated by tframe.")
   class(value) <- class(value)[class(value) != "zootframe"]
-  zoo:::zoo(x, value) }
+  r <- zoo:::zoo(x, value) 
+  seriesNames(r) <- seriesNames(x)
+  r
+  }
 
 "seriesNames<-.zoo" <- function (x, value) 
   {if (is.matrix(x)) dimnames(x) <- list(NULL, value)
