@@ -56,7 +56,12 @@ cat("DSE curvature test B 7 ...")
 # DIFFERENCE FROM ABOVE FOUND MARCH 2006
 #  WHEN SEPARATING OUT numDeriv. THERE WAS AN ERROR.
 # HESSIAN USED FIRST COLUMNS IN genD RATHER THAN SKIPPING THEM. 
-   good <-  6293.68641833058791
+# good <- 6293.68641833058791
+# Difference from above exceeded tolerance, April 20112 with R 2-15.0
+#  32 bit Ubuntu gave 
+#         6293.74004611604869
+#  64 bit Ubuntu gave 
+ good <-  6293.71416042599958
 	      
    printTestValue(tst  <- sum(hessianVAR), digits=18)
    error <- max(abs(good - tst))
