@@ -1,5 +1,5 @@
 Package: tframe
-Version: 2012.3-1
+Version: 2012.4-1
 Title: Time Frame coding kernel
 Description: The tframe package provides a kernel of functions for programming 
 	time series methods in a way that is relatively independently of the 

@@ -17,7 +17,8 @@
        xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL, 
        graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE, 
        lastObs = FALSE, source = NULL,
-       footnote = NULL, footnoteLeft = footnote, footnoteRight = NULL)
+       footnote = NULL, footnoteLeft = footnote, footnoteRight = NULL,
+	legend=NULL, legend.loc="topleft")
     tfOnePlot(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         Title=NULL, title=Title,  subtitle=NULL, 
 	lty=1:5, lwd=1, pch=NULL, col=1:6, cex=NULL,
@@ -111,10 +112,14 @@
     the overlap can be messy. In this case a better result might be obtained by
     specifying the source as part of the footnote.
     
-    If \code{subtitle}, \code{source}, \code{footnoteLeft} or
-    \code{footnoteRight} have length less than the number of panels then they
+    If \code{subtitle}, \code{source}, \code{footnoteLeft}, \code{footnoteRight}
+    or \code{legend.loc} have length less than the number of panels then they
     are replicated, so typically they should have one element that is applied 
     to each panel, or be vectors with one element for each panel.
+    For \code{tfOnePlot} these should all have length \code{1}.
+    If \code{legend} is a matrix then a column will be used for each panel,
+    otherwise the vector will be passed to each panel. (Typically this vector
+    has length equal to the number of series in each panel graph.)
 }
 \section{Side Effects}{An object is plotted.}
 \seealso{

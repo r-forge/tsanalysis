@@ -123,7 +123,8 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
        xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL,
        graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE,
        lastObs=FALSE, source=NULL,
-       footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL)
+       footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
+       legend=NULL, legend.loc="topleft")
     {#  ... before other args means abbreviations do not work, but otherwise
      # positional matching seems to kick in and an object to be plotted gets used
      #  for start.
@@ -158,17 +159,21 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
      if(length(footnoteRight) < N) footnoteRight <- rep(footnoteRight, N)
      if(length(footnoteLeft)  < N) footnoteLeft  <- rep(footnoteLeft, N)
      if(length(source)        < N) source        <- rep(source, N)
-
+     if(length(legend)        < N) legend        <- rep(legend, N)
+     if(length(legend.loc)    < N) legend.loc    <- rep(legend.loc, N)
+ 
      for (i in series)
        {if(mode(i)=="character") i <- match(i, names)
 	z <-  selectSeries(x, series=i)
         for (d in list(...))
     	   z <- tbind(z, selectSeries(d, series=i)) 
-	tfOnePlot(z, tf=tf, start=start, end=end,
+	lgd <- if (is.matrix(legend))legend[,i] else legend
+	tfOnePlot(z, tf=tf, start=start, end=end, subtitle=subtitle[i],
 	          lty=lty, lwd=lwd, pch=pch, col=col, cex=cex,
 		  xlab=xlab[i], ylab=ylab[i], xlim=xlim[[i]], ylim=ylim[[i]],
-		  lastObs=lastObs, source=source[i],subtitle=subtitle[i],
-		  footnoteLeft=footnoteLeft[i], footnoteRight=footnoteRight[i])
+		  lastObs=lastObs, source=source[i],
+		  footnoteLeft=footnoteLeft[i], footnoteRight=footnoteRight[i],
+		  legend=lgd, legend.loc=legend.loc[i])
         if(!is.null(title) && (i==1) && (is.null(options()$PlotTitles)
                 || options()$PlotTitles)) title(main = title)	
     	}
@@ -794,11 +799,11 @@ percentChange.default <- function(obj, base=NULL, lag=1,
       obj <- matrix(obj, length(obj),1)
      }
    else vec <- FALSE
-   mm <- rbind(base,obj)
+   mm <- unclass(rbind(base,obj))
    if (any(cumulate))
           mm[,cumulate] <-apply(mm[,cumulate,drop=FALSE],2,cumsum)
    if (any(e)) mm[,e] <- exp(mm[,e,drop=FALSE])
-   N <- dim(mm)[1]
+   N <- NROW(mm)
    pchange <-100*(mm[(lag+1):N,,drop=FALSE] - 
                     mm[1:(N-lag),,drop=FALSE])/mm[1:(N-lag),,drop=FALSE]
    if (vec) pchange <- pchange[,1]
