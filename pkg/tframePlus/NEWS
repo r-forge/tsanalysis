@@ -1,4 +1,8 @@
-Changes in tframe version 2012.4-1
+Changes in tframePlus version 2012.4-2
+
+   o	Added tfplot to Suggests in DESCRIPTION.
+
+Changes in tframePlus version 2012.4-1
 
    o	Setting of zoo and xts tframe fixed to not drop series names.
 

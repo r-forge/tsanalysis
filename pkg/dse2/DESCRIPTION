@@ -5,7 +5,8 @@ Description: This package is only to aid transition to the unbundled dse
 	package. It has no functions, but simply requires package EvalEst.
 Depends: EvalEst
 LazyLoad: yes
-License: GPL-2 | file LICENSE
+License: GPL-2
+Copyright: 1993-1996,1998-2011 Bank of Canada. 1997,2012 Paul Gilbert
 Author: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
 Maintainer: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
 URL: http://tsanalysis.r-forge.r-project.org/

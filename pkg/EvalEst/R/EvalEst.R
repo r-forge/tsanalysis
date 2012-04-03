@@ -1,12 +1,3 @@
-# The following should not be needed, but seems necessary for R CMD check
-#   to work with the bundle  
-#
-# .onLoad  <- function(library, section) {
-#   require("dse")
-#   invisible(TRUE)
-#   }
-
-
 ############################################################################
 # Comments here need to be cleaned up to reflect re-org
 # Functions in the next group are mainly for evaluating estimation techniques.

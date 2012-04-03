@@ -1,5 +1,5 @@
  require("stats")
- require("tframe")
+ require("tfplot")
 
  Sys.info()
 

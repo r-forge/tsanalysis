@@ -1,4 +1,5 @@
   require("tframePlus")
+  require("tfplot")
   if(!require("timeSeries")) stop("timeSeries not available, tests failed.")    
 
 

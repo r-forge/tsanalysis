@@ -1,4 +1,5 @@
   require("tframePlus")
+  require("tfplot")
   if(!require("tis")) stop("tis not available, tests failed.")    
   if(!require("zoo")) stop("zoo not available, tests failed.")    
 

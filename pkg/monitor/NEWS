@@ -4,11 +4,15 @@ Known Bugs
 
    o	None for the moment.
 
+Changes in monitor version 2012.4-1
+
+   o	Added tfplot to Suggests.
+
 Changes in monitor version 2012.3-1
 
-   o	additional cleanup of tests.
+   o	Additional cleanup of tests.
 
-   o	updated maintainer email address.
+   o	Updated maintainer email address.
 
 Changes in monitor version 2010.5-1
 

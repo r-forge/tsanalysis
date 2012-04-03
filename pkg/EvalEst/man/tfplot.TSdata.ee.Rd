@@ -43,8 +43,9 @@
 }
 
 \seealso{
-    \code{\link[tframe]{tfplot}}
-    \code{\link{EstEval}} }
+    \code{\link[tfplot]{tfplot}}
+    \code{\link{EstEval}} 
+    }
 
 \concept{DSE}
 \keyword{ts}

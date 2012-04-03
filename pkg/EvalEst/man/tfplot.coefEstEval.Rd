@@ -35,7 +35,7 @@
   result (and sometimes not even then). 
 }
 \seealso{
-    \code{\link[tframe]{tfplot}}
+    \code{\link[tfplot]{tfplot}}
     \code{\link{EstEval}}
 }
 \concept{DSE}

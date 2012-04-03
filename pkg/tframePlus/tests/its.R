@@ -1,4 +1,5 @@
   require("tframePlus")
+  require("tfplot")
   if(!require("its")) stop("its not available, tests failed.")    
 
 

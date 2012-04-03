@@ -1,4 +1,5 @@
   require("tframePlus")
+  require("tfplot")
   if(!require("xts")) stop("xts not available, tests failed.")    
 
 

@@ -2,6 +2,7 @@ importFrom("stats","coef")
 
 ##import("setRNG")
 import("tframe")
+import("tfplot")
 import("dse")
 
 

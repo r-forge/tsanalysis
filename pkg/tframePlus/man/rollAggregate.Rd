@@ -41,6 +41,7 @@
   if(require("zoo")) {
     z <- zoo(rnorm(100),  order.by = Sys.Date() + 1:100)
     rollAggregate(as.weekly(z), aggPeriods=4, FUN=mean)
+    require("tfplot")
     tfplot(as.weekly(z),rollAggregate(as.weekly(z), aggPeriods=4, 
        FUN=mean, na.rm=TRUE))
     tfplot(z,rollAggregate(z, aggPeriods=28, FUN=mean))

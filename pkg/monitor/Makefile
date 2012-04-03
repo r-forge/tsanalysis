@@ -1,4 +1,4 @@
-PREREQ_PACS=tframe dse EvalEst setRNG TSdbi TSpadi TSMySQL
+PREREQ_PACS=tframe EvalEst TSpadi TSMySQL
 
 #  ../Makevars goes up real path not sym link, so
 QC=${shell cd ../ ; pwd}

@@ -1,10 +1,10 @@
-Changes in tsfa version 2012.3-1
+Changes in tsfa version 2012.4-1
 
-   o	no real changes, but bumping version for new CRAN suitability check.
+   o	Added tfplot to Depends.
 
 Changes in tsfa version 2011.11-1
 
-   o	updated maintainer email address.
+   o	Updated maintainer email address.
 
 Changes in tsfa version 2011.3-1
 

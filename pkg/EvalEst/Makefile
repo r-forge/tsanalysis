@@ -1,4 +1,4 @@
-PREREQ_PACS=setRNG tframe dse
+PREREQ_PACS=tframe dse
 
 #  ../Makevars goes up real path not sym link, so
 QC=${shell cd ../ ; pwd}

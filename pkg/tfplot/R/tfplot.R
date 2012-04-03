@@ -1,7 +1,4 @@
 
-#     Copyright 2012, Paul Gilbert.
-#     Copyright 1998-2011, Bank of Canada.
-
 #  tfplot provides generic methods for plotting time series objects. 
 # Plot methods will probably do some processing
 #  and eventually call tfOnePlot for each panel.
