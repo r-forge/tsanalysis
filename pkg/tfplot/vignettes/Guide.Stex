@@ -1,0 +1,33 @@
+\documentclass[english]{article}
+\newcommand{\code}{\emph}
+\newcommand{\pkg}{\textsl}
+\title{Time Series tfplot Functions}
+
+\begin{document}
+\maketitle
+%\VignetteIndexEntry{tfplot Guide}
+\SweaveOpts{eval=TRUE,echo=TRUE,results=hide,fig=FALSE}
+\begin{Scode}{echo=FALSE,results=hide}
+ options(continue="  ")
+\end{Scode}
+
+
+The functions in this package are made available with
+
+\begin{Scode}
+library("tfplot")  
+\end{Scode}
+
+The code from the vignette that generates this guide can 
+be loaded into an editor with \code{edit(vignette("tfplot"))}.
+This uses the default editor, which can be changed using \code{options()}.
+It should be possible to view the pdf version of this 
+package guide with \code{print(vignette("tfplot"))}.
+
+The functions in this package rely on the \pkg{tframe} package. While that
+package contains underlying programing support, the functions in this package
+are meant to becalled directly by users. They include
+\code{tfplot}, \code{tfOnePlot}, \code{diffLog}, \code{percentChange}, \code{trimNA} and \code{tsScan}. See the help for more details and examples.
+
+\end{document}
+
