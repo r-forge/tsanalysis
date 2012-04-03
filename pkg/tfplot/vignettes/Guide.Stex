@@ -1,7 +1,7 @@
 \documentclass[english]{article}
 \newcommand{\code}{\emph}
 \newcommand{\pkg}{\textsl}
-\title{Time Series tfplot Functions}
+\title{Time Series tfplot Package}
 
 \begin{document}
 \maketitle

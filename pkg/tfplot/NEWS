@@ -1,4 +1,4 @@
-Changes in tfplot version 2012.4-2
+Changes in tfplot version 2012.4-1
 
    o	First release. Separated user utilities (tfplot, tfOnePlot, and simple
    	series manipulations) out of tframe. See tframe NEWS for older history.
