@@ -1,4 +1,4 @@
-PREREQ_PACS=tframe dse
+PREREQ_PACS=tframe tfplot dse
 
 #  ../Makevars goes up real path not sym link, so
 QC=${shell cd ../ ; pwd}
