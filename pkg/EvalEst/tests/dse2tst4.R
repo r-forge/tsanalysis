@@ -33,8 +33,10 @@ dse4.function.tests <- function(verbose=TRUE, synopsis=TRUE,
   outputData(subdata) <- outputData(subdata)[1:182,,drop=FALSE]
 #  inputData(subdata)  <- inputData(subdata) [1:182,,drop=FALSE] not in subdata
   z3 <- estVARXls(subdata, max.lag=3)
-  ok <-      testEqual(z2$multi.model[[1]],z3$model)
-  ok <- ok & testEqual(z2$multi.model[[1]],  z1)
+  # Had to add fuzz=1e-15 in next two, default =0 no longer worked April 2012 
+  # with R-2.15.0 on 32 bit Ubunti (with new BLAS recently installed).
+  ok <-      testEqual(z2$multi.model[[1]],z3$model, fuzz=1e-15)
+  ok <- ok & testEqual(z2$multi.model[[1]],  z1, fuzz=1e-15)
   all.ok <- all.ok & ok 
   if (verbose) {if (ok) cat("ok\n") else cat("failed!\n") }
 
