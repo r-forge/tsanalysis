@@ -3,7 +3,6 @@ Version: 2011.11-2
 Title: Time Frame extensions (in development)
 Description:  Extensions and additional tframe utilities.
 Depends: R (>= 2.13.0), tframe, tframePlus
-Imports: tframe
 Suggests: zoo, xts, its, tis, timeSeries, methods, WriteXLS(>= 1.7.0)
 LazyLoad: yes
 License: GPL-2
