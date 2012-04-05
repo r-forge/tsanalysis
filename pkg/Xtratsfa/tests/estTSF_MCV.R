@@ -68,6 +68,7 @@ simBoblq  <- simulate(TSFmodel(Boblq, f=etaTrue,
 MCV <- estTSF.MCV(simBoblq, 2, BpermuteTarget=Boblq)
 
 fuzz <- 1e-3  # these calculations seems pretty loose
+fuzz <- 5e-3  # Ubuntu R-2.15.0 32bit with new BLAS, April 2012
 
 sc <- c(1, .001, 1, .1, .001, .001)
 # tst <- diag(c(71.42258,   799.9341,   98.45952,   551.7778,   3347.282,   15654.85))
@@ -78,15 +79,15 @@ sc <- c(1, .001, 1, .1, .001, .001)
 #  tst <- diag(c(11846.2227854133052, 1473425.34799820324, 13339.2314805768619,
 #                1211867.99363448448, 13121645.4180298559, 276236562.08169359))
 #  above was with noIC=TRUE
-  tst <- diag(c(9966.78707990818839, 2870921.21104566799, 10806.4047895932163,
-                1278091.0373137875,  13390468.3000131808, 228421805.47522977)) #Linux Mandrake 32bit
-  tst <- diag(c(9966.78709684525347, 2870921.20979451109, 10806.4046430631024,
-                1278091.03411219502, 13390468.3642241284, 228421806.29665792)) # rhlinux 2.4.2 32 bit
-  tst <- diag(c(9966.7870963179721,  2870921.20457918523, 10806.4047684349462,
-                1278091.03316546604, 13390468.3072009329, 228421806.313319385)) #Solaris
+# tst <- diag(c(9966.78703285981646, 2870921.23687064834, 10806.4046910142024, 1278091.05062660715, 13390468.3517206945, 228421802.981480092))  #Ubuntu R-2.15.0 32bit with new BLAS, April 2012
+# tst <- diag(c(9966.78707990818839, 2870921.21104566799, 10806.4047895932163, 1278091.0373137875,  13390468.3000131808, 228421805.47522977 ))  #Linux Mandrake 32bit
+# tst <- diag(c(9966.78709684525347, 2870921.20979451109, 10806.4046430631024, 1278091.03411219502, 13390468.3642241284, 228421806.29665792 ))  # rhlinux 2.4.2 32 bit
+  tst <- diag(c(9966.7870963179721,  2870921.20457918523, 10806.4047684349462, 1278091.03316546604, 13390468.3072009329, 228421806.313319385))  #Solaris 
 
- if( fuzz < max(diag(sc) * abs( TSFmodel(MCV)$Omega - tst ))) {
+ err <- max(diag(sc) * abs( TSFmodel(MCV)$Omega - tst ))
+ if( fuzz < err ) {
     cat("Calculated value is not the same as test value in test MCV Omega. Value:\n")
+    cat("fuzz:", fuzz, "  err:", err, "\n")   
     printTestValue(diag(TSFmodel(MCV)$Omega), digits=18)
     cat("sc * difference:\n")
     print(sc * (diag(TSFmodel(MCV)$Omega) - tst), digits=18)
@@ -94,6 +95,8 @@ sc <- c(1, .001, 1, .1, .001, .001)
     }
 
 fuzz <- 1e-4 
+fuzz <- 2e-4 # Ubuntu R-2.15.0 32bit with new BLAS, April 2012
+
 
 # using early version of GPA (which had maxit=500, eps=1e-5, and possibly did
 #   normalizing by default)
@@ -123,15 +126,14 @@ fuzz <- 1e-4
 #      1407.50328648021605 , 5759.53938387771541), 2, 6))
 #  above was with noIC=TRUE
  tst <- t(matrix(c( 
-      109.354937454847843 ,  73.001795485260331 , 
-      849.958197318555676 , -82.564164508841003 , 
-      75.9666761936852453 , -33.779799193871618 , 
-      1447.47533281976303 , 1207.13633223128204 , 
-      13.4443728967860263 ,  1822.2528547668453 , 
-      -1210.59538374664044 , 7054.36195742316522), 2, 6))
-     
- if( fuzz < max(abs( loadings(TSFmodel(MCV)) - tst ))) {
+     109.354937454847843, 73.001795485260331 ,  849.958197318555676, -82.564164508841003 ,  75.9666761936852453, -33.779799193871618 ,  1447.47533281976303, 1207.13633223128204, 13.4443728967860263, 1822.2528547668453,  -1210.59538374664044, 7054.36195742316522
+#    109.354938938463064, 73.0017935937713673,  849.958181642596173, -82.5641635307219559,  75.9666761758222009, -33.7798011412103563,  1447.47535841832178, 1207.13629711310136, 13.4444178739732099, 1822.2528378858824,  -1210.59537627989221, 7054.3621375790517 # Ubuntu R-2.15.0 32bit with new BLAS, April 2012
+     ), 2, 6))
+
+ err <- max(abs( loadings(TSFmodel(MCV)) - tst))
+ if( fuzz < err ) {
     cat("Calculated value is not the same as test value in test MCV B. Value:\n")
+    cat("fuzz:", fuzz, "  err:", err, "\n")   
     printTestValue(loadings(TSFmodel(MCV)), digits=18)
     cat("difference:\n")
     print(loadings(TSFmodel(MCV)) - tst, digits=18)

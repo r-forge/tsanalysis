@@ -96,7 +96,7 @@ estTSF.MCV <- function(y, p, diff.=TRUE,
 
       estConverged <- z$converged  #PROBABLY NULL STILL
       
-      stds	<- sd(if (diff.) diff(y) else y)
+      stds	<- apply((if (diff.) diff(y) else y), 2, sd) 
       uniquenesses <- z$uniquenesses
       hatOmega  <- stds * uniquenesses * stds 
       #hatOmega  <- uniquenesses # standardized used in early versions
