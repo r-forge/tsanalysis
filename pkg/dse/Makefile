@@ -1,6 +1,3 @@
-# specify any other packages that are prerequisites like this
-PREREQ_PACS=setRNG tframe tfplot
-
 #  ../Makevars goes up real path not sym link, so
 QC=${shell cd ../ ; pwd}
 

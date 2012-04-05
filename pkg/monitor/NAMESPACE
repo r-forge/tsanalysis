@@ -1,4 +1,5 @@
 import("tframe")
+import("tfplot")
 
 export(
    "Sys.mail",

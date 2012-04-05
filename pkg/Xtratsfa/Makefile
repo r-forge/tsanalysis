@@ -1,5 +1,3 @@
-PREREQ_PACS=tsfa CDNmoney
-
 #  ../Makevars goes up real path not sym link, so
 QC=${shell cd ../ ; pwd}
 

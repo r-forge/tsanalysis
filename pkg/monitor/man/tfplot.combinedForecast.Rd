@@ -27,7 +27,7 @@
     \item{...}{arguments passed to other methods.}
 }
 
-\seealso{ \code{\link[tframe]{tfplot}} }
+\seealso{ \code{\link[tfplot]{tfplot}} }
 %\keyword{DSE}
 \keyword{ts}
 
