@@ -2,6 +2,7 @@ export("tfplot")
 S3method("tfplot","default")
 
 export("tfOnePlot")
+export("tfVisPlot")
 
 export("diffLog")
 S3method("diffLog","default")

@@ -26,7 +26,7 @@ package guide with \code{print(vignette("tfplot"))}.
 
 The functions in this package rely on the \pkg{tframe} package. While that
 package contains underlying programing support, the functions in this package
-are meant to becalled directly by users. They include
+are meant to be called directly by users. They include
 \code{tfplot}, \code{tfOnePlot}, \code{diffLog}, \code{percentChange}, \code{trimNA} and \code{tsScan}. See the help for more details and examples.
 
 \end{document}

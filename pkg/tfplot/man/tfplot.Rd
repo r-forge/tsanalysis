@@ -138,6 +138,6 @@
 \keyword{programming}
 \keyword{utilities}
 \keyword{ts}
-\keyword{hplot}
+\keyword{plot}
 
 

@@ -242,3 +242,35 @@ tsWrite <- function(x, file="data", header=TRUE, sep=",", digits=16)
     }
 
 
+tfVisPlot <- function (x, tf = tframe(x), start = tfstart(tf), end = tfend(tf), 
+                  options=list(title=NULL), ...){   
+    # x a multivariate series. ... passed to gvisLineChart
+    if (!require("googleVis")) stop("tfVisPlot requires googleVis")
+    if (!is.null(start)) x <- tfwindow(x, start = start, warn = FALSE)
+    if (!is.null(end))   x <- tfwindow(x, end = end, warn = FALSE)
+    tm <- time(x)
+    y <- floor(time(tm))
+    if (frequency(x) == 4) {
+    	p <- cycle(tm)
+    	pp <- c("Q1", "Q2", "Q3", "Q4")[p]
+    	dt <- paste(pp, y)
+    	seriesData <- data.frame(date = dt, x)
+    }
+    else if (frequency(x) == 12) {
+    	p <- cycle(tm)
+    	pp <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+    	    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")[p]
+    	dt <- paste(pp, y)
+    	seriesData <- data.frame(date = dt, x)
+    }
+    else seriesData <- data.frame(date = tm, x)
+    
+    nm <- seriesNames(x)
+    names(seriesData) <- c("date", nm)
+    
+    plot(gvisLineChart(seriesData, xvar="date", yvar=nm,
+         options=options, ...))
+    cat("look for chart in web browser.\n")
+    invisible(x)
+}
+
