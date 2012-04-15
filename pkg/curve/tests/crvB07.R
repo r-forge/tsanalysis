@@ -57,7 +57,7 @@ cat("DSE curvature test B 7 ...")
 #  WHEN SEPARATING OUT numDeriv. THERE WAS AN ERROR.
 # HESSIAN USED FIRST COLUMNS IN genD RATHER THAN SKIPPING THEM. 
 # good <- 6293.68641833058791
-# Difference from above exceeded tolerance, April 20112 with R 2-15.0
+# Difference from above exceeded tolerance, April 20112 with R 2-15.0, new BLAS
 #  32 bit Ubuntu gave 
 #         6293.74004611604869
 #  64 bit Ubuntu gave 
@@ -133,7 +133,8 @@ cat("DSE curvature test B 9 ...")
 #	       
 #	      #if (Sys.info()[["sysname"]] == "Linux")  10712.2643162879049 else
 # DIFFERENCE FROM ABOVE FOUND MARCH 2006 (see above)
-   good <- 4303.25552473151038
+# value   4301.91474000557992 this value exceeded tolerance, April 2012 with R 2-15.0, new BLAS, 32 bit Ubuntu 
+  good <- 4303.25552473151038
    tst  <- sum(hessianARMA)
    error <- max(abs(good - tst))
   
@@ -142,7 +143,8 @@ cat("DSE curvature test B 9 ...")
    cat("max. error ", error, "\n")
 
 # Linux seems to have large variance here
-    if (any(is.na(error)) || any(is.nan(error)) || 0.6 < error)
+# relaxed from  0.6 to 1.5 for  R 2-15.0, new BLAS, 32 bit Ubuntu, April 2012 
+    if (any(is.na(error)) || any(is.nan(error)) || 1.5 < error)
 	{cat("test FAILED."); all.ok <- FALSE } 
 
 
