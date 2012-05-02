@@ -2,7 +2,8 @@ if(!require("stats"))   stop("this test requires stats.")
 if(!require("EvalEst"))  stop("this test requires EvalEst.")
 if(!require("setRNG"))stop("this test requires setRNG.")
  #x11()
-  postscript(file="lite.out.ps",  paper="letter", horizontal=FALSE, onefile=TRUE)
+  outfile <- tempfile("lite.out", tmpdir = tempdir(), fileext = ".ps")
+  postscript(file=outfile,  paper="letter", horizontal=FALSE, onefile=TRUE)
              # width=6, height=8, pointsize=10,
    Sys.info()
    DSEversion()
@@ -115,3 +116,5 @@ dse4.graphics.tests <- function(verbose=TRUE, synopsis=TRUE)
 
    dse4.function.tests(verbose=TRUE, graphics=FALSE) 
    dse4.graphics.tests(verbose=TRUE)  #     test 3 needs stepwise
+
+unlink(outfile)

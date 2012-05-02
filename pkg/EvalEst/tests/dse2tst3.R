@@ -3,7 +3,8 @@ if(!require("dse"))  stop("this test requires dse.")
 if(!require("EvalEst"))  stop("this test requires EvalEst.")
 if(!require("setRNG"))stop("this test requires setRNG.")
  #x11()
-  postscript(file="lite.out.ps",  paper="letter", horizontal=FALSE, onefile=TRUE)
+  outfile <- tempfile("lite.out", tmpdir = tempdir(), fileext = ".ps")
+  postscript(file=outfile,  paper="letter", horizontal=FALSE, onefile=TRUE)
              # width=6, height=8, pointsize=10,
    Sys.info()
    DSEversion()
@@ -279,3 +280,4 @@ data("eg1.DSE.data.diff", package="dse")
      else cat("completed\n")
     }
       
+unlink(outfile)
