@@ -1,3 +1,8 @@
+Changes in tfplot version 2012.7-1
+
+   o	Minor change in tfVisPlot to avoid note when building, regarding
+   	googleVis (which is only suggested not required).
+
 Changes in tfplot version 2012.4-1
 
    o	First release. Separated user utilities (tfplot, tfOnePlot, and simple

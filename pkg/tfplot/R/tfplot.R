@@ -245,7 +245,6 @@ tsWrite <- function(x, file="data", header=TRUE, sep=",", digits=16)
 tfVisPlot <- function (x, tf = tframe(x), start = tfstart(tf), end = tfend(tf), 
                   options=list(title=NULL), ...){   
     # x a multivariate series. ... passed to gvisLineChart
-    if (!require("googleVis")) stop("tfVisPlot requires googleVis")
     if (!is.null(start)) x <- tfwindow(x, start = start, warn = FALSE)
     if (!is.null(end))   x <- tfwindow(x, end = end, warn = FALSE)
     tm <- time(x)
@@ -268,7 +267,8 @@ tfVisPlot <- function (x, tf = tframe(x), start = tfstart(tf), end = tfend(tf),
     nm <- seriesNames(x)
     names(seriesData) <- c("date", nm)
     
-    plot(gvisLineChart(seriesData, xvar="date", yvar=nm,
+    if (!require("googleVis")) stop("tfVisPlot requires googleVis")
+    else  plot(gvisLineChart(seriesData, xvar="date", yvar=nm,
          options=options, ...))
     cat("look for chart in web browser.\n")
     invisible(x)
