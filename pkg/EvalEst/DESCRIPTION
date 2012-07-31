@@ -1,7 +1,7 @@
 Package: EvalEst
-Version: 2012.4-1
+Version: 2012.8-1
 Title: Dynamic Systems Estimation - extensions
-Description:  EvalEst provides functions for evalating (time series) model
+Description:  EvalEst provides functions for evaluating (time series) model
 	estimation methods. These facilitate monte carlo experiments of repeated
 	simulations and estimations. The package also provides methods for
 	looking at the distribution of the results from these experiments,
