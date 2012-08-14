@@ -22,11 +22,8 @@ library("EvalEst")
 \end{Scode}
 
 The code from the vignette that generates this guide can 
-be loaded into an editor with \code{edit(vignette("EvalEst"))}.
+be loaded into an editor with \code{edit(vignette("Guide", package="EvalEst"))}.
 This uses the default editor, which can be changed using \code{options()}.
-Also, it should be possible to view the pdf version of the guide for this 
-package with \code{print(vignette("EvalEst"))} and the guide for the dse
-package with \code{print(vignette("dse-guide"))}.
 
 \section{Evaluating Estimation Methods}
 

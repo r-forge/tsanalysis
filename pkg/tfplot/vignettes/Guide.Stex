@@ -19,10 +19,8 @@ library("tfplot")
 \end{Scode}
 
 The code from the vignette that generates this guide can 
-be loaded into an editor with \code{edit(vignette("tfplot"))}.
+be loaded into an editor with \code{edit(vignette("Guide", package="tfplot"))}.
 This uses the default editor, which can be changed using \code{options()}.
-It should be possible to view the pdf version of this 
-package guide with \code{print(vignette("tfplot"))}.
 
 The functions in this package rely on the \pkg{tframe} package. While that
 package contains underlying programing support, and some functions that might

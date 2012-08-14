@@ -22,14 +22,12 @@ library("tsfa")
 \end{Scode}
 
 The code from the vignette that generates this guide can 
-be loaded into an editor with \emph{edit(vignette("tsfa"))}.
+be loaded into an editor with \emph{edit(vignette("Guide", package="tsfa"))}.
 This uses the default editor, which can be changed using \emph{options()}.
-In some examples the code runs into the margins and is truncated. (This is a
-limitation of the current version of RSweave.) If in doubt about the code,
+In some examples the code may run into the margins and is truncated in the pdf. 
+If in doubt about the code,
 please edit the vignette as above or consult its source, which is distributed
-in the file tsfa/inst/doc/tsfa.Stex. 
-It should also be possible to view the pdf version of the guide for this 
-package with \emph{print(vignette("tsfa"))}.
+in the package. 
 
 The  data is converted to real per capita data as follows
 \begin{Scode}
