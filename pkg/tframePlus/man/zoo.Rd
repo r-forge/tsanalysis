@@ -8,6 +8,8 @@
 
 \alias{tframe.zoo}
 \alias{tfSet.zootframe}
+\alias{tfSet.Date}
+\alias{tfSet.POSIXct}
 \alias{tfwindow.zoo}
 \alias{tfL.zoo}
 \alias{tfExpand.zoo}
@@ -23,6 +25,8 @@
     \method{Tobs}{zoo}(x)
     \method{tframe}{zoo}(x)
     \method{tfSet}{zootframe}(value, x) 
+    \method{tfSet}{Date}(value, x) 
+    \method{tfSet}{POSIXct}(value, x) 
     \method{tfwindow}{zoo}(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE)
     \method{tfL}{zoo}(x, p = 1)
     \method{tfExpand}{zoo}(x, add.start = 0, add.end = 0)

@@ -28,6 +28,8 @@ S3method("Tobs","zoo")
 S3method("Tobs","zootframe")
 S3method("tframe","zoo")
 S3method("tfSet","zootframe")
+S3method("tfSet","Date")
+S3method("tfSet","POSIXct")
 S3method("tfwindow","zoo")
 S3method("tbind","zoo")
 

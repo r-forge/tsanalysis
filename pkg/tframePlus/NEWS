@@ -1,3 +1,8 @@
+Changes in tframePlus version 2012.8-1
+
+   o	Added utilities tfSet.POSIXct and tfSet.Date (not exported) to 
+   	facilitate converting between POSIXct and Date time indexes.
+
 Changes in tframePlus version 2012.4-2
 
    o	Added tfplot to Suggests in DESCRIPTION.
