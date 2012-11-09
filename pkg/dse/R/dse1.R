@@ -4197,6 +4197,7 @@ seriesNames.TSmodel <- function(x)
 seriesNamesOutput.TSmodel <- function(x)
  {# return output names if available in the object,
   # otherwise return "out" pasted with integers.
+  # Note, there is no TSdata in this case, so tframe is not involved
   if (!is.null(attr(x, "seriesNamesOutput")))
                           return(attr(x, "seriesNamesOutput"))
   else if (0 != nseriesOutput(x)) 
@@ -4487,24 +4488,17 @@ seriesNames.TSdata <- function(x)
  seriesNamesInput.TSdata <- function(x) {seriesNames( inputData(x))}
 seriesNamesOutput.TSdata <- function(x) {seriesNames(outputData(x))}
 
-"seriesNames<-.TSdata" <- function(x, value)
-   { seriesNamesInput(x) <-  value$input
+"seriesNames<-.TSdata" <- function(x, value){ 
+    seriesNamesInput(x)  <-  value$input
     seriesNamesOutput(x) <-  value$output
     x
    }
 
-"seriesNamesInput<-.TSdata" <- function(x,  value)
-   {if (length( value) != nseriesInput(x))
-       stop("number of series and number of names do not match.")
-    attr(inputData(x), "seriesNames")  <- value
-    x
-   }
+"seriesNamesInput<-.TSdata"  <- function(x,  value)
+   {seriesNames(inputData(x))  <- value; x }
+
 "seriesNamesOutput<-.TSdata" <- function(x,  value) 
-    {if (length( value) != nseriesOutput(x))
-       stop("number of series and number of names do not match.")
-    attr(outputData(x), "seriesNames")  <- value
-    x
-   }
+   {seriesNames(outputData(x)) <- value; x }
 
 nseriesInput.TSdata <- function(x)
    {if (is.null(x$input)) 0 else nseries(x$input)}
