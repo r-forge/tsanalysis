@@ -7,7 +7,7 @@ Known Bugs
 Changes in dse version 2012.11-1
 
    o	Setting of inputSeriesNames and outputSeries names was not working
-   	properly.
+   	properly. (Bug identified by Judith Riedler.) 
 
 Changes in dse version 2012.6-1
 
