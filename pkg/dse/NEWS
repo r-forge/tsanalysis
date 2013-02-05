@@ -4,7 +4,10 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
-Changes in dse version 2012.11-1
+Changes in dse version 2013.2-1
+
+   o	Adjusted a Guide example simulation to set tframe so a line graph is
+   	produced in place of points.
 
    o	Setting of inputSeriesNames and outputSeries names was not working
    	properly. (Bug identified by Judith Riedler.) 
