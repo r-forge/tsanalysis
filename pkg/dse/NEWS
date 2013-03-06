@@ -4,7 +4,10 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
-Changes in dse version 2013.2-1
+Changes in dse version 2013.3-1
+
+   o	Setting of TREND in  was not working properly for ARMA models in
+   	estMaxLike. (Bug identified by Joseph Francois Tagne.) 
 
    o	Adjusted a Guide example simulation to set tframe so a line graph is
    	produced in place of points.

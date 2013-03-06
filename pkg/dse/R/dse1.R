@@ -1924,7 +1924,7 @@ setArrays.ARMA <- function(model, coefficients=NULL, constants=NULL) {
        B  <-  array(0,dim(model$B))
        m <- dim(model$C)[3]
        p <- dim(model$A)[2]
-       TREND <- if(is.null(model$TREND)) NULL else array(0,dim(model$TREND))
+       TREND <- if(is.null(model$TREND)) NULL else rep(0,length(model$TREND))
        if(!is.null(m)) C  <-  array(0,dim(model$C))
        if (length(coefficients)>0) 
           {i <- a.pos == "A"
@@ -1936,7 +1936,7 @@ setArrays.ARMA <- function(model, coefficients=NULL, constants=NULL) {
               C[cbind(l.pos[i],i.pos[i],j.pos[i])] <- coefficients[i]
              }
            i <- a.pos == "t"
-           if(!is.null(TREND)) TREND[i.pos[i], j.pos[i]] <- coefficients[i]
+           if(!is.null(TREND)) TREND[i.pos[i]] <- coefficients[i]
           }
     if (length(const)>0) 
           {i <- ca.pos == "A"
@@ -1948,7 +1948,7 @@ setArrays.ARMA <- function(model, coefficients=NULL, constants=NULL) {
               C[cbind(cl.pos[i],ci.pos[i],cj.pos[i])] <- const[i]
              }
            i <- ca.pos == "t"
-           if(!is.null(TREND)) TREND[ci.pos[i], cj.pos[i]] <- const[i]
+           if(!is.null(TREND)) TREND[ci.pos[i]] <- const[i]
           }
       model$A <- A
       model$B <- B
