@@ -4,6 +4,14 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
+Changes in dse version 2013.3-2
+
+   o	Fixed typo in DESCRIPTION caught by new CRAN checks.
+
+   o	To reduce load on the CRAN check servers, the example for estBlackBox()
+   	was changed to use max.lag=3 rather than the default 12. 
+
+
 Changes in dse version 2013.3-1
 
    o	Setting of TREND in  was not working properly for ARMA models in
