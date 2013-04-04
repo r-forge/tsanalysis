@@ -13,7 +13,7 @@
     \method{tfplot}{default}(x, ..., tf=tfspan(x, ...), start=tfstart(tf), end=tfend(tf),
        series=seq(nseries(x)), 
         Title=NULL, title=Title, subtitle=NULL, 
-        lty = 1:5, lwd = 1, pch = NULL, col = 1:6, cex = NULL,
+        lty = 1:5, lwd = 1, pch = 1, col = 1:6, cex = NULL,
        xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL, 
        graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE, 
        lastObs = FALSE, source = NULL,
@@ -21,7 +21,7 @@
 	legend=NULL, legend.loc="topleft")
     tfOnePlot(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         Title=NULL, title=Title,  subtitle=NULL, 
-	lty=1:5, lwd=1, pch=NULL, col=1:6, cex=NULL,
+	lty=1:5, lwd=1, pch=1, col=1:6, cex=NULL,
         xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL, par=NULL,
 	lastObs=FALSE,  source=NULL, 
 	footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
