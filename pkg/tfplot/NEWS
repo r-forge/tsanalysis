@@ -1,7 +1,7 @@
 Changes in tfplot version 2013.4-1
 
    o	Changed tplot and tfOnePlot default for pch from NULL to 1 to
-   	avoid warning in R-3.0.0 trying to rep() NULL. 
+   	avoid warning in R-3.0.0 trying to rep() NULL.
 	
    o	Added tfOnePlot tests.
 
