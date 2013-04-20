@@ -50,8 +50,7 @@ and most widely available software is that \pkg{dse} is
 designed for working with multivariate time series and 
 for studying estimation techniques and forecasting models.
 
-Constructive suggestions and comments are welcomed. I can be reached
-at <pgilbert @ bank-banque-canada. ca> or by phone at (613) 782-7346.
+Constructive suggestions and comments are welcomed by the package maintainer.
 \pagebreak
 \SweaveOpts{eval=TRUE,echo=TRUE,results=hide,fig=FALSE,keep.source=TRUE}
 \begin{Scode}{echo=FALSE,results=hide}

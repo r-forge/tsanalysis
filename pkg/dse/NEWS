@@ -4,6 +4,10 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
+Changes in dse version 2013.4-1
+
+   o	Removed old email address from vignette.
+
 Changes in dse version 2013.3-2
 
    o	Fixed typo in DESCRIPTION caught by new CRAN checks.
