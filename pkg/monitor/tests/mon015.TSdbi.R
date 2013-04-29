@@ -150,7 +150,7 @@ cat("TSdbi monitor test 6 ...\n")
 
 # the following sets ets.test.data, monitor.test.data, verification.data
 #      and  monitoring.test
-#  source(paste(.path.package("monitor"),"/otherdata/monitoring.test.info", sep=""))
+#  source(paste(path.package("monitor"),"/otherdata/monitoring.test.info", sep=""))
   source(system.file("otherdata", "monitoring.test.info", package="monitor"))
 
   cat("TSdbi monitor test 7 ...\n") 

@@ -47,7 +47,7 @@ cleanup.script <- PADIcleanupScript()
  #  work as originally specified. 
 
   server <- Sys.info()[["nodename"]]
-#  db     <- paste(.path.package("monitor"),"/otherdata/monitoring.test.db",sep="")
+#  db     <- paste(path.package("monitor"),"/otherdata/monitoring.test.db",sep="")
   db     <- system.file("otherdata", "monitoring.test.db", package="monitor")
 
   all.ok <- TRUE
@@ -87,7 +87,7 @@ cleanup.script <- PADIcleanupScript()
 
 # the following sets ets.test.data, monitor.test.data, verification.data
 #      and  monitoring.test
-#  source(paste(.path.package("monitor"),"/otherdata/monitoring.test.info", sep=""))
+#  source(paste(path.package("monitor"),"/otherdata/monitoring.test.info", sep=""))
   source(system.file("otherdata", "monitoring.test.info", package="monitor"))
 
   cat("simple monitor test 2 ...\n") 

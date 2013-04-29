@@ -44,7 +44,7 @@ combination.monitor.function.tests <- function( verbose=TRUE, synopsis=TRUE,
  #  work as originally specified. 
 
   server <- Sys.info()[["nodename"]]
-#  db     <- paste(.path.package("monitor"),"/otherdata/monitoring.test.db",sep="")
+#  db     <- paste(path.package("monitor"),"/otherdata/monitoring.test.db",sep="")
   db     <- system.file("otherdata", "monitoring.test.db", package="monitor")
   if (synopsis & !verbose) cat("All combination monitor tests ...")
   all.ok <- TRUE
@@ -74,7 +74,7 @@ combination.monitor.function.tests <- function( verbose=TRUE, synopsis=TRUE,
 #      output.transforms= rep("percentChange",4),
       pad.end =TRUE)  #db=db, server=server,
 
-#  source(paste(.path.package("monitor"),"/otherdata/monitoring.test.info", sep=""))
+#  source(paste(path.package("monitor"),"/otherdata/monitoring.test.info", sep=""))
   source(system.file("otherdata", "monitoring.test.info", package="monitor"))
 
   v.data <- verification.data
@@ -106,7 +106,7 @@ combination.monitor.function.tests <- function( verbose=TRUE, synopsis=TRUE,
 
   if (verbose) cat("combination monitor test 3 ... ")
   overriding.data <- get.overriding.data(
-                   #file=paste(.path.package("monitor"),"/otherdata/monitoring.test.data", sep=""),
+                   #file=paste(path.package("monitor"),"/otherdata/monitoring.test.data", sep=""),
                    file=system.file("otherdata", "monitoring.test.data", package="monitor"),
                    m=1, p=10,
                    first.input="diff(R90=B14017)", 
