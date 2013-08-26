@@ -1,7 +1,7 @@
 is.tframed.zoo <- function(x) {TRUE}
 
 tframe.zoo <- function (x) {
-  tf <- index(x)
+  tf <- zoo::index(x)
   class(tf) <- c( "zootframe", class(tf), "tframe")
   tf
   }
