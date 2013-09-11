@@ -6,10 +6,10 @@ tframe.xts <- function (x) {
   tf
   }
 
-tfUnSet.xts <- function(x)      {xts:::coredata(x)}
+tfUnSet.xts <- function(x)      {xts::coredata(x)}
 tfSet.xtstframe <- function(value, x) { 
   class(value) <- class(value)[class(value) != "xtstframe"]
-  r <- xts:::xts(x, value)  
+  r <- xts::xts(x, value)  
   seriesNames(r) <- seriesNames(x)
   r
  }

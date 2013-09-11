@@ -1,6 +1,8 @@
-Changes in tframePlus version 2013.8-2
+Changes in tframePlus version 2013.9-1
 
-   o	Minor changes related to Depends an Imports changes in other packages.
+   o	Cleaned up Depends/Imports/Suggests and ::: usage.
+
+   o	Minor changes related to Depends and Imports changes in other packages.
 
 Changes in tframePlus version 2012.8-1
 

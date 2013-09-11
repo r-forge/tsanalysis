@@ -8,13 +8,13 @@ tframe.tis <- function (x) {
   }
 
 tfSet.tistframe <- function(value, x) {
-   r <- tis:::tis(x, start=attr(value, "start") )
+   r <- tis::tis(x, start=attr(value, "start") )
    if (inherits(r, "try-error")) {r <- x ; attr(r, "tframe") <- value}
    r
    }
 
-tfstart.tis <- function(x) tis:::start(x)
-tfend.tis   <- function(x) tis:::end(x)
+tfstart.tis <- function(x) tis::start(x)
+tfend.tis   <- function(x) tis::end(x)
 
 Tobs.tis <- function(x)  NROW(x)
 

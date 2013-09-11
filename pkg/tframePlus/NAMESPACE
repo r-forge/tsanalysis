@@ -1,3 +1,4 @@
+import("methods")
 import("tframe")
 importFrom("stats","start")
 importFrom("stats","end")

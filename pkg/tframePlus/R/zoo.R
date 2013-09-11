@@ -6,25 +6,25 @@ tframe.zoo <- function (x) {
   tf
   }
 
-tfUnSet.zoo <- function(x)      {zoo:::coredata(x)}
+tfUnSet.zoo <- function(x)      {zoo::coredata(x)}
 tfSet.zootframe <- function(value, x){ 
   if(Tobs(value) != Tobs(x)) stop("number of Tobs of observations must correspond to number of Tobs indicated by tframe.")
   class(value) <- class(value)[class(value) != "zootframe"]
-  r <- zoo:::zoo(x, order.by = value) 
+  r <- zoo::zoo(x, order.by = value) 
   seriesNames(r) <- seriesNames(x)
   r
   }
 
 tfSet.Date    <- function(value, x){ 
   if(Tobs(value) != Tobs(x)) stop("number of Tobs of observations must correspond to number of Tobs indicated by tframe.")
-  r <- zoo:::zoo(x, order.by = value) 
+  r <- zoo::zoo(x, order.by = value) 
   seriesNames(r) <- seriesNames(x)
   r
   }
 
 tfSet.POSIXct <- function(value, x){ 
   if(Tobs(value) != Tobs(x)) stop("number of Tobs of observations must correspond to number of Tobs indicated by tframe.")
-  r <- zoo:::zoo(x, order.by = value) 
+  r <- zoo::zoo(x, order.by = value) 
   seriesNames(r) <- seriesNames(x)
   r
   }

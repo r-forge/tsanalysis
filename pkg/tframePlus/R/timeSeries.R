@@ -15,11 +15,11 @@ tframe.timeSeries <- function (x) {
 setMethod("tframe", "timeSeries", tframe.timeSeries)
 
 tfUnSet.timeSeries <- function(x){as.matrix(x)}
-#setMethod("tframe:::tfUnSet", "timeSeries", tfUnSet.timeSeries)
+#setMethod("tframe::tfUnSet", "timeSeries", tfUnSet.timeSeries)
 
 tfSet.timeSeriestframe <- function(value, x) { 
   class(value) <- class(value)[class(value) != "timeSeriestframe"]
-  timeSeries:::timeSeries(x, charvec=value) }
+  timeSeries::timeSeries(x, charvec=value) }
 
 "seriesNames<-.timeSeries" <- function (x, value) 
   {colnames(x) <- value

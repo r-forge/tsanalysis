@@ -35,12 +35,12 @@ changeTSrepresentation <- function(x, newRepresentation){
   	  require("zoo")
   	  #dates <- as.Date(time(x)) 
 	  #zoo and base have as.Date(). zoo, timeSeries and stats have time() 
-          dates <- zoo:::as.Date(stats:::time(x))
+          dates <- zoo::as.Date(stats::time(x))
 	  r <- do.call(newRepresentation, list(x, dates))
           }
     else {
        require("zoo")
-       dates <- zoo:::as.Date(stats:::time(x))
+       dates <- zoo::as.Date(stats::time(x))
        r <- newRepresentation(x, dates)
        }
    r
