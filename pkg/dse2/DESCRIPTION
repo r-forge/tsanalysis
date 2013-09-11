@@ -1,5 +1,5 @@
 Package: dse2
-Version: 2011.11-3
+Version: 2013.9-1
 Title: DSE (unbundled transition package).
 Description: This package is only to aid transition to the unbundled dse 
 	package. It has no functions, but simply requires package EvalEst.
