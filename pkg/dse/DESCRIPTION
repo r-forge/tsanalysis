@@ -11,8 +11,8 @@ Description: Package dse provides tools for multivariate, linear, time-invariant
 	filter and smoother estimates can be obtained from the state space
 	model, and state-space model reduction techniques are implemented. 
 	An introduction and User's Guide is available in a vignette.
-Depends: R (>= 2.5.0), tfplot
-Imports: tframe (>= 2007.5-3), setRNG (>= 2004.4-1), stats
+Depends: R (>= 2.5.0), tfplot, setRNG (>= 2004.4-1)
+Imports: tframe (>= 2007.5-3), stats
 LazyLoad: yes
 License: GPL-2
 Copyright: 1993-1996,1998-2011 Bank of Canada. 1997,2012-2013 Paul Gilbert

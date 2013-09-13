@@ -9,7 +9,6 @@ importFrom("stats","coef")
 import("tframe")
 import("tfplot")
 import("setRNG")
-export("getRNG") # from setRNG
 
 export("DSEversion")
 export(".DSEflags")
