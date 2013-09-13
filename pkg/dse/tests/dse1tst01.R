@@ -35,7 +35,7 @@ all.ok <- TRUE
 
 test.rng <- list(kind="Wichmann-Hill",seed=c(979,1479,1542),normal.kind="Box-Muller")
 
-  random.number.test()
+  setRNG::random.number.test()
 
 
  cat("dse test 0 ...\n")

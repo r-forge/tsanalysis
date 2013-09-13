@@ -5,7 +5,7 @@
              # width=6, height=8, pointsize=10,
    Sys.info()
    DSEversion()
-   random.number.test() 
+   setRNG::random.number.test() 
 
 
 

@@ -8,7 +8,8 @@ importFrom("stats","coef")
 
 import("tframe")
 import("tfplot")
-##import("setRNG")
+import("setRNG")
+export("getRNG") # from setRNG
 
 export("DSEversion")
 export(".DSEflags")
