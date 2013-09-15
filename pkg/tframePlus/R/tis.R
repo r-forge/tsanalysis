@@ -13,8 +13,8 @@ tfSet.tistframe <- function(value, x) {
    r
    }
 
-tfstart.tis <- function(x) tis::start(x)
-tfend.tis   <- function(x) tis::end(x)
+tfstart.tis <- function(x) start(x)  #tis::start(x)
+tfend.tis   <- function(x) end(x)    #tis::end(x)
 
 Tobs.tis <- function(x)  NROW(x)
 
@@ -25,7 +25,7 @@ Tobs.tistframe     <- function(x) length(x)
 tfwindow.tis <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE)
   {# With the default warn=T warnings will be issued if no truncation takes
    #  place because start or end is outside the range of data.
-   y <- tis:::window.tis(x, start=start, end=end, noWarm=!warn)
+   y <- window(x, start=start, end=end, noWarn=!warn)
    seriesNames(y) <- seriesNames(x)
    y
   }
