@@ -6,7 +6,8 @@ tframe.xts <- function (x) {
   tf
   }
 
-tfUnSet.xts <- function(x)      {xts::coredata(x)}
+tfUnSet.xts <- function(x)  coredata(x)
+
 tfSet.xtstframe <- function(value, x) { 
   class(value) <- class(value)[class(value) != "xtstframe"]
   r <- xts::xts(x, value)  
