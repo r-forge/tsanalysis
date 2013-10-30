@@ -23,7 +23,7 @@ test.rng <- list(kind="Wichmann-Hill",seed=c(979,1479,1542),normal.kind="Box-Mul
 
 cat("dse test 8a ...\n")
   z  <- simulate(TSmodel(VARmodel), input=inputData(eg1.DSE.data.diff)) 
-  zz <- simulate(TSmodel(VARmodel), rng=getRNG(z), 
+  zz <- simulate(TSmodel(VARmodel), rng=setRNG::getRNG(z), 
                      input=inputData(eg1.DSE.data.diff))
   ok <- testEqual(z, zz, fuzz=fuzz.small)
 
@@ -35,7 +35,7 @@ cat("dse test 8a ...\n")
 cat("dse test 8b ...\n")
   sigma <- solve(t(VARmodelB$model$B[1,,]) %*% VARmodelB$model$B[1,,])
   sigma <- (sigma + t(sigma))/2 # insure symetric - chol is sensitive
-  zzz <- simulate(TSmodel(VARmodelB), rng=getRNG(z), 
+  zzz <- simulate(TSmodel(VARmodelB), rng=setRNG::getRNG(z), 
                      input=inputData(eg1.DSE.data.diff), Cov=sigma)
   ok <- testEqual(z, zzz, fuzz=fuzz.small)
   error <- max(abs(outputData(z) - outputData(zzz)))
@@ -52,7 +52,7 @@ cat("dse test 8c ...\n")
   z  <- simulate(VARmodel, input=inputData(eg1.DSE.data.diff)) 
   sigma <- VARmodel$estimates$cov
   sigma <- (sigma + t(sigma))/2 # insure symetric - chol is sensitive
-  zz <- simulate(TSmodel(VARmodel), rng=getRNG(z), 
+  zz <- simulate(TSmodel(VARmodel), rng=setRNG::getRNG(z), 
                      input=inputData(eg1.DSE.data.diff), Cov=sigma)
 
   if ( ! testEqual(z, zz, fuzz=fuzz.small)) 

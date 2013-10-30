@@ -10,10 +10,12 @@
 \usage{
     is.forecastCov(obj)
     forecastCov(obj, ..., data=NULL, horizons=1:12, discard.before=NULL,
-       zero=FALSE, trend=FALSE, estimation.sample= NULL, compiled=.DSEflags()$COMPILED)
+       zero=FALSE, trend=FALSE, estimation.sample= NULL, 
+       compiled=.DSEflags()$COMPILED)
     \method{forecastCov}{TSmodel}(obj, ..., data=NULL,
        horizons=1:12, discard.before=NULL, 
-       zero=FALSE, trend=FALSE, estimation.sample= Tobs(data), compiled=.DSEflags()$COMPILED)
+       zero=FALSE, trend=FALSE, estimation.sample= Tobs(data), 
+       compiled=.DSEflags()$COMPILED)
     \method{forecastCov}{TSestModel}(obj, ..., data=TSdata(obj), 
        horizons=1:12, discard.before=NULL, zero=FALSE, trend=FALSE, 
        estimation.sample= Tobs(TSdata(obj)), compiled=.DSEflags()$COMPILED)

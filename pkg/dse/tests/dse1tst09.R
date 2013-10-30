@@ -19,7 +19,7 @@ test.rng <- list(kind="Wichmann-Hill",seed=c(979,1479,1542),normal.kind="Box-Mul
 
 cat("dse test 9 ...\n")
   z  <- simulate(SSmodel, input=inputData(eg1.DSE.data.diff)) 
-  ok <- testEqual(z,simulate(SSmodel, rng=getRNG(z), 
+  ok <- testEqual(z,simulate(SSmodel, rng=setRNG::getRNG(z), 
                       input=inputData(eg1.DSE.data.diff)))
   if (!ok) {all.ok <- FALSE ; cat(ok, "\n")}
 

@@ -1,4 +1,5 @@
 ^Makefile$
+src-c$
 (^|.*/)core$
 Rplots(.*).pdf$
 (^|.*/)run$

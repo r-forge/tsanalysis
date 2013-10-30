@@ -4,9 +4,11 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
-Changes in dse version 2013.9-1
+Changes in dse version 2013.11-1
 
    o	Adjusted Imports and Depends.
+
+   o	Minor changes so setRNG could be moved from Depends to Imports.
 
 Changes in dse version 2013.4-1
 

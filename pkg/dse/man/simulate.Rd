@@ -147,7 +147,7 @@ determine necessary transformation of initial conditions and \code{w0}.
     simData <- simulate(ss)
 
     testEqual(simData, simulate(ss))
-    testEqual(simData, simulate(ss, rng=getRNG(simData)))
+    testEqual(simData, simulate(ss, rng=setRNG::getRNG(simData)))
 
     simData2 <- simulate(ss,
         noise=list(w=matrix(runif(300), 150,2), w0=runif(2)))
