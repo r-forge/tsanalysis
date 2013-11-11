@@ -30,7 +30,8 @@ tfplot(z, Xaxis="auto", xlab= "time, time, time")
 
 
 z <- ts(rnorm(10), start=c(1990,1), frequency=1)
-tfplot(z, xlab= "time, time, time")
+tfplot(z, Xaxis="auto", xlab= "time, time, time")
+tfplot(z, Xaxis=NULL,   xlab= "time, time, time")
 
 z <- ts(rnorm(40), start=c(1990,1), frequency=1)
 tfplot(z, Xaxis="auto", xlab= "time, time, time")

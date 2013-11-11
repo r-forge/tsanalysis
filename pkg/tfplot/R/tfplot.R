@@ -114,7 +114,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         if (length(pch) < N) pch <- rep(pch,length.out=N)
         if (length(col) < N) col <- rep(col,length.out=N)
 	}
-     if(is.null(Xaxis)) 
+     if(is.null(Xaxis) || !(frequency(x) %in% c(1,4,12))) 
        plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, 
          col=col, cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par)
      else if("auto" == Xaxis){

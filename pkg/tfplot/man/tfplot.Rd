@@ -116,6 +116,8 @@
     as the frequency of \code{x}. If \code{Xaxis} is set to 
     \code{NULL} then the result is to use plot defaults (as prior to the addition of
     the \code{Xaxis} argument in version 2013.11-1).
+    Currently \code{Xaxis='auto'} only affects annual, monthly, and quarterly data,
+    and the affect on annual data is marginal.
 
     The \code{title} is not put on the plot if the global option
     PlotTitles is FALSE. This can be set with \code{options(PlotTitles=FALSE)}. 
