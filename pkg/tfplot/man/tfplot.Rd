@@ -16,6 +16,7 @@
         lty = 1:5, lwd = 1, pch = 1, col = 1:6, cex = NULL,
        xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL, 
        graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE, 
+       Xaxis="auto", L1=NULL,
        lastObs = FALSE, source = NULL,
        footnote = NULL, footnoteLeft = footnote, footnoteRight = NULL,
 	legend=NULL, legend.loc="topleft")
@@ -23,6 +24,7 @@
         Title=NULL, title=Title,  subtitle=NULL, 
 	lty=1:5, lwd=1, pch=1, col=1:6, cex=NULL,
         xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL, par=NULL,
+	Xaxis="auto", L1=NULL,
 	lastObs=FALSE,  source=NULL, 
 	footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
 	legend=NULL, legend.loc="topleft")
@@ -39,22 +41,28 @@
     \item{title}{string to use for plot title (but see details).}
     \item{Title}{synonym for title.}
     \item{subtitle}{string to use for plot subtitle (but see details).}
-    \item{lty}{passed to plot. See also par.)}
-    \item{lwd}{passed to plot. See also par.)}
-    \item{pch}{passed to plot. See also par.)}
-    \item{col}{passed to plot. See also par.)}
-    \item{cex}{passed to plot. See also par.)}
+    \item{lty}{passed to plot. See also par.}
+    \item{lwd}{passed to plot. See also par.}
+    \item{pch}{passed to plot. See also par.}
+    \item{col}{passed to plot. See also par.}
+    \item{cex}{passed to plot. See also par.}
     \item{xlab}{string to use for x label (passed to plot).}
     \item{ylab}{string to use for y label (passed to plot).}
-    \item{xlim}{passed to plot. See also par.)}
-    \item{ylim}{passed to plot. See also par.)}
+    \item{xlim}{passed to plot. See also par.}
+    \item{ylim}{passed to plot. See also par.}
+    \item{Xaxis}{If equal 'auto' then an attempt is made at a better format for the
+       x-axis tick marks and their labels. A value of \code{NULL} produces the
+       result using plot defaults (as previously).}
+    \item{L1}{A character vector used for the minor tick marks. The default is in
+       english (e.g. the first letter of each month). It should be the same length
+       as the frequency of \code{x}.}
     \item{lastObs}{Logical indicating if the date of the last observation
         should be printed below the graph, flushed right.}
     \item{source}{String printed below the graph, flushed left.}
     \item{footnote}{Synonym for footnoteLeft.}
     \item{footnoteLeft}{String printed below lastObs and source, flushed left.}
     \item{footnoteRight}{String printed below lastObs and source, flushed right.}
-    \item{legend}{NULL (indicating no legend) or a vector strings to be used
+    \item{legend}{\code{NULL} (indicating no legend) or a vector strings to be used
        for a legend (see legend)}
     \item{legend.loc}{indication of placement of the legend (see legend)}
     \item{graphs.per.page}{integer indicating number of graphs to place on a
@@ -84,7 +92,7 @@
     where all series are to go on one plot. The functions are intended to 
     provide a convenient way to do some usual things. Ultimately
     \code{tfOnePlot} calls \code{plot}, \code{title}, and \code{mtext}, so
-    even more control of plot details can be acheived by calling those
+    even more control of plot details can be achieved by calling those
     functions directly.
     
     The \code{start} and \code{end} arguments to \code{tfplot} 
@@ -96,6 +104,18 @@
     elements giving the max and min, which are applied to all graphs, or a list
     of length equal to the number of series to be plotted with each list element
     being the two element vector for the corresponding plot limits. 
+    
+    \code{Xaxis} provides a mechanism to try and achieve a better default axis.
+    If equal 'auto' then an attempt is made at a format with large tick marks for
+    years and smaller tick marks for periods (months or quarters). If the number of
+    years is sufficiently small, so there is enough space, then period indications
+    are added. The default, indicated by \code{L1=NULL}, is the c('Q1', Q2', Q3',
+    'Q4') will be used for quarterly data and 
+    c("J","F","M","A","M","J","J","A","S","O","N","D") for monthly data. Different
+    values can be specified by setting \code{L1}. It should be the same length
+    as the frequency of \code{x}. If \code{Xaxis} is set to 
+    \code{NULL} then the result is to use plot defaults (as prior to the addition of
+    the \code{Xaxis} argument in version 2013.11-1).
 
     The \code{title} is not put on the plot if the global option
     PlotTitles is FALSE. This can be set with \code{options(PlotTitles=FALSE)}. 

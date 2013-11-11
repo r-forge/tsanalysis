@@ -11,6 +11,7 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
        lty = 1:5, lwd = 1, pch = 1, col = 1:6, cex = NULL,
        xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL,
        graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE,
+       Xaxis="auto", L1=NULL,
        lastObs=FALSE, source=NULL,
        footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
        legend=NULL, legend.loc="topleft")
@@ -60,6 +61,7 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
 	tfOnePlot(z, tf=tf, start=start, end=end, subtitle=subtitle[i],
 	          lty=lty, lwd=lwd, pch=pch, col=col, cex=cex,
 		  xlab=xlab[i], ylab=ylab[i], xlim=xlim[[i]], ylim=ylim[[i]],
+		  Xaxis=Xaxis, L1=L1,
 		  lastObs=lastObs, source=source[i],
 		  footnoteLeft=footnoteLeft[i], footnoteRight=footnoteRight[i],
 		  legend=lgd, legend.loc=legend.loc[i])
@@ -73,13 +75,17 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
 tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf), 
          Title=NULL, title=Title, subtitle=NULL, lty=1:5, lwd=1, pch=1, col=1:6, cex=NULL,
         xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL, par=NULL,
+	Xaxis="auto", L1=NULL,
 	lastObs=FALSE,  
 	source=NULL,
 	footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
 	legend=NULL, legend.loc="topleft"){
-  if (!is.tframed(x)) UseMethod("plot")
-  else
-    {#if(is.null(source)) source <- 
+  if (inherits(x, "zooreg")) x <- as.ts(x)
+  if (!is.tframed(x)) plot(x, start=start, end=end, 
+              lty=lty, lwd=lwd, pch=pch, col=col, cex=cex,
+              xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par)
+  else {
+      #if(is.null(source)) source <- 
      #        if(is.null(options("TSsource"))) NULL else(options()$TSsource)(x)
      if (!is.null(start)) x <- tfwindow(x, start=start, warn=FALSE)
      if (!is.null(end))   x <- tfwindow(x, end=end, warn=FALSE)
@@ -108,33 +114,81 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         if (length(pch) < N) pch <- rep(pch,length.out=N)
         if (length(col) < N) col <- rep(col,length.out=N)
 	}
-     plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, 
-        col=col, cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par)
-
+     if(is.null(Xaxis)) 
+       plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, 
+         col=col, cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par)
+     else if("auto" == Xaxis){
+       plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, 
+         col=col, cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par, xaxt = "n")
+       tfXaxis(tline, L1=L1)
+       }
+     else stop("Xaxis specification invalid.")
+     
      if (2 <= N) for (i in 2:N) lines(tline, x[,i],
        type="l", lty=lty[i], lwd=lwd[i], pch=pch[i], col=col[i], par=par)
-    }
-    if (!is.null(title) && (is.null(options()$PlotTitles) ||
-        options()$PlotTitles)) title(main = title)	
-    if (!is.null(subtitle) && (is.null(options()$PlotSubtitles) ||
-        options()$PlotSubtitles)) title(main = subtitle, line=0.5, 
-	  cex.main=0.8 *par("cex.main"), font.main=0.5 *par("font.main"))	
-    if (!is.null(source) && (is.null(options()$PlotSources) ||
-        options()$PlotSourcse)) 
-	     mtext(source, side=1, line = 2, adj=0, cex=0.7)	
-    if (lastObs) mtext(last, side=1, line = 2, adj=1, cex=0.7)
-     # footnote will go on another line with \n
-    if (!is.null(footnoteLeft) && (is.null(options()$PlotFootnotes) ||
-        options()$PlotFootnotes)) 
-	     mtext(footnoteLeft, side=1, line = 3, adj=0, cex=0.7)	
-    if (!is.null(footnoteRight) && (is.null(options()$PlotFootnotes) ||
-        options()$PlotFootnotes)) 
-	     mtext(footnoteRight, side=1, line = 3, adj=1, cex=0.7)	
-    if (!is.null(legend)) legend(legend.loc, inset = c(0.05, .05), 
-       col=col, lty=lty, cex=0.7, legend=legend)
+     }
+  if (!is.null(title) && (is.null(options()$PlotTitles) ||
+      options()$PlotTitles)) title(main = title)      
+  if (!is.null(subtitle) && (is.null(options()$PlotSubtitles) ||
+      options()$PlotSubtitles)) title(main = subtitle, line=0.5, 
+        cex.main=0.8 *par("cex.main"), font.main=0.5 *par("font.main"))       
+  if (!is.null(source) && (is.null(options()$PlotSources) ||
+      options()$PlotSourcse)) 
+           mtext(source, side=1, line = 2, adj=0, cex=0.7)    
+  if (lastObs) mtext(last, side=1, line = 2, adj=1, cex=0.7)
+   # footnote will go on another line with \n
+  if (!is.null(footnoteLeft) && (is.null(options()$PlotFootnotes) ||
+      options()$PlotFootnotes)) 
+           mtext(footnoteLeft, side=1, line = 3, adj=0, cex=0.7)      
+  if (!is.null(footnoteRight) && (is.null(options()$PlotFootnotes) ||
+      options()$PlotFootnotes)) 
+           mtext(footnoteRight, side=1, line = 3, adj=1, cex=0.7)     
+  if (!is.null(legend)) legend(legend.loc, inset = c(0.05, .05), 
+     col=col, lty=lty, cex=0.7, legend=legend)
   invisible(x)
  }
 
+
+tfXaxis <- function (x, L1 = NULL) {
+   at1 <- time(x)
+   fr <- frequency(x)
+   mgp1 <- 0.5  # ignored with lab1 FALSE
+   mgp2 <- 1.5  # ignored with lab1 FALSE
+   
+   # note that fr not in these cases is usually given to UseMethod in tfOnePlot
+   # and should never call tfXaxis.
+   if (is.null(fr))  stop("frequency must not be null for auto axis calculation.")
+   else if (fr == 1 ) {
+     blank <- TRUE 
+     at2 <- at1
+     }
+   else if (fr == 4 ) {
+     if(is.null(L1)) L1 <- c("Q1","Q2","Q3","Q4")
+     at2 <- unique(floor(at1))
+     blank <- length(at2) > 8 
+     }
+   else if (fr == 12) {
+     if(is.null(L1)) L1 <- c("J","F","M","A","M","J","J","A","S","O","N","D")
+     at2 <- unique(floor(at1))
+     blank <- length(at2) > 4 
+     }
+   else stop("frequency ", fr, "is not handled by auto axis calculation.")
+
+   # omit period labels when it gets too crowded    
+   if (blank) lab1 <- FALSE # omit period labels
+   else {
+     lab1 <- rep_len(L1, length.out=Tobs(x))
+     # rearrange if more than one year and not starting in first period of year
+     if (1 < length(at2)) {
+       s <- fr - sum(at1 < at2[2])
+       if (0 < s)  lab1 <- c(lab1[-seqN(s)], lab1[seqN(s)] )
+       }
+     }
+   axis(side = 1, at = at1,   cex.axis=0.6, labels = lab1, mgp = c(3, mgp1, 0))
+   axis(side = 1, at = at2,	  tcl=-0.8, labels = FALSE)
+   axis(side = 1, at = 0.5 + at2, tcl=0,    labels=at2, mgp = c(3, mgp2, 0))
+   invisible(x)
+}
 
 
 diffLog <- function(obj, lag = 1, base = exp(1),

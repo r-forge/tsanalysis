@@ -1,3 +1,10 @@
+Changes in tfplot version 2013.11-1
+
+   o	Added Xaxis argument to tfplot and tfOnePlot to provide better handling
+   	of axis format.
+
+   o	Changed tfplot behavior for zooreg series so they are treated as ts series.
+
 Changes in tfplot version 2013.4-1
 
    o	Changed tplot and tfOnePlot default for pch from NULL to 1 to
