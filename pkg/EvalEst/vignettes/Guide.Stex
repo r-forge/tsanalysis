@@ -131,9 +131,10 @@ then the uniform RNG is set to Wichmann-Hill, the normal transformation
 is set to Box-Muller, and the initial seed is set. With the RNG set
 in this way both \proglang{Splus} and \proglang{R} will produce similar results. These settings
 are reset to their previous values when the function completes. They
-can be set so that they do not revert using the function
+can be set so that they do not revert using the function \code{setRNG}
 
 \begin{Scode}
+library("setRNG")
 setRNG(kind="Wichmann-Hill", seed=c(979,1479,1542),
  normal.kind="Box-Muller")
 \end{Scode}
