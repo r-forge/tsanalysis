@@ -106,6 +106,8 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
  	else   dt <- end(x)
  	last <- paste("Last observation:", dt)
        }
+     # zoo freq==1 could be anything, so let zoo handle it
+     noAuto <- inherits(x, "zoo") ||is.null(Xaxis) || !(frequency(x) %in% c(1,4,12))
      N <- nseries(x)
      if (1 == N) x <- as.matrix(x)
      else {
@@ -114,7 +116,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         if (length(pch) < N) pch <- rep(pch,length.out=N)
         if (length(col) < N) col <- rep(col,length.out=N)
 	}
-     if(is.null(Xaxis) || !(frequency(x) %in% c(1,4,12))) 
+     if(noAuto) 
        plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, 
          col=col, cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par)
      else if("auto" == Xaxis){
