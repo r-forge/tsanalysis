@@ -14,17 +14,19 @@
        series=seq(nseries(x)), 
         Title=NULL, title=Title, subtitle=NULL, 
         lty = 1:5, lwd = 1, pch = 1, col = 1:6, cex = NULL,
-       xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL, 
-       graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE, 
-       Xaxis="auto", L1=NULL,
-       lastObs = FALSE, source = NULL,
-       footnote = NULL, footnoteLeft = footnote, footnoteRight = NULL,
+        xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL, 
+        graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE, 
+        Xaxis="auto", L1=NULL,
+	YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
+        lastObs = FALSE, source = NULL,
+        footnote = NULL, footnoteLeft = footnote, footnoteRight = NULL,
 	legend=NULL, legend.loc="topleft")
     tfOnePlot(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         Title=NULL, title=Title,  subtitle=NULL, 
 	lty=1:5, lwd=1, pch=1, col=1:6, cex=NULL,
         xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL, par=NULL,
 	Xaxis="auto", L1=NULL,
+	YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
 	lastObs=FALSE,  source=NULL, 
 	footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
 	legend=NULL, legend.loc="topleft")
@@ -50,9 +52,13 @@
     \item{ylab}{string to use for y label (passed to plot).}
     \item{xlim}{passed to plot. See also par.}
     \item{ylim}{passed to plot. See also par.}
-    \item{Xaxis}{If equal 'auto' then an attempt is made at a better format for the
-       x-axis tick marks and their labels. A value of \code{NULL} produces the
+    \item{Xaxis}{If equal 'auto' then an attempt is made at a better format for 
+       the x-axis tick marks and their labels. A value of \code{NULL} produces the
        result using plot defaults (as previously).}
+    \item{YaxisL}{logical indicating if a left  Y axis should be on the graph.}
+    \item{YaxisR}{logical indicating if a right Y axis should be on the graph.}
+    \item{Yaxis.lab.rot}{'vertical' or 'horizontal' indicating the orientation
+       of labels on the Y axis.}
     \item{L1}{A character vector used for the minor tick marks. The default is in
        english (e.g. the first letter of each month). It should be the same length
        as the frequency of \code{x}.}

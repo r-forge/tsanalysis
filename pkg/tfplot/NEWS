@@ -1,7 +1,10 @@
 Changes in tfplot version 2013.11-1
 
+   o	Added Yaxis arguments to tfplot and tfOnePlot to provide more options
+   	for Y axis format.
+
    o	Added Xaxis argument to tfplot and tfOnePlot to provide better handling
-   	of axis format.
+   	of X axis format.
 
    o	Changed tfplot behavior for zooreg series so they are treated as ts series.
 

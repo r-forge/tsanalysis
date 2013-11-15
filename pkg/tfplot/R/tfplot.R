@@ -12,6 +12,7 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
        xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL,
        graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE,
        Xaxis="auto", L1=NULL,
+       YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
        lastObs=FALSE, source=NULL,
        footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
        legend=NULL, legend.loc="topleft")
@@ -62,6 +63,7 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
 	          lty=lty, lwd=lwd, pch=pch, col=col, cex=cex,
 		  xlab=xlab[i], ylab=ylab[i], xlim=xlim[[i]], ylim=ylim[[i]],
 		  Xaxis=Xaxis, L1=L1,
+		  YaxisL=YaxisL, YaxisR=YaxisR, Yaxis.lab.rot=Yaxis.lab.rot,
 		  lastObs=lastObs, source=source[i],
 		  footnoteLeft=footnoteLeft[i], footnoteRight=footnoteRight[i],
 		  legend=lgd, legend.loc=legend.loc[i])
@@ -76,6 +78,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
          Title=NULL, title=Title, subtitle=NULL, lty=1:5, lwd=1, pch=1, col=1:6, cex=NULL,
         xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL, par=NULL,
 	Xaxis="auto", L1=NULL,
+	YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
 	lastObs=FALSE,  
 	source=NULL,
 	footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
@@ -116,15 +119,14 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         if (length(pch) < N) pch <- rep(pch,length.out=N)
         if (length(col) < N) col <- rep(col,length.out=N)
 	}
-     if(noAuto) 
-       plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, 
-         col=col, cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par)
-     else if("auto" == Xaxis){
-       plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, 
-         col=col, cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par, xaxt = "n")
-       tfXaxis(tline, L1=L1)
-       }
+     plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, 
+         col=col, cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
+	 xaxt = "n", yaxt = "n")
+     if(noAuto) axis(side=1)
+     else if("auto" == Xaxis) tfXaxis(tline, L1=L1)
      else stop("Xaxis specification invalid.")
+
+     tfYaxis(YaxisL=YaxisL, YaxisR=YaxisR, Yaxis.lab.rot=Yaxis.lab.rot)
      
      if (2 <= N) for (i in 2:N) lines(tline, x[,i],
        type="l", lty=lty[i], lwd=lwd[i], pch=pch[i], col=col[i], par=par)
@@ -151,11 +153,20 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
  }
 
 
+tfYaxis <- function (YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical" ) {
+   if (Yaxis.lab.rot == "vertical" )   las <- 3
+   if (Yaxis.lab.rot == "horizontal" ) las <- 1
+   if (YaxisL) axis(side = 2, las=las)
+   if (YaxisR) axis(side = 4, las=las)
+   invisible()
+   }
+
+
 tfXaxis <- function (x, L1 = NULL) {
    at1 <- time(x)
    fr <- frequency(x)
    mgp1 <- 0.5  # ignored with lab1 FALSE
-   mgp2 <- 1.5  # ignored with lab1 FALSE
+   mgp2 <- 1.2  # ignored with lab1 FALSE
    
    # note that fr not in these cases is usually given to UseMethod in tfOnePlot
    # and should never call tfXaxis.
