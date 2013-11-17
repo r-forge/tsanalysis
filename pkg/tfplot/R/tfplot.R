@@ -6,16 +6,17 @@
 tfplot <- function(x, ...)  UseMethod("tfplot")
 
 tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tfend(tf),
-       series=seq(nseries(x)), 
-       Title=NULL, title=Title, subtitle=NULL,
-       lty = 1:5, lwd = 1, pch = 1, col = 1:6, cex = NULL,
-       xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL,
-       graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE,
-       Xaxis="auto", L1=NULL,
-       YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
-       lastObs=FALSE, source=NULL,
-       footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
-       legend=NULL, legend.loc="topleft")
+	series=seq(nseries(x)), 
+	Title=NULL, title=Title, subtitle=NULL,
+	lty = 1:5, lwd = 1, pch = 1, col = 1:6, cex = NULL,
+	xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL,
+	graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE,
+	Xaxis="auto", L1=NULL,
+	YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
+	splitPane=NULL,
+	lastObs=FALSE, source=NULL,
+	footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
+	legend=NULL, legend.loc="topleft")
     {#  ... before other args means abbreviations do not work, but otherwise
      # positional matching seems to kick in and an object to be plotted gets used
      #  for start.
@@ -64,7 +65,7 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
 		  xlab=xlab[i], ylab=ylab[i], xlim=xlim[[i]], ylim=ylim[[i]],
 		  Xaxis=Xaxis, L1=L1,
 		  YaxisL=YaxisL, YaxisR=YaxisR, Yaxis.lab.rot=Yaxis.lab.rot,
-		  lastObs=lastObs, source=source[i],
+		  splitPane=splitPane,lastObs=lastObs, source=source[i],
 		  footnoteLeft=footnoteLeft[i], footnoteRight=footnoteRight[i],
 		  legend=lgd, legend.loc=legend.loc[i])
         if(!is.null(title) && (i==1) && (is.null(options()$PlotTitles)
@@ -79,6 +80,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL, par=NULL,
 	Xaxis="auto", L1=NULL,
 	YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
+	splitPane=NULL,
 	lastObs=FALSE,  
 	source=NULL,
 	footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
@@ -113,24 +115,75 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
      # zoo freq==1 could be anything, so let zoo handle it
      noAuto <- inherits(x, "zoo") ||is.null(Xaxis) || !(frequency(x) %in% c(1,4,12))
      N <- nseries(x)
-     if (1 == N) x <- as.matrix(x)
+     if (1 == N) dim(x) <- c(length(x),1)
      else {
         if (length(lty) < N) lty <- rep(lty,length.out=N)
         if (length(lwd) < N) lwd <- rep(lwd,length.out=N)
         if (length(pch) < N) pch <- rep(pch,length.out=N)
         if (length(col) < N) col <- rep(col,length.out=N)
 	}
-     plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, 
-         col=col, cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
-	 xaxt = "n", yaxt = "n")
-     if(noAuto) axis(side=1)
-     else if("auto" == Xaxis) tfXaxis(tline, L1=L1)
-     else stop("Xaxis specification invalid.")
+     if(is.null(splitPane)){
+   	plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
+	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
+   	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
+   	
+   	if (2 <= N) for (i in 2:N) lines(tline, x[,i],
+   	  type="l", lty=lty[i], lwd=lwd[i], pch=pch[i], col=col[i], par=par)
 
-     tfYaxis(YaxisL=YaxisL, YaxisR=YaxisR, Yaxis.lab.rot=Yaxis.lab.rot)
-     
-     if (2 <= N) for (i in 2:N) lines(tline, x[,i],
-       type="l", lty=lty[i], lwd=lwd[i], pch=pch[i], col=col[i], par=par)
+   	#if(noAuto) axis(side=1) in some cases this does not seem to work
+	#as well as specifying plot(xaxt = "s" )
+	
+   	if(!noAuto) 
+	  if("auto" == Xaxis) tfXaxis(tline, L1=L1)
+   	  else stop("Xaxis specification invalid.")
+
+   	tfYaxis(YaxisL=YaxisL, YaxisR=YaxisR, Yaxis.lab.rot=Yaxis.lab.rot)
+	}
+     else { # splitPane
+    	oldpar <- par()
+	par(fig=c(0, .65, 0,1))
+	#nf <- layout(matrix(c(1,2), 1, 2), widths = c(.7, .3),
+    	#	heights = c(1, 1), respect = FALSE)
+    	mn <- min(x)
+    	mn <- mn - 0.01 * abs(mn)
+    	mx <- max(x)
+    	mx <- mx  + 0.01 * abs(mx)
+    	#left side, screen(1)
+    	par(mar=c(5, 4, 4, 0) + 0.1)
+   	plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
+	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
+   	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
+   	
+   	if (2 <= N) for (i in 2:N) lines(tline, x[,i],
+   	  type="l", lty=lty[i], lwd=lwd[i], pch=pch[i], col=col[i], par=par)
+
+   	if(!noAuto) 
+	  if("auto" == Xaxis) tfXaxis(tline, L1=L1)
+   	  else stop("Xaxis specification invalid.")
+
+   	tfYaxis(YaxisL=YaxisL, YaxisR=FALSE, Yaxis.lab.rot=Yaxis.lab.rot)
+ 
+   	#right side, screen(2)
+	par(fig=c(.7, 1, 0,1), new=TRUE)
+   	par(mar=c(5, 0, 4, 2) + 0.1)
+   	b  <-  tfwindow(x, start=tline[length(tline)] - splitPane/frequency(x))
+   	bt <- time(b)
+   	if( inherits(bt, "ts")) bt <- unclass(bt)
+	plot(bt, b[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
+	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
+   	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
+   	
+   	if (2 <= N) for (i in 2:N) lines(bt, b[,i],
+   	  type="l", lty=lty[i], lwd=lwd[i], pch=pch[i], col=col[i], par=par)
+
+   	if(!noAuto) 
+	  if("auto" == Xaxis) tfXaxis(bt, L1=L1)
+   	  else stop("Xaxis specification invalid.")
+
+   	tfYaxis(YaxisL=FALSE, YaxisR=YaxisR, Yaxis.lab.rot=Yaxis.lab.rot)
+
+	par(oldpar)
+	}
      }
   if (!is.null(title) && (is.null(options()$PlotTitles) ||
       options()$PlotTitles)) title(main = title)      

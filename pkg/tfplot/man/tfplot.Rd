@@ -18,6 +18,7 @@
         graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE, 
         Xaxis="auto", L1=NULL,
 	YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
+	splitPane=NULL,
         lastObs = FALSE, source = NULL,
         footnote = NULL, footnoteLeft = footnote, footnoteRight = NULL,
 	legend=NULL, legend.loc="topleft")
@@ -27,6 +28,7 @@
         xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL, par=NULL,
 	Xaxis="auto", L1=NULL,
 	YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
+	splitPane=NULL,
 	lastObs=FALSE,  source=NULL, 
 	footnote=NULL, footnoteLeft=footnote, footnoteRight=NULL,
 	legend=NULL, legend.loc="topleft")
@@ -60,10 +62,13 @@
     \item{Yaxis.lab.rot}{'vertical' or 'horizontal' indicating the orientation
        of labels on the Y axis.}
     \item{L1}{A character vector used for the minor tick marks. The default is in
-       english (e.g. the first letter of each month). It should be the same length
-       as the frequency of \code{x}.}
+       english (e.g. the first letter of each month). It should be the same
+       length as the frequency of \code{x}.}
     \item{lastObs}{Logical indicating if the date of the last observation
         should be printed below the graph, flushed right.}
+    \item{splitPane}{An integer indicating the number of last observations that
+        should be put in a second right panel (to show more detail at the end).
+	\code{NULL} indicates no second panel.}
     \item{source}{String printed below the graph, flushed left.}
     \item{footnote}{Synonym for footnoteLeft.}
     \item{footnoteLeft}{String printed below lastObs and source, flushed left.}
