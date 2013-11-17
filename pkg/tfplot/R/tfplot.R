@@ -98,15 +98,16 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
      tline <- time(x)
      if( inherits(tline, "ts")) tline <- unclass(tline)
      # formerly matplot with tline not a matrix was used, but this does
-     # not plot (non-ts) dates as well as plot.
+     # not plot (non-ts) dates as well as plot().
      if (lastObs) {
- 	if(is.null(frequency(x)))   dt <- end(x)
-	else if(frequency(x) == 12) dt <- paste(c("Jan", "Feb","Mar","Apr","May",
- 	   "Jun","Jul","Aug","Sep","Oct","Nov","Dec")[end(x)[2]],end(x)[1],
- 	       collapse=" ")
- 	else if(frequency(x) == 4) dt <- paste(
- 		 c("Q1", "Q2","Q3","Q4")[end(x)[2]],end(x)[1], collapse=" ")
- 	else   dt <- end(x)
+ 	dt <- end(x)
+	if(!is.null(frequency(x))) {
+	  if(frequency(x) == 12)
+	      dt <- paste(c("Jan", "Feb","Mar","Apr","May","Jun","Jul",
+ 	          "Aug","Sep","Oct","Nov","Dec")[dt[2]],dt[1], collapse=" ")
+ 	  else if(frequency(x) == 4)
+	      dt <- paste(c("Q1","Q2","Q3","Q4")[dt[2]],dt[1], collapse=" ")
+	}
  	last <- paste("Last observation:", dt)
        }
      # zoo freq==1 could be anything, so let zoo handle it
