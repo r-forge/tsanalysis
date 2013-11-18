@@ -122,8 +122,10 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         if (length(pch) < N) pch <- rep(pch,length.out=N)
         if (length(col) < N) col <- rep(col,length.out=N)
 	}
+
      if(is.null(splitPane)){
-   	plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
+        if(YaxisR) par(mar=c(5, 4, 4, 3) + 0.1)
+	plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
    	
@@ -165,7 +167,8 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
  
    	#right side, screen(2)
 	par(fig=c(.7, 1, 0,1), new=TRUE)
-   	par(mar=c(5, 0, 4, 2) + 0.1)
+   	if(YaxisR) par(mar=c(5, 0, 4, 3) + 0.1)
+   	else       par(mar=c(5, 0, 4, 2) + 0.1)
    	b  <-  tfwindow(x, start=tline[length(tline)] - splitPane/frequency(x))
    	bt <- time(b)
    	if( inherits(bt, "ts")) bt <- unclass(bt)
