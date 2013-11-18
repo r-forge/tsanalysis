@@ -124,7 +124,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
 	}
 
      if(is.null(splitPane)){
-        if(YaxisR) par(mar=c(5, 4, 4, 3) + 0.1)
+        if(YaxisR) par(mar=c(5, 5, 4, 3) + 0.1)
 	plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
@@ -151,7 +151,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
     	mx <- max(x)
     	mx <- mx  + 0.01 * abs(mx)
     	#left side, screen(1)
-    	par(mar=c(5, 4, 4, 0) + 0.1)
+    	par(mar=c(5, 5, 4, 0) + 0.1)
    	plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
