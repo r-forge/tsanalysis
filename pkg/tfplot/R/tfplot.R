@@ -164,7 +164,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
    	tfYaxis(YaxisL=YaxisL, YaxisR=FALSE, Yaxis.lab.rot=Yaxis.lab.rot)
  
    	#right side, screen(2)
-   	b  <-  tfwindow(x, start=tline[length(tline)] - splitPane/frequency(x))
+   	b  <-  tfwindow(x, start=tline[length(tline)] -(splitPane-1)/frequency(x))
    	bt <- time(b)
    	if( inherits(bt, "ts")) bt <- unclass(bt)
 	par(fig=c(.7, 1, 0,1), new=TRUE, mar=c(5, 0, 4, 3) + 0.1)
@@ -245,12 +245,11 @@ tfXaxis <- function (x, L1 = NULL) {
    # omit period labels when it gets too crowded    
    if (blank) lab1 <- FALSE # omit period labels
    else {
-     lab1 <- rep_len(L1, length.out=Tobs(x))
-     # rearrange if more than one year and not starting in first period of year
-     if (1 < length(at2)) {
-       s <- fr - sum(at1 < at2[2])
-       if (0 < s)  lab1 <- c(lab1[-seqN(s)], lab1[seqN(s)] )
-       }
+     lab1 <- rep_len(L1, length.out=fr * length(at2))
+     # arrange for not starting in first period of year
+     s <- fr - sum(at1 < (1 + at2[1]))
+     if (0 < s)  lab1 <- lab1[-seqN(s)]
+     lab1 <- lab1[seqN(Tobs(x))]
      }
    axis(side = 1, at = at1,   cex.axis=0.6, labels = lab1, mgp = c(3, mgp1, 0))
    axis(side = 1, at = at2,	  tcl=-0.8, labels = FALSE)
