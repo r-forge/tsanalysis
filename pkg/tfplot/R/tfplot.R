@@ -123,9 +123,11 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         if (length(col) < N) col <- rep(col,length.out=N)
 	}
 
+     oldpar <- par(mar=c(5, 5, 4, 3) + 0.1)
+     on.exit(par(oldpar))
+     
      if(is.null(splitPane)){
-        if(YaxisR) par(mar=c(5, 5, 4, 3) + 0.1)
-	plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
+        plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
    	
@@ -142,16 +144,12 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
    	tfYaxis(YaxisL=YaxisL, YaxisR=YaxisR, Yaxis.lab.rot=Yaxis.lab.rot)
 	}
      else { # splitPane
-    	oldpar <- par()
-	par(fig=c(0, .65, 0,1))
-	#nf <- layout(matrix(c(1,2), 1, 2), widths = c(.7, .3),
-    	#	heights = c(1, 1), respect = FALSE)
-    	mn <- min(x)
+	mn <- min(x)
     	mn <- mn - 0.01 * abs(mn)
     	mx <- max(x)
     	mx <- mx  + 0.01 * abs(mx)
     	#left side, screen(1)
-    	par(mar=c(5, 5, 4, 0) + 0.1)
+    	par(fig=c(0, .65, 0,1), mar=c(5, 5, 4, 0) + 0.1)
    	plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
@@ -166,12 +164,10 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
    	tfYaxis(YaxisL=YaxisL, YaxisR=FALSE, Yaxis.lab.rot=Yaxis.lab.rot)
  
    	#right side, screen(2)
-	par(fig=c(.7, 1, 0,1), new=TRUE)
-   	if(YaxisR) par(mar=c(5, 0, 4, 3) + 0.1)
-   	else       par(mar=c(5, 0, 4, 2) + 0.1)
    	b  <-  tfwindow(x, start=tline[length(tline)] - splitPane/frequency(x))
    	bt <- time(b)
    	if( inherits(bt, "ts")) bt <- unclass(bt)
+	par(fig=c(.7, 1, 0,1), new=TRUE, mar=c(5, 0, 4, 3) + 0.1)
 	plot(bt, b[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
@@ -184,8 +180,10 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
    	  else stop("Xaxis specification invalid.")
 
    	tfYaxis(YaxisL=FALSE, YaxisR=YaxisR, Yaxis.lab.rot=Yaxis.lab.rot)
-
-	par(oldpar)
+	# Now set back to full device for title and footnotes.
+	# setting usr works around what appears to be  bug. (The footnotes
+	# do not get set properly relative to the center.)
+	par(fig=c(0, 1, 0,1), new=FALSE, mar=c(5,5,4,3)+0.1, usr=c(0,1,0,1))
 	}
      }
   if (!is.null(title) && (is.null(options()$PlotTitles) ||
@@ -195,8 +193,8 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         cex.main=0.8 *par("cex.main"), font.main=0.5 *par("font.main"))       
   if (!is.null(source) && (is.null(options()$PlotSources) ||
       options()$PlotSourcse)) 
-           mtext(source, side=1, line = 2, adj=0, cex=0.7)    
-  if (lastObs) mtext(last, side=1, line = 2, adj=1, cex=0.7)
+               mtext(source, side=1, line = 2, adj=0, cex=0.7)    
+  if (lastObs) mtext(last,   side=1, line = 2, adj=1, cex=0.7)
    # footnote will go on another line with \n
   if (!is.null(footnoteLeft) && (is.null(options()$PlotFootnotes) ||
       options()$PlotFootnotes)) 
