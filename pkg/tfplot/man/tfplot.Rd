@@ -137,12 +137,13 @@
     put on the plot. If it is \code{TRUE} then they are put on the plot  with the
     same scale as the left axis (or as it would have if it were plotted). 
     If \code{YaxisR} is a numeric value then the right axis is put on the plot with
-    the scale of the left axis multiplied by the numeric value. The data is plotted
-    using the left scale, so the user must appropriately multiply any values to be 
-    read on the right scale. \code{YaxisR} can be a vector of length equal to the
+    the scale of the left axis multiplied by the numeric value. 
+    The data is plotted using the left scale, so the user must 
+    appropriately adjust any values to be read on the right scale (divide by YaxisR). 
+    \code{YaxisR} can be a vector of length equal to the
     number of series in \code{x}, in which case a scale element is applied to the 
-    corresponding plot panel. If \code{YaxisR} is shorter it is recycled, so a scalar
-    value is applied to all panels.
+    corresponding plot panel. If \code{YaxisR} is shorter it is recycled, 
+    so a scalar value is applied to all panels.
 
     The \code{title} is not put on the plot if the global option
     PlotTitles is FALSE. This can be set with \code{options(PlotTitles=FALSE)}. 
