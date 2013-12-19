@@ -1,4 +1,6 @@
-Changes in tfplot version 2013.11-1
+Changes in tfplot version 2013.12-1
+
+   o	Added extra space at top when title or subtitle has a new line character.
 
    o	Added splitPane argument to tfplot and tfOnePlot to provide option
    	to produce a two pane graph, with more detail for lasy observations.

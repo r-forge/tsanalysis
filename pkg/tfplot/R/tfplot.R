@@ -53,6 +53,7 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
      if(length(source)        < N) source        <- rep(source, N)
      if(length(legend)        < N) legend        <- rep(legend, N)
      if(length(legend.loc)    < N) legend.loc    <- rep(legend.loc, N)
+     if(length(YaxisR)        < N) YaxisR        <- rep(YaxisR, N)
  
      for (i in series)
        {if(mode(i)=="character") i <- match(i, names)
@@ -64,7 +65,7 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
 	          lty=lty, lwd=lwd, pch=pch, col=col, cex=cex,
 		  xlab=xlab[i], ylab=ylab[i], xlim=xlim[[i]], ylim=ylim[[i]],
 		  Xaxis=Xaxis, L1=L1,
-		  YaxisL=YaxisL, YaxisR=YaxisR, Yaxis.lab.rot=Yaxis.lab.rot,
+		  YaxisL=YaxisL, YaxisR=YaxisR[i], Yaxis.lab.rot=Yaxis.lab.rot,
 		  splitPane=splitPane,lastObs=lastObs, source=source[i],
 		  footnoteLeft=footnoteLeft[i], footnoteRight=footnoteRight[i],
 		  legend=lgd, legend.loc=legend.loc[i])
@@ -123,7 +124,12 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
         if (length(col) < N) col <- rep(col,length.out=N)
 	}
 
-     oldpar <- par(mar=c(5, 5, 4, 3) + 0.1)
+     # add extra space for titles with a new line character
+     m3 <- 4
+     if (is.character(title)    && grepl("\n", title))    m3 <- m3 + 1 
+     if (is.character(subtitle) && grepl("\n", subtitle)) m3 <- m3 + 1 
+     
+     oldpar <- par(mar=c(5, 5, m3, 3) + 0.1)
      on.exit(par(oldpar))
      
      if(is.null(splitPane)){
@@ -149,7 +155,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
     	mx <- max(x)
     	mx <- mx  + 0.01 * abs(mx)
     	#left side, screen(1)
-    	par(fig=c(0, .65, 0,1), mar=c(5, 5, 4, 0) + 0.1)
+    	par(fig=c(0, .65, 0,1), mar=c(5, 5, m3, 0) + 0.1)
    	plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
@@ -167,7 +173,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
    	b  <-  tfwindow(x, start=tline[length(tline)] -(splitPane-1)/frequency(x))
    	bt <- time(b)
    	if( inherits(bt, "ts")) bt <- unclass(bt)
-	par(fig=c(.7, 1, 0,1), new=TRUE, mar=c(5, 0, 4, 3) + 0.1)
+	par(fig=c(.7, 1, 0,1), new=TRUE, mar=c(5, 0, m3, 3) + 0.1)
 	plot(bt, b[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, par=par,
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
@@ -183,7 +189,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
 	# Now set back to full device for title and footnotes.
 	# setting usr works around what appears to be  bug. (The footnotes
 	# do not get set properly relative to the center.)
-	par(fig=c(0, 1, 0,1), new=FALSE, mar=c(5,5,4,3)+0.1, usr=c(0,1,0,1))
+	par(fig=c(0, 1, 0,1), new=FALSE, mar=c(5,5,m3,3)+0.1, usr=c(0,1,0,1))
 	}
      }
   if (!is.null(title) && (is.null(options()$PlotTitles) ||
@@ -211,8 +217,25 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
 tfYaxis <- function (YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical" ) {
    if (Yaxis.lab.rot == "vertical" )   las <- 3
    if (Yaxis.lab.rot == "horizontal" ) las <- 1
-   if (YaxisL) axis(side = 2, las=las)
-   if (YaxisR) axis(side = 4, las=las)
+   ysc <- par()$yaxp
+   if(ysc[3] < 10) blank <- FALSE else TRUE #unlabelled intermediate tick marks
+   if (! blank) {
+      # calculate tick marks in between labeled ones. If the labels are at intervals of 
+      #   5 ..9 this should give 1. At 0.5 ... 0.9 this should give 0.1
+      by <- 10^(ceiling(log10(((ysc[2] - ysc[1]) / ysc[3]))-1))
+      at1 <- seq(ysc[1], ysc[2], by = by)
+      }
+   if (YaxisL) {
+      axis(side = 2, las=las)
+      if (! blank) axis(side = 2, at= at1, tcl=-0.3, labels=FALSE)
+      }
+   
+   if ((is.numeric(YaxisR)) || YaxisR) { # numeric or T
+      scR <- axis(side = 4, las=las, labels=!is.numeric(YaxisR))
+      if (is.numeric(YaxisR))
+        axis(side = 4, las=las, at=scR, labels=as.graphicsAnnot(YaxisR * scR))
+      if (! blank) axis(side = 4, at= at1, tcl=-0.3, labels=FALSE)
+      }
    invisible()
    }
 

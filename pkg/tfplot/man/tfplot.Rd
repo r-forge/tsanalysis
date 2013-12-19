@@ -58,7 +58,8 @@
        the x-axis tick marks and their labels. A value of \code{NULL} produces the
        result using plot defaults (as previously).}
     \item{YaxisL}{logical indicating if a left  Y axis should be on the graph.}
-    \item{YaxisR}{logical indicating if a right Y axis should be on the graph.}
+    \item{YaxisR}{logical or numeric indicating if a right Y axis should be on 
+      the graph. A numeric value indicates its scale relative to the left axis.}
     \item{Yaxis.lab.rot}{'vertical' or 'horizontal' indicating the orientation
        of labels on the Y axis.}
     \item{L1}{A character vector used for the minor tick marks. The default is in
@@ -129,6 +130,19 @@
     the \code{Xaxis} argument in version 2013.11-1).
     Currently \code{Xaxis='auto'} only affects annual, monthly, and quarterly data,
     and the affect on annual data is marginal.
+
+    \code{YaxisL} set \code{TRUE} or \code{FALSE} controls if left axis tick 
+    marks and labels are put on the plot. 
+    If \code{YaxisR} is \code{FALSE} then right axis tick marks and labels are not 
+    put on the plot. If it is \code{TRUE} then they are put on the plot  with the
+    same scale as the left axis (or as it would have if it were plotted). 
+    If \code{YaxisR} is a numeric value then the right axis is put on the plot with
+    the scale of the left axis multiplied by the numeric value. The data is plotted
+    using the left scale, so the user must appropriately multiply any values to be 
+    read on the right scale. \code{YaxisR} can be a vector of length equal to the
+    number of series in \code{x}, in which case a scale element is applied to the 
+    corresponding plot panel. If \code{YaxisR} is shorter it is recycled, so a scalar
+    value is applied to all panels.
 
     The \code{title} is not put on the plot if the global option
     PlotTitles is FALSE. This can be set with \code{options(PlotTitles=FALSE)}. 
