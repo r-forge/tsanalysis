@@ -1,3 +1,10 @@
+Changes in tfplot version 2014.1-1
+
+   o	Eliminated passing par to plot and other plotting functions. It is
+   	now set in tfplot or tfOnePlot.
+
+   o	m3=par()mar[3] +.
+
 Changes in tfplot version 2013.12-1
 
    o	Added extra space at top when title or subtitle has a new line character.
