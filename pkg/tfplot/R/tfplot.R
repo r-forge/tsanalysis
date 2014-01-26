@@ -10,7 +10,7 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
 	Title=NULL, title=Title, subtitle=NULL,
 	lty = 1:5, lwd = 1, pch = 1, col = 1:6, cex = NULL,
 	xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL,
-	graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE,
+	graphs.per.page=5, par=NULL, reset.screen=TRUE,
 	Xaxis="auto", L1=NULL,
 	YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
 	splitPane=NULL,
@@ -32,6 +32,7 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
         stop("tfplot.default does not know how to plot this object.")
      old.par <- par(par)
      on.exit(par(old.par)) 
+     mr <- par()$mar
      names <- seriesNames(x)
      Ngraphs <- min(length(series), graphs.per.page)
      if( (!is.list(xlim)) && (2 == length(xlim)))
@@ -39,7 +40,7 @@ tfplot.default <- function(x, ..., tf=tfspan(x , ...), start=tfstart(tf), end=tf
      if( (!is.list(ylim)) && (2 == length(ylim)))
               ylim <- rep(list(ylim), length(series))
      if(reset.screen)  {
-        par(mfcol = c(Ngraphs, 1), mar=mar, no.readonly=TRUE)
+        par(mfcol = c(Ngraphs, 1), mar=mr, no.readonly=TRUE)
 	}  
 #     tf <- tframe(tfwindow(x, start=start, end=end))
 # would be nice if this could expand tf (tfwindow only truncates - need a
@@ -88,6 +89,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
   if (inherits(x, "zooreg")) x <- as.ts(x)
   old.par <- par(par)
   on.exit(par(old.par)) 
+  mr <- par()$mar
 
   if (!is.tframed(x)) plot(x, start=start, end=end, 
               lty=lty, lwd=lwd, pch=pch, col=col, cex=cex,
@@ -127,16 +129,14 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
 	}
 
      # add extra space for titles with a new line character
-     mr <- par$mar
-     if (is.null(mr)) mr <- par()$mar
      m3 <- mr[3]
      if (is.character(title)    && grepl("\n", title))    m3 <- m3 + 1 
      if (is.character(subtitle) && grepl("\n", subtitle)) m3 <- m3 + 1 
      
      mr[3] <- m3
-     par(mar=mr)
      
      if(is.null(splitPane)){
+        par(mar=mr)
         plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim,
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
@@ -154,12 +154,15 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
    	tfYaxis(YaxisL=YaxisL, YaxisR=YaxisR, Yaxis.lab.rot=Yaxis.lab.rot)
 	}
      else { # splitPane
+	mrL <- mrR <- mr
+	mrL[4] <- 0
+	mrR[2] <- 0
 	#mn <- min(x)
     	#mn <- mn - 0.01 * abs(mn)
     	#mx <- max(x)
     	#mx <- mx  + 0.01 * abs(mx)
     	#left side, screen(1)
-    	par(fig=c(0, .65, 0,1), mar=mr)
+    	par(fig=c(0, .65, 0,1), mar=mrL)
    	plot(tline, x[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, 
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")
@@ -177,7 +180,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
    	b  <-  tfwindow(x, start=tline[length(tline)] -(splitPane-1)/frequency(x))
    	bt <- time(b)
    	if( inherits(bt, "ts")) bt <- unclass(bt)
-	par(fig=c(.7, 1, 0,1), new=TRUE, mar=mr)
+	par(fig=c(.7, 1, 0,1), new=TRUE, mar=mrR)
 	plot(bt, b[,1], type="l", lty=lty, lwd=lwd, pch=pch, col=col, 
 	    cex=cex, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim, 
    	    xaxt = if(noAuto) "s" else "n", yaxt = "n")

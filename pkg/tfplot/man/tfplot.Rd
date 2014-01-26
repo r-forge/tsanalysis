@@ -15,7 +15,7 @@
         Title=NULL, title=Title, subtitle=NULL, 
         lty = 1:5, lwd = 1, pch = 1, col = 1:6, cex = NULL,
         xlab=NULL, ylab=seriesNames(x), xlim = NULL, ylim = NULL, 
-        graphs.per.page=5, par=NULL, mar=par()$mar, reset.screen=TRUE, 
+        graphs.per.page=5, par=NULL, reset.screen=TRUE, 
         Xaxis="auto", L1=NULL,
 	YaxisL=TRUE, YaxisR=FALSE, Yaxis.lab.rot = "vertical",
 	splitPane=NULL,
@@ -80,9 +80,8 @@
     \item{graphs.per.page}{integer indicating number of graphs to place on a
        page.}
     \item{par}{a list of arguments passed to par() before plotting.)}
-    \item{mar}{margins passed to plot (deprecated, use par).)}
     \item{reset.screen}{logical indicating if the plot window should be cleared
-       before starting. If this is not TRUE then mar values will have no effect.}
+       before starting. If this is not TRUE then par values will have no effect.}
 }
 \value{None.}
 \details{
@@ -111,7 +110,7 @@
     determine the start and end of the plot. The argument \code{tf} is an
     alternate way to specify the start and end. It is ignored 
     if \code{start} and \code{end} are specified.
-
+    
     If \code{xlim} and \code{ylim} are not NULL they should be a vector of two
     elements giving the max and min, which are applied to all graphs, or a list
     of length equal to the number of series to be plotted with each list element
@@ -168,6 +167,15 @@
     If \code{legend} is a matrix then a column will be used for each panel,
     otherwise the vector will be passed to each panel. (Typically this vector
     has length equal to the number of series in each panel graph.)
+
+    The \code{par} argument can be used to pass other graphics parameters to
+    \code{tfplot} and \code{tfOnePlot} (see \code{\link{par}}). These are set
+    by a call \code{par(par)} in \code{tfplot} or \code{tfOnePlot}.
+    \code{tfplot} makes this call and does not pass \code{par} to
+    \code{tfOnePlot}, so the result may sometimes be different from making a
+    direct call to \code{tfOnePlot} and providing the \code{par} argument.
+    Some of the margin (\code{mar}) setting are overridden by split plots,
+    so the results may not be predictable for this case.
 }
 \section{Side Effects}{An object is plotted.}
 \seealso{
