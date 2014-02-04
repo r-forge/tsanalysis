@@ -1,10 +1,12 @@
-Changes in tfplot version 2014.1-1
+Changes in tfplot version 2014.2-1
 
    o	Eliminated passing par to plot and other plotting functions. It is now 
 	set in tfplot or tfOnePlot. (It was probably not working previously.)
 
    o	Removed mar as an argument to tfplot (previously deprecated). Margins
    	must now be passed by par=list(mar=...).
+	
+   o	Added import of tframe in NAMESPACE.
 
 Changes in tfplot version 2013.12-1
 

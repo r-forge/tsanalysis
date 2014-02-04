@@ -1,3 +1,5 @@
+import("tframe")
+
 export("tfplot")
 S3method("tfplot","default")
 
