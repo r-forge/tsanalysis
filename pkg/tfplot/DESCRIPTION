@@ -3,7 +3,7 @@ Version: 2014.2-1
 Title: Time Frame User Utilities
 Description: Utilities in this package are for simple manipulation and quick  	
 	plotting of time series data. These utilities use the tframe package
-	which provides a programming kernel for time series. Extension to
+	which provides a programming kernel for time series. Extensions to
 	tframe provided in tframePlus can also be used. See the Guide vignette
 	for examples.
 Depends: R (>= 2.12.0), tframe 
