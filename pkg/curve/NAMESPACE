@@ -1,4 +1,9 @@
+import("tframe")
 import("numDeriv")
+import("dse")
+import("setRNG")
+
+
 S3method("print", "curvature")
 S3method("print", "curvatureArray")
 

@@ -31,9 +31,11 @@
 }
 
 \examples{
+   require("dse")
    data("eg1.DSE.data.diff", package="dse")
    model <- estVARXls(TSdata( output=outputData(eg1.DSE.data.diff, series=1:2)),
                      max.lag=2)
+   require("numDeriv")
    hessian(model) 
 }
 \concept{DSE}

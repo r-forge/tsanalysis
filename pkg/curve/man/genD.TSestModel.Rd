@@ -44,10 +44,12 @@ A list with three elements as follows:
 \code{\link{curvature}}
 }
 \examples{
-data("eg1.DSE.data.diff", package="dse")
-model <- estVARXls(TSdata( output=outputData(eg1.DSE.data.diff, series=1:2)),
+   require("dse")
+   data("eg1.DSE.data.diff", package="dse")
+   model <- estVARXls(TSdata( output=outputData(eg1.DSE.data.diff, series=1:2)),
                       max.lag=2)
-z <- genD(model)
+   require("numDeriv")
+   z <- genD(model)
 }
 \concept{DSE}
 \keyword{ts}

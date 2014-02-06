@@ -3,6 +3,10 @@ Known Bugs
 
    o	None for the moment.
 
+Changes in curve version 2014.2-1
+
+   o	Minor changes to Depends and Imports for new package standards.
+
 Changes in curve version 2012.4-1
 
    o	Added tfplot to Suggests.
