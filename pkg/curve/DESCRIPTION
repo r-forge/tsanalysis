@@ -5,6 +5,7 @@ Description: Multivariate Time Series - extensions
 Depends: R (>= 2.5.0)
 Imports: tframe (>= 2007.5-3), dse (>= 2007.10-1), setRNG (>= 2004.4-1), numDeriv (>= 2006.4-1)
 Suggests: tfplot
+LinkingTo: dse
 LazyLoad: yes
 License: GPL-2
 Copyright: 1993-1996,1998-2011 Bank of Canada. 1997,2012-2014 Paul Gilbert
