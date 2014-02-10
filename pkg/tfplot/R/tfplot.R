@@ -275,7 +275,7 @@ tfXaxis <- function (x, L1 = NULL) {
    # omit period labels when it gets too crowded    
    if (blank) lab1 <- FALSE # omit period labels
    else {
-     lab1 <- rep_len(L1, length.out=fr * length(at2))
+     lab1 <- rep(L1, length.out=fr * length(at2))
      # arrange for not starting in first period of year
      s <- fr - sum(at1 < (1 + at2[1]))
      if (0 < s)  lab1 <- lab1[-seqN(s)]
