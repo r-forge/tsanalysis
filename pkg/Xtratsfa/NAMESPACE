@@ -1,3 +1,10 @@
 export("estTSF.R2M")
 export("estTSF.MCV")
 
+import("EvalEst",
+       "GPArotation",
+       "dse",
+       "setRNG",
+       "tframe",
+       "tfplot",
+       "tsfa")

@@ -1,9 +1,10 @@
 Package: Xtratsfa
+Version: 2014.4-1
 Title: Time Series Factor Analysis Extra Functions
 Description:  Extra Functions for tsfa package.
-Depends: R (>= 2.0.0), tsfa (>= 2011.3-1), GPArotation, setRNG (>= 2004.4-1), tframe (>= 2011.3-1), dse (>= 2011.3-1), EvalEst (>= 2011.3-1)
+Depends: R (>= 2.1.0), tsfa (>= 2011.3-1), GPArotation, dse (>= 2011.3-1), EvalEst (>= 2011.3-1)
+Imports: setRNG (>= 2004.4-1), tframe (>= 2011.3-1), tfplot (>= 2014.2-1)
 Suggests: CDNmoney
-Version: 2011.11-2
 LazyLoad: yes
 License: GPL-2
 Copyright: 1993-1996,1998-2011 Bank of Canada. 1997,2012 Paul Gilbert
