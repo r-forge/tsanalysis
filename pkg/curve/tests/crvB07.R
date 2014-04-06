@@ -10,6 +10,7 @@
 
 if(!require("dse"))  stop("this test requires dse.")
 if(!require("curve"))stop("this test requires curve.")
+if(!require("numDeriv"))stop("this test requires numDeriv.")
  Sys.info()
  DSEversion()
 

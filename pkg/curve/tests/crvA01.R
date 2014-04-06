@@ -1,6 +1,7 @@
 # Tests of DSE curvature functions from dsecurvature.function.testsA
 if(!require("dse"))  stop("this test requires dse.")
 if(!require("curve"))stop("this test requires curve.")
+if(!require("setRNG"))stop("this test requires setRNG.")
  Sys.info()
  DSEversion()
 
