@@ -4,6 +4,11 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
+Changes in dse version 2014.4-1
+
+   o	Removed capability to set DUP=FALSE in .Fortran calls, since that is
+   	now deprecated, and may be disabled in future versions of R.
+
 Changes in dse version 2013.11-1
 
    o	Adjusted Imports and Depends.

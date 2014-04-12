@@ -4,7 +4,7 @@
 ###
 
 .onAttach  <- function(libname, pkgname) {
-   .DSEflags(list(COMPILED=TRUE, DUP=TRUE))
+   .DSEflags(list(COMPILED=TRUE))
    invisible(TRUE)
    }
 
@@ -2153,7 +2153,7 @@ else set.ts <-  FALSE
                          if(is.double(K)) K else as.double(K), 
                          if(is.double(Q)) Q else as.double(Q),	 
                          if(is.double(R)) R else as.double(R),    
-                         as.integer(is.innov.SS(model)), DUP=.DSEflags()$DUP,
+                         as.integer(is.innov.SS(model)), 
 			 PACKAGE="dse"
 			 )[c("y","state")]
     y <- r$y
@@ -2278,7 +2278,6 @@ if (is.null(sampleT)) sampleT<-noise$sampleT
                          if(is.double(B)) B else as.double(B),   
                          if(is.double(C)) C else as.double(C),
                          if(is.double(TREND)) TREND else as.double(TREND), 
-			 DUP=.DSEflags()$DUP,
 			 PACKAGE="dse"
 			 ) [["y"]]
 
@@ -2472,8 +2471,7 @@ if (compiled)
                          matrix(double(1),is,is),  # scratch array
                          double(is),         # scratch array
                          integer(is*is),         # scratch array IPIV
-                         DUP=.DSEflags()$DUP,
-			 PACKAGE="dse"
+                         PACKAGE="dse"
 			 ) [c("pred", "weighted.sqerror")]
    if (all(0==error.weights)) r$weighted.sqerror <- NULL
   }
@@ -2703,7 +2701,6 @@ IS <- max(n,p)
 	          rep(double(1),IS), # ZZ
 	          rep(double(1),IS), # WW		   
                   integer(IS*IS),         # scratch array IPIV
-		  DUP=.DSEflags()$DUP,
 		  PACKAGE="dse"
 		  ) [c("pred","state","track","weighted.sqerror")]
    if (all(0==error.weights)) r$weighted.sqerror <- NULL
@@ -2877,8 +2874,7 @@ smoother.nonInnov <- function(model, data, compiled=.DSEflags()$COMPILED){
                          integer(IS*IS),         # scratch array IPIV
                          #chk1=array(double(1), c(sampleT, IS,IS)),     
                          #chk2=array(double(1), c(sampleT, IS,IS)),     
-                         DUP=.DSEflags()$DUP,
-			 PACKAGE="dse"
+                         PACKAGE="dse"
 			 )[c("state","track")]
    }
  else   # S version

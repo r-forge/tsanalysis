@@ -12,21 +12,18 @@
      }
 \details{
     Setting flags with this function is primarily for debugging. It should not
-    normally be needed by users.  If called with not arguments, 
+    normally be needed by users.  If called with no arguments, 
     \code{.DSEflags()} returns the current setting.
     Several \pkg{dse} functions which call compiled fortran or C code will use
     the equivalent S/R version if the \code{.DSEflags()$COMPILED} returns 
-    \code{FALSE}.  \code{.DSEflags()$DUP} is passed to
-    fortran calls and controls whether R duplicates arguments passed
-    to the fortran code. The safe setting is \code{TRUE}. Setting \code{FALSE} 
-    saves some memory but does not seem to give much speed gain. 
+    \code{FALSE}. 
     }
 \section{Side Effects}{
-    The flag settings affect whether and how compiled fortran or C code is
+    The flag setting affects whether compiled fortran or C code is
     called. 
     }
 \examples{
-    .DSEflags(list(COMPILED=TRUE, DUP=TRUE))
+    .DSEflags(list(COMPILED=TRUE))
     .DSEflags()$COMPILED
 }
 \concept{DSE}

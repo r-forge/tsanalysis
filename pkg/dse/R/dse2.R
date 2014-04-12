@@ -575,8 +575,7 @@ horizonForecastsCompiled.ARMA <- function( obj, data, horizons=1:4,
                   matrix(double(1),is,is),  # scratch array
                   double(is),         # scratch array
                   integer(is*is),         # scratch array IPIV
-                  DUP=.DSEflags()$DUP,
-		  PACKAGE="dse"
+                  PACKAGE="dse"
 		  )$proj
 }
 
@@ -659,8 +658,7 @@ horizonForecastsCompiled.SS <- function( obj, data, horizons=1:4,
 	          rep(double(1),IS), # ZZ
 	          rep(double(1),IS), # WW		   
                   integer(IS*IS),         # scratch array IPIV
- 		  DUP=.DSEflags()$DUP,
-		  PACKAGE="dse"
+ 		  PACKAGE="dse"
 		  )$proj
 }
 
@@ -937,7 +935,6 @@ forecastCov.TSdata <- function(obj, ..., data=NULL,
                   as.integer(p), 
                   predictT=as.integer(TT), 
                   err, 
-		  DUP=.DSEflags()$DUP,
 		  PACKAGE="dse"
 		  ) [c("forecastCov","sample.size")]
      }
@@ -1119,8 +1116,7 @@ forecastCovCompiled.ARMA <- function(model, data, horizons=1:12 ,
                   matrix(double(1),is,is),  # scratch array
                   double(is),         # scratch array
                   integer(is*is),         # scratch array IPIV
-                  DUP=.DSEflags()$DUP,
-		  PACKAGE="dse"
+                  PACKAGE="dse"
 		  )[c("forecastCov","sample.size")]
 }
 
@@ -1216,8 +1212,7 @@ forecastCovCompiled.SS <- function(model, data, horizons=1:12 ,
 	          rep(double(1),IS), # ZZ
 	          rep(double(1),IS), # WW		   
                   integer(IS*IS),         # scratch array IPIV
- 		  DUP=.DSEflags()$DUP,
-		  PACKAGE="dse"
+ 		  PACKAGE="dse"
 		  ) [c("forecastCov","sample.size")]
 }
 
