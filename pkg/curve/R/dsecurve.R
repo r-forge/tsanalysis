@@ -1,5 +1,9 @@
 #######################################################################
 
+##if(getRversion() >= "3.1.0") {
+##   utils::suppressForeignCheck( c(genda_sym, gendk_sym))
+##   }
+
 #######################################################################
 
 #              Time series model curvature calculation
@@ -100,6 +104,7 @@ genD.ARMA <- function(func, x=coef(func),
    storage.mode(outputData(data))<-"double"
    storage.mode(model$const)<-"double"
    storage.mode(TREND)<-"double"
+   #D <-.Fortran(genda_sym,
    D <-.Fortran("genda",
             D=D,
             p=as.integer(length(x)),
@@ -151,8 +156,7 @@ genD.ARMA <- function(func, x=coef(func),
             BB=matrix(double(1),is,is),  
             WW=rep(double(1),is),  
             integer(is*is),         # scratch array IPIV
-            DUP=.DSEflags()$DUP,
-	    PACKAGE="dse"
+            PACKAGE="dse"
 	    )[c("D","p","f0", "x", "r")] 
    D$d   <- d
    D$method      <- method
@@ -218,6 +222,7 @@ genD.innov <- function(func, x=coef(func),
    storage.mode(C)<-"double"
    storage.mode(G)<-"double"
    IS <- max(ns,ps)
+   #D <-.Fortran(gendk_sym,
    D <-.Fortran("gendk",
             D=D,
             p=as.integer(length(x)),
@@ -276,8 +281,7 @@ genD.innov <- function(func, x=coef(func),
 	    rep(double(1),IS), # ZZ
 	    rep(double(1),IS), # WW		   
             integer(IS*IS),         # scratch array IPIV
-            DUP=.DSEflags()$DUP,
-	    PACKAGE="dse"
+            PACKAGE="dse"
 	    )[c("D","p","f0", "x", "r")]
    D$d   <- d
    D$method      <- method
