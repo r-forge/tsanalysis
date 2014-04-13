@@ -552,6 +552,7 @@ horizonForecastsCompiled.ARMA <- function( obj, data, horizons=1:4,
   storage.mode(obj$B)  <- "double"
   storage.mode(C)  <- "double"
   storage.mode(TREND)  <- "double"
+   #.Fortran(rmaprj_sym,
    .Fortran("rmaprj",
                   proj=proj,    
                   as.integer(discard.before), 
@@ -627,6 +628,7 @@ horizonForecastsCompiled.SS <- function( obj, data, horizons=1:4,
      storage.mode(z)  <- "double"
      storage.mode(P)  <- "double"
      IS <- max(n,p)
+     #.Fortran(kfprj_sym,
      .Fortran("kfprj",
                   proj= proj, 
                   as.integer(discard.before), 
@@ -926,6 +928,7 @@ forecastCov.TSdata <- function(obj, ..., data=NULL,
    if (compiled)
      {storage.mode(cov) <-"double"
       storage.mode(err) <-"double"
+      #r <- .Fortran(datepr_sym,
       r <- .Fortran("datepr",
                   forecastCov=cov,    
                   as.integer(discard.before), 
@@ -1091,6 +1094,7 @@ forecastCovCompiled.ARMA <- function(model, data, horizons=1:12 ,
   storage.mode(model$B)  <- "double"
   storage.mode(C)  <- "double"
   storage.mode(TREND)  <- "double"
+  #.Fortran(rmaepr_sym,
   .Fortran("rmaepr",
                   forecastCov=cov,    
                   as.integer(discard.before), 
@@ -1179,6 +1183,7 @@ forecastCovCompiled.SS <- function(model, data, horizons=1:12 ,
      storage.mode(z) <-"double"
      storage.mode(P) <-"double"
      IS <- max(n,p)
+     #.Fortran(kfepr_sym,
      .Fortran("kfepr",
                   forecastCov=cov,    
                   as.integer(discard.before), 

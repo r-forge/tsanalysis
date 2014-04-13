@@ -2138,7 +2138,9 @@ else set.ts <-  FALSE
  #   storage.mode(K) <- "double"
  #   storage.mode(Q) <- "double"
  #   storage.mode(R) <- "double"
-    r<- .Fortran("simss",y=if(is.double(y)) y else as.double(y), 
+   #r <- .Fortran(simss_sym, 
+   r <- .Fortran("simss", 
+                         y=if(is.double(y)) y else as.double(y), 
                          state=if(is.double(state)) state else as.double(state), 
                          as.integer(m),
                          as.integer(n),
@@ -2262,7 +2264,9 @@ if (is.null(sampleT)) sampleT<-noise$sampleT
 #    storage.mode(C)     <- "double"
 #    storage.mode(TREND)     <- "double"
 
-    y <-.Fortran("simrma",y=if(is.double(y)) y else as.double(y), 
+    #y <- .Fortran(simrma_sym, 
+     y <- .Fortran("simrma", 
+                        y=if(is.double(y)) y else as.double(y), 
                          if(is.double(y0)) y0 else as.double(y0),
                          as.integer(m),
                          as.integer(p), 
@@ -2445,6 +2449,7 @@ if (compiled)
 #   storage.mode(C)     <- "double"
 #   storage.mode(TREND)     <- "double"
 
+   #r  <- .Fortran(arma_sym,
    r  <- .Fortran("arma",
                          pred=matrix(1e20,predictT,p), # pred,     
                          as.integer(length(error.weights)),
@@ -2664,6 +2669,7 @@ if (compiled)
 #   storage.mode(z)     <- "double"
 #   storage.mode(P)     <- "double"
 IS <- max(n,p)
+   #r <- .Fortran(kf_sym,
    r <- .Fortran("kf",
                   pred=matrix(double(1),predictT,p), #note, as.double messes dim of pred    
                   as.integer(length(error.weights)), 
@@ -2851,6 +2857,7 @@ smoother.nonInnov <- function(model, data, compiled=.DSEflags()$COMPILED){
     #note, as.double messes dim needed in result, but need attributes removed
     IS <- max(n,p)
 
+    #r <- .Fortran(smooth_sym, 
     r <- .Fortran("smooth", 
                          state=array(as.double(filter$state), dim(filter$state)),      
                          track=array(as.double(filter$track), dim(filter$track)),     

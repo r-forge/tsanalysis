@@ -10,6 +10,9 @@
 \alias{printTestValue}
 \alias{svd.criteria}
 
+%%\alias{genda_sym}
+%%\alias{gendk_sym}
+
 \title{DSE Utilities}
 \description{
     These functions are used by other functions in DSE and are not
@@ -23,6 +26,8 @@
    criteria.table.legend()
    criteria.table.nheading()
    DSE.ar(data, ...)
+%%   genda_sym
+%%   gendk_sym
 }
 \concept{DSE}
 \keyword{internal}

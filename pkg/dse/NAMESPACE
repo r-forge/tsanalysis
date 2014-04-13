@@ -1,5 +1,13 @@
 useDynLib(dse)
 
+##useDynLib(dse, simss_sym=simss, simrma_sym=simrma, 
+##  arma_sym=arma, kf_sym=kf, smooth_sym=smooth,
+##  rmaprj_sym=rmaprj, kfprj_sym=kfprj, datepr_sym=datepr, rmaepr_sym=rmaepr,
+##  kfepr_sym=kfepr, 
+##  genda_sym=genda, gendk_sym=gendk)
+##
+##export(genda_sym, gendk_sym)
+
 importFrom("stats","window")
 importFrom("stats","start")
 importFrom("stats","end")
@@ -9,6 +17,7 @@ importFrom("stats","coef")
 import("tframe")
 import("tfplot")
 import("setRNG")
+
 
 export("DSEversion")
 export(".DSEflags")
