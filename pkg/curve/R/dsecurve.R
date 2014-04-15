@@ -1,7 +1,9 @@
 #######################################################################
-
 ##if(getRversion() >= "3.1.0") {
-##   utils::suppressForeignCheck( c(genda_sym, gendk_sym))
+##   genda_sym <- getNativeSymbolInfo("genda", PACKAGE="dse")
+##   gendk_sym <- getNativeSymbolInfo("gendk", PACKAGE="dse")
+##   # above assignments not needed if exported from dse
+##   utils::suppressForeignCheck( c("genda_sym", "gendk_sym"))
 ##   }
 
 #######################################################################
@@ -106,7 +108,7 @@ genD.ARMA <- function(func, x=coef(func),
    storage.mode(TREND)<-"double"
    #D <-.Fortran(genda_sym,
    D <-.Fortran("genda",
-            D=D,
+             D=D,
             p=as.integer(length(x)),
             x=x,
             h0,
