@@ -11,12 +11,11 @@
 expandMtoW <- function(x, fromStart=start(x), notreleased=NA, na=NA){
    if (12 != frequency(x)) stop("data must be monthly.")
    x <- tfwindow(x, start=fromStart)
-   require("zoo")
-
+   if(!require('zoo') ) stop("require('zoo') to use expandMtoW.")
    #as.Date(0) = Thursday Jan 1, 1970
    # from 1970 to end of x + a bit
-   fridays <- as.Date(1, origin="1970-01-01") + 7* 0:(53* (1+ end(x)[1] -1970))
-   #require("tis") also defines month and year
+   fridays <- zoo::as.Date(1, origin="1970-01-01") + 7* 0:(53* (1+ end(x)[1] -1970))
+   #"tis" also defines month and year
    year <- function(x) {1900 + as.POSIXlt(x)$year}
    month <- function(x) {1 + as.POSIXlt(x)$mon}
    # window to span of x
@@ -44,13 +43,13 @@ expandMtoW <- function(x, fromStart=start(x), notreleased=NA, na=NA){
 expandQtoW <- function(x, fromStart, notreleased=NA, na=NA){
    if (4 != frequency(x)) stop("data must be quarterly.")
    x <- tfwindow(x, start=fromStart)
-   require("zoo")
+   if(!require('zoo') ) stop("require('zoo') to use expandQtoW.")
 
    #as.Date(0) = Thursday Jan 1, 1970
    # from 1970 to end of x + a bit
    fridays <- as.Date(1, origin="1970-01-01") + 7* 0:(53* (1+ end(x)[1] -1970))
    # window to span of x
-   #require("tis") also defines month and year
+   #"tis" also defines month and year
    year <- function(x) {1900 + as.POSIXlt(x)$year}
    month <- function(x)   {1 + as.POSIXlt(x)$mon}
    q <- ceiling(month(fridays)/3)
@@ -79,13 +78,13 @@ expandQtoW <- function(x, fromStart, notreleased=NA, na=NA){
 extractWeekly.daily <- function(x, fromStart, day=5, notreleased=NA, na=NA){
     # NEED NA=-1 OPTION for previous day (Thursday)
    if (1 != frequency(x)) stop("data must be daily.")
-   require("zoo")
+   if(!require('zoo') ) stop("require('zoo') to use extractWeekly.daily.")
    x <- tfwindow(x, start=fromStart)
    x[is.na(x)] <- notreleased # or na?
 
    #as.Date(0) = Thursday Jan 1, 1970
    # from 1970 to end of x + a bit
-   #require("tis") also defines month and year
+   #"tis" also defines month and year
    fridays <- as.Date(day-4, origin="1970-01-01") + 
                     7 * 0:(53*(1+ 1900 + as.POSIXlt(end(x))$year - 1970))
    # window to span of x
