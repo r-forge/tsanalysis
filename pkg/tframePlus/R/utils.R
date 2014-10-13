@@ -29,7 +29,7 @@ changeTSrepresentation <- function(x, newRepresentation){
    if (mode(newRepresentation) == "character")  
        if (newRepresentation == "tis") {
           require("tis")
-          r <- do.call("as.tis", list(x)) 
+          r <- do.call("tis::as.tis", list(x)) 
           }
        else {
   	  require("zoo")
@@ -79,9 +79,10 @@ TSwriteXLS <- function(x, ..., FileName="R.xls", SheetNames=NULL,
        }
     assign(frNames[i], seriesData, envir=env)
     }
-  if (require("WriteXLS") && testPerl(verbose=FALSE)) {
-     rr <- WriteXLS(frNames, ExcelFileName=FileName, SheetNames=SheetNames,
-               verbose=verbose, envir=env) 
+  if (requireNamespace("WriteXLS", quietly = TRUE) &&
+           WriteXLS::testPerl(verbose=FALSE)) {
+     rr <- WriteXLS::WriteXLS(frNames, ExcelFileName=FileName,
+               SheetNames=SheetNames, verbose=verbose, envir=env) 
      }
   else { # work around with save and transfer ...
      warning("WriteXLS not usable. Writing txt file.")
