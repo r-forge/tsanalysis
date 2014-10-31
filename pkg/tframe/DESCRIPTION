@@ -1,5 +1,5 @@
 Package: tframe
-Version: 2012.8-1
+Version: 2014.10-1
 Title: Time Frame coding kernel
 Description: The tframe package provides a kernel of functions for programming 
 	time series methods in a way that is relatively independently of the 
@@ -13,7 +13,7 @@ Depends: R (>= 2.5.0)
 Imports: stats 
 LazyLoad: yes
 License: GPL-2
-Copyright: 1993-1996,1998-2011 Bank of Canada. 1997,2012 Paul Gilbert
+Copyright: 1993-1996,1998-2011 Bank of Canada. 1997,2012-2014 Paul Gilbert
 Author: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
 Maintainer: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
 URL: http://tsanalysis.r-forge.r-project.org/
