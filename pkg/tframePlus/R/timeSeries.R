@@ -1,3 +1,14 @@
+setGeneric("tfstart")
+setGeneric("tfend")
+setGeneric("is.tframed")
+setGeneric("tframe")
+setGeneric("seriesNames<-")
+setGeneric("Tobs")
+setGeneric("tfL")
+setGeneric("tfwindow")
+setGeneric("tfExpand")
+setGeneric("tbind")
+
 is.tframed.timeSeries <- function(x) {TRUE}
 
 setMethod("is.tframed", "timeSeries", is.tframed.timeSeries)
@@ -58,7 +69,7 @@ setMethod("tfwindow", "timeSeries", tfwindow.timeSeries)
 
 tfExpand.timeSeries <- function(x, add.start = 0, add.end = 0){
    idx <- time(x)
-   r <- as.matrix(coredata(x))
+   r <- as.matrix(zoo::coredata(x))
    if (add.start > 0 ) {
      idx <- c(start(x) - seq(add.start), idx)
      r <- rbind(matrix(NA, add.start, ncol(r)), r)

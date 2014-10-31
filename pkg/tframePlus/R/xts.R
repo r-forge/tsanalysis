@@ -1,12 +1,12 @@
 is.tframed.xts <- function(x) {TRUE}
 
 tframe.xts <- function (x) {
-  tf <- index(x)
+  tf <- zoo::index(x)
   class(tf) <- c( "xtstframe", class(tf), "tframe")
   tf
   }
 
-tfUnSet.xts <- function(x)  coredata(x)
+tfUnSet.xts <- function(x)  zoo::coredata(x)
 
 tfSet.xtstframe <- function(value, x) { 
   class(value) <- class(value)[class(value) != "xtstframe"]
@@ -44,7 +44,7 @@ tfwindow.xts <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE
 
 tfExpand.xts <- function(x, add.start = 0, add.end = 0){
    idx <- time(x)
-   r <- as.matrix(coredata(x))
+   r <- as.matrix(zoo::coredata(x))
    if (add.start > 0 ) {
      idx <- c(start(x) - seq(add.start), idx)
      r <- rbind(matrix(NA, add.start, ncol(r)), r)
@@ -53,7 +53,7 @@ tfExpand.xts <- function(x, add.start = 0, add.end = 0){
      idx <- c(idx, end(x) + seq(add.end))
      r <- rbind(r, matrix(NA,add.end, ncol(r)))
      }
-   xts(r, order.by = idx) 
+   xts::xts(r, order.by = idx) 
    }
 
 tbind.xts <- function(x, ..., pad.start=TRUE, pad.end=TRUE, warn=TRUE)

@@ -170,7 +170,7 @@ as.weekly <- function(x, FUN=sum, na.rm=FALSE, foldFrom=end(x), periodicity = 7)
    R <- NROW(r)/periodicity
    rr <- matrix(NA, R, C)
    for (i in 1:C) rr[,i ] <- apply(matrix(r[,i],periodicity, R),2, FUN=FUN)
-   r <- zoo(rr, foldFrom - (NROW(rr)-1):0 * periodicity)
+   r <- zoo::zoo(rr, foldFrom - (NROW(rr)-1):0 * periodicity)
    if(na.rm) trimNA(r) else r
    }
    

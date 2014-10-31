@@ -58,7 +58,7 @@ tfwindow.zoo <- function(x, tf=NULL, start=tfstart(tf), end=tfend(tf), warn=TRUE
 
 tfExpand.zoo <- function(x, add.start = 0, add.end = 0){
    idx <- time(x)
-   r <- as.matrix(coredata(x))
+   r <- as.matrix(zoo::coredata(x))
    if (add.start > 0 ) {
      idx <- c(start(x) - seq(add.start), idx)
      r <- rbind(matrix(NA, add.start, ncol(r)), r)
@@ -67,7 +67,7 @@ tfExpand.zoo <- function(x, add.start = 0, add.end = 0){
      idx <- c(idx, end(x) + seq(add.end))
      r <- rbind(r, matrix(NA,add.end, ncol(r)))
      }
-   zoo(r, order.by = idx) 
+   zoo::zoo(r, order.by = idx) 
    }
 
 tbind.zoo <- function(x, ..., pad.start=TRUE, pad.end=TRUE, warn=TRUE)
