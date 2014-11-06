@@ -35,7 +35,7 @@ expandMtoW <- function(x, fromStart=start(x), notreleased=NA, na=NA){
    r <- matrix(NA, Tobs(Wind), nseries(x))
    r[Wind,] <- x
    r[is.na(r)] <- na
-   r <- zoo(r, order.by=fridays)
+   r <- zoo::zoo(r, order.by=fridays)
    seriesNames(r) <- seriesNames(x)
    r
    }
@@ -69,7 +69,7 @@ expandQtoW <- function(x, fromStart, notreleased=NA, na=NA){
    r <- matrix(NA, Tobs(Wind), nseries(x))
    r[Wind,] <- x
    r[is.na(r)] <- na
-   r <- zoo(r, order.by=fridays)
+   r <- zoo::zoo(r, order.by=fridays)
    seriesNames(r) <- seriesNames(x)
    r
    }
@@ -95,7 +95,7 @@ extractWeekly.daily <- function(x, fromStart, day=5, notreleased=NA, na=NA){
    Wind <- time(x) %in% fridays
       
    r <- x[Wind,]
-   r <- zoo(r, order.by=fridays)
+   r <- zoo::zoo(r, order.by=fridays)
    seriesNames(r) <- seriesNames(x)
    r
    }
