@@ -16,3 +16,4 @@
   tfplot(dat)
 
  
+ unlink("Rplots.pdf")

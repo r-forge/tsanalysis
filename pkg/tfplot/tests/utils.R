@@ -3,15 +3,17 @@
 
  Sys.info()
 
-z <- ts(matrix(100 + rnorm(200),100,2), start=c(1991,1), frequency=4)
-tsWrite(z, file="tmp.test.data.csv")
-zz <- tsScan("tmp.test.data.csv", nseries=2)
 
+tmp <- tempfile()
+
+z <- ts(matrix(100 + rnorm(200),100,2), start=c(1991,1), frequency=4)
+tsWrite(z, file=tmp)
+zz <- tsScan(tmp, nseries=2)
+
+file.remove(tmp)
 
 cat("max difference ", max(abs(z - zz)) )
 if (max(abs(z - zz)) > 1e-10)   stop("file write and read comparison failed.")
-
-file.remove("tmp.test.data.csv")
 
 ####  tfL  ####  
 

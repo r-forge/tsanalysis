@@ -60,3 +60,5 @@ tfplot(z, Xaxis="auto", xlab= "time, time, time")
 # 
 # z <- zoo(rnorm(1000), order.by=as.Date("2003-02-01")+1:1000)
 # tfplot(z, Xaxis="auto", xlab= "time, time, time", source="Source: RNG")
+
+ unlink("Rplots.pdf")

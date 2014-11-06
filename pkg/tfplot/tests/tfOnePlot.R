@@ -16,3 +16,4 @@
   tfOnePlot(dat)
 
  
+ unlink("Rplots.pdf")
