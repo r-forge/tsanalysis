@@ -11,8 +11,8 @@ tfpersp <- function (x, tf=tfspan(x), start=tfstart(tf), end=tfend(tf),
        ticktype="detailed",ltheta = -120, lphi = 15,
        ...) {
     # 
-    if (!is.null(start)) x <- tfwindow(x, start = start, warn = FALSE)
-    if (!is.null(end))   x <- tfwindow(x, end = end, warn = FALSE)    
+    if (!is.null(start)) x <- tframe::tfwindow(x, start = start, warn = FALSE)
+    if (!is.null(end))   x <- tframe::tfwindow(x, end = end, warn = FALSE)    
     tline <- time(x)
     rx <- max(tline, na.rm=TRUE ) - min(tline, na.rm=TRUE)
     rz <- max(x, na.rm=TRUE) - min(x, na.rm=TRUE)
@@ -32,14 +32,12 @@ changeTSrepresentation <- function(x, newRepresentation){
           r <- do.call("tis::as.tis", list(x)) 
           }
        else {
-  	  require("zoo")
   	  #dates <- as.Date(time(x)) 
 	  #zoo and base have as.Date(). zoo, timeSeries and stats have time() 
           dates <- zoo::as.Date(stats::time(x))
 	  r <- do.call(newRepresentation, list(x, dates))
           }
     else {
-       require("zoo")
        dates <- zoo::as.Date(stats::time(x))
        r <- newRepresentation(x, dates)
        }
@@ -161,8 +159,8 @@ as.weekly <- function(x, FUN=sum, na.rm=FALSE, foldFrom=end(x), periodicity = 7)
    # 7 for 7 day weeks.  tested only with daily to weekly, 
    #  periodicity <- 1/frequency(x) unfortunately does not work for daily
    #drop <- length(x) %% periodicity
-   addst <- periodicity - (Tobs(tfwindow(x, end= foldFrom)) %% periodicity) 
-   adden <- (Tobs(tfwindow(x, start= foldFrom))-1) %% periodicity 
+   addst <- periodicity - (Tobs(tframe::tfwindow(x, end= foldFrom)) %% periodicity) 
+   adden <- (Tobs(tframe::tfwindow(x, start= foldFrom))-1) %% periodicity 
    x <- tfExpand.zoo(x, add.start=addst, add.end  =adden)
    r <- as.matrix(x)
    #if (drop > 0) r <- r[ -(1:drop),, drop=FALSE]
