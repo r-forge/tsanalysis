@@ -1,5 +1,13 @@
 Changes in tframePlus version 2014.10-1
 
+   o	Adjusted changeTSrepresentation() to work with default (do nothing)
+   	so it can be called without alway prechecking for this.
+
+   o	Added ability to pass a function to changeTSrepresentation().
+
+   o	Modified changeTSrepresentation() to use get() rather than do.call()
+   	in exceptional cases.
+
    o	Changed require() to requireNamespace() for WriteXLS.
 
    o	Minor adjustments to add package namespace references in calls.

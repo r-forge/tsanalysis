@@ -26,22 +26,45 @@ tfpersp <- function (x, tf=tfspan(x), start=tfstart(tf), end=tfend(tf),
     }
 
 changeTSrepresentation <- function(x, newRepresentation){
-   if (mode(newRepresentation) == "character")  
-       if (newRepresentation == "tis") {
-          require("tis")
-          r <- do.call("tis::as.tis", list(x)) 
+   if (is.function(newRepresentation))
+       return(newRepresentation(x))
+   else if (is.character(newRepresentation))  
+       if (newRepresentation  == "default"){
+          return(x)
+	  # above assumes that x is already in default! 
+	  # and also that the user or calling routine required zoo if needed. 
+	  # Next fails by converting daily fromzoo to ts.
+          #if(tffrequency(x) %in% c( 1, 4, 12, 2))  return(as.ts(x))
+	  #else {
+          #   require("zoo")
+	  #   return(zoo::as.zoo(x))
+	  #   }
+	  }
+       else if (newRepresentation  == "ts") 
+          return(as.ts(x))
+       else if (newRepresentation  == "zoo"){
+          require("zoo")
+	  return(zoo::as.zoo(x))
+	  }
+       else if (newRepresentation == "timeSeries") {
+          if (! "timeSeries" %in% loadedNamespaces())
+	      stop("timeSeries package must be attached.")
+	  # zoo and base have as.Date(). 
+	  # zoo has index() while timeSeries and stats have time().
+	  # note that timeSeries does not seem to support start()
+	  return(timeSeries::as.timeSeries(x))
+          }
+       else if (newRepresentation == "tis") {
+          if (! "tis" %in% loadedNamespaces())
+	      stop("tis package must be attached.")
+          return(tis::as.tis(x))
           }
        else {
-  	  #dates <- as.Date(time(x)) 
-	  #zoo and base have as.Date(). zoo, timeSeries and stats have time() 
-          dates <- zoo::as.Date(stats::time(x))
-	  r <- do.call(newRepresentation, list(x, dates))
+  	  return(get(newRepresentation)(x))
           }
-    else {
-       dates <- zoo::as.Date(stats::time(x))
-       r <- newRepresentation(x, dates)
-       }
-   r
+    else  stop("mode of time series representation ", 
+                mode(newRepresentation ), "not recognized.")
+   "should not get here"
    }
 
 TSwriteXLS <- function(x, ..., FileName="R.xls", SheetNames=NULL,

@@ -7,6 +7,7 @@ importFrom("stats","time")
 importFrom("stats","aggregate")
 
 importFrom("timeSeries","timeSeries")
+##import("timeSeries")
 
 ## not generic
 export(
