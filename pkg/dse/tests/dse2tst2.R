@@ -1,7 +1,9 @@
   require("stats")
   require("dse") 
  #x11()
-  postscript(file="lite.out.ps",  paper="letter", horizontal=FALSE, onefile=TRUE)
+  dir <- tempdir()
+  postscript(file=paste(dir,"/lite.out.ps", sep=""),  paper="letter",
+      horizontal=FALSE, onefile=TRUE)
              # width=6, height=8, pointsize=10,
    Sys.info()
    DSEversion()
@@ -162,3 +164,5 @@ EvalEst.graphics.tests <- function(verbose=TRUE, synopsis=TRUE)
 
    EvalEst.function.tests(verbose=TRUE, graphics=FALSE)  
    EvalEst.graphics.tests(verbose=TRUE)
+
+unlink(dir, recursive=TRUE)

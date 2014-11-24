@@ -4,6 +4,12 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
+Changes in dse version 2014.11-1
+
+   o	Removed directory src-c with C code which has not been used recently.
+
+   o	Adjusted tests to write postscript files to a tempdir and remove it.
+
 Changes in dse version 2014.4-1
 
    o	Removed capability to set DUP=FALSE in .Fortran calls, since that is

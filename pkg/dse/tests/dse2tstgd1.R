@@ -2,7 +2,9 @@ if(!require("stats"))   stop("this test requires stats.")
 if(!require("dse"))  stop("this test requires EvalEst.")
 if(!require("setRNG"))stop("this test requires setRNG.")
  #x11()
-  postscript(file="lite.out.ps",  paper="letter", horizontal=FALSE, onefile=TRUE)
+  dir <- tempdir()
+  postscript(file=paste(dir,"/lite.out.ps", sep=""),  paper="letter",
+      horizontal=FALSE, onefile=TRUE)
              # width=6, height=8, pointsize=10,
    Sys.info()
    DSEversion()
@@ -171,3 +173,5 @@ guide.example.tests.part1 <- function( verbose=TRUE, synopsis=TRUE, fuzz.small=1
    random.number.test() 
    guide.example.tests.part1(verbose=TRUE, graphics=TRUE)
 #         gives  Warning cov. matrix is singular. Working on subspace
+
+unlink(dir, recursive=TRUE)
