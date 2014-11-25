@@ -1,6 +1,6 @@
 Package: tframePlus
 Version: 2014.10-1
-Title: Time Frame coding kernel extensions
+Title: Time Frame Coding Kernel Extensions
 Description:  Extensions and additional tframe utilities.
 Depends: R (>= 2.5.0), tframe
 Imports: methods, timeSeries

@@ -1,6 +1,6 @@
 Package: tfMiscDevel
 Version: 2014.10-2
-Title: Time Frame extensions (in development)
+Title: Time Frame Extensions (in Development)
 Description:  Extensions and additional tframe utilities.
 Depends: R (>= 2.13.0), tframe, tframePlus
 Suggests: zoo, xts, its, tis, timeSeries, methods, WriteXLS(>= 1.7.0)

@@ -1,6 +1,6 @@
 Package: monitor
 Version: 2012.4-1
-Title: Dynamic Systems Estimation - monitoring extensions
+Title: Dynamic Systems Estimation - Monitoring Extensions
 Description: Multivariate Time Series - monitoring extensions
 Depends: R (>= 2.5.0), methods, tframe (>= 2007.5-3), dse (>= 2007.10-1), EvalEst (>= 2007.10-1), TSdbi (>= 2010.5-1), tfplot
 Suggests: stats, setRNG (>= 2004.4-1), TSpadi (>= 2010.5-1), TSMySQL (>= 2010.5-1)
