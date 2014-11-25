@@ -1,7 +1,8 @@
 Changes in tframePlus version 2014.10-1
 
    o	Adjusted changeTSrepresentation() to work with default (do nothing)
-   	so it can be called without alway prechecking for this.
+   	and NULL meaning default so it can be called without alway 
+	prechecking for this.
 
    o	Added ability to pass a function to changeTSrepresentation().
 

@@ -26,6 +26,7 @@ tfpersp <- function (x, tf=tfspan(x), start=tfstart(tf), end=tfend(tf),
     }
 
 changeTSrepresentation <- function(x, newRepresentation){
+   if (is.null(newRepresentation)) newRepresentation <- "default"
    if (is.function(newRepresentation))
        return(newRepresentation(x))
    else if (is.character(newRepresentation))  
@@ -33,7 +34,7 @@ changeTSrepresentation <- function(x, newRepresentation){
           return(x)
 	  # above assumes that x is already in default! 
 	  # and also that the user or calling routine required zoo if needed. 
-	  # Next fails by converting daily fromzoo to ts.
+	  # Next fails by converting daily from zoo to ts.
           #if(tffrequency(x) %in% c( 1, 4, 12, 2))  return(as.ts(x))
 	  #else {
           #   require("zoo")

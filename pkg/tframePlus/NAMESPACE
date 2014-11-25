@@ -101,12 +101,19 @@ S3method("tfExpand","timeSeries")
 ##   ""
 ##   )
 
-
+## S4 generics
+export(
+   "tfstart",
+   "tfend"
+   )
+   
 ## S4 methods
 exportMethods(
    "is.tframed",
    "tframe",
    "tfwindow",
+   "tfstart",
+   "tfend",
    "tbind",
    "tfL",
    "tfExpand",
