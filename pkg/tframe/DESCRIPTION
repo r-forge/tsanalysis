@@ -1,14 +1,13 @@
 Package: tframe
 Version: 2014.10-1
 Title: Time Frame Coding Kernel
-Description: The tframe package provides a kernel of functions for programming 
+Description: A kernel of functions for programming 
 	time series methods in a way that is relatively independently of the 
-	representation of time. It also provides plotting, time windowing, 
+	representation of time. Also provides plotting, time windowing, 
 	and some
 	other utility functions which are specifically intended for time series.
 	See the Guide distributed as a vignette, or ?tframe.Intro for more
-	details. (User utilities other than the programming kernel have been
-	moved into package tfplot.)
+	details. (User utilities are in package tfplot.)
 Depends: R (>= 2.5.0) 
 Imports: stats 
 LazyLoad: yes
