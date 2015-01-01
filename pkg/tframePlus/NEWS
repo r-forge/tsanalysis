@@ -1,4 +1,4 @@
-Changes in tframePlus version 2014.10-1
+Changes in tframePlus version 2015.1-1
 
    o	Adjusted changeTSrepresentation() to work with default (do nothing)
    	and NULL meaning default so it can be called without alway 
