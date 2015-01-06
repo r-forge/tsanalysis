@@ -1,5 +1,5 @@
 Package: tframePlus
-Version: 2015.1-1
+Version: 2015.1-2
 Title: Time Frame Coding Kernel Extensions
 Description:  Extensions and additional tframe utilities.
 Depends: R (>= 2.5.0), tframe (>= 2015.1-1)

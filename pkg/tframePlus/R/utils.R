@@ -37,14 +37,15 @@ changeTSrepresentation <- function(x, newRepresentation){
 	  # Next fails by converting daily from zoo to ts.
           #if(tffrequency(x) %in% c( 1, 4, 12, 2))  return(as.ts(x))
 	  #else {
-          #   require("zoo")
+          #   requireNamespace("zoo")
 	  #   return(zoo::as.zoo(x))
 	  #   }
 	  }
        else if (newRepresentation  == "ts") 
           return(as.ts(x))
        else if (newRepresentation  == "zoo"){
-          require("zoo")
+          #requireNamespace("zoo")
+          require("zoo") # because of bug in zoo <= 1.7-11
 	  return(zoo::as.zoo(x))
 	  }
        else if (newRepresentation == "timeSeries") {

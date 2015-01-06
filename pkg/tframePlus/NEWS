@@ -1,3 +1,16 @@
+Known Bugs
+
+   o	changeTSrepresentation() has require("zoo") rather than requireNamespace("zoo")
+   	because zoo needs to overwrite the as.Date() generic since there is no 
+	default for the origin in the as.Date.numeric() method.
+	
+   o	A NOTE regarding no visible global function definition for tfstart and tfend
+   	is produced in CRAN checks because of a bug in S4.
+
+Changes in tframePlus version 2015.1-2
+
+   o	added Known Bugs regarding require("zoo").
+
 Changes in tframePlus version 2015.1-1
 
    o	Adjusted changeTSrepresentation() to work with default (do nothing)
