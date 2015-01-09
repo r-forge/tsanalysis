@@ -44,8 +44,8 @@ changeTSrepresentation <- function(x, newRepresentation){
        else if (newRepresentation  == "ts") 
           return(as.ts(x))
        else if (newRepresentation  == "zoo"){
-          #requireNamespace("zoo")
-          require("zoo") # because of bug in zoo <= 1.7-11
+          requireNamespace("zoo")
+          #require("zoo") # because of bug in zoo <= 1.7-11
 	  return(zoo::as.zoo(x))
 	  }
        else if (newRepresentation == "timeSeries") {
