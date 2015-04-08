@@ -709,7 +709,7 @@ CFA.ML <- function(theta.start, Nfact, S, xbar, tol=1.0e-8,
 
   # Preliminary estimates
 
-  require("stats")
+  requireNamespace("stats")
   orig.par <- factanal(data, Nfact, scores="none", rotation="none")
 
   # Transform to CFA model structure
