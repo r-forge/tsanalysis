@@ -11,7 +11,7 @@
 expandMtoW <- function(x, fromStart=start(x), notreleased=NA, na=NA){
    if (12 != frequency(x)) stop("data must be monthly.")
    x <- tfwindow(x, start=fromStart)
-   if(!require('zoo') ) stop("require('zoo') to use expandMtoW.")
+   if(!requireNamespace('zoo') ) stop("expandMtoW needs package 'zoo'.")
    #as.Date(0) = Thursday Jan 1, 1970
    # from 1970 to end of x + a bit
    fridays <- zoo::as.Date(1, origin="1970-01-01") + 7* 0:(53* (1+ end(x)[1] -1970))
@@ -43,7 +43,7 @@ expandMtoW <- function(x, fromStart=start(x), notreleased=NA, na=NA){
 expandQtoW <- function(x, fromStart, notreleased=NA, na=NA){
    if (4 != frequency(x)) stop("data must be quarterly.")
    x <- tfwindow(x, start=fromStart)
-   if(!require('zoo') ) stop("require('zoo') to use expandQtoW.")
+   if(!requireNamespace('zoo') ) stop("expandQtoW needs package 'zoo'.")
 
    #as.Date(0) = Thursday Jan 1, 1970
    # from 1970 to end of x + a bit
@@ -78,7 +78,7 @@ expandQtoW <- function(x, fromStart, notreleased=NA, na=NA){
 extractWeekly.daily <- function(x, fromStart, day=5, notreleased=NA, na=NA){
     # NEED NA=-1 OPTION for previous day (Thursday)
    if (1 != frequency(x)) stop("data must be daily.")
-   if(!require('zoo') ) stop("require('zoo') to use extractWeekly.daily.")
+   if(!requireNamespace('zoo') ) stop("extractWeekly.daily needs package 'zoo'.")
    x <- tfwindow(x, start=fromStart)
    x[is.na(x)] <- notreleased # or na?
 
