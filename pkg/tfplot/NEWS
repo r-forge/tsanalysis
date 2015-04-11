@@ -1,3 +1,7 @@
+Changes in tfplot version 2015.4-1
+
+   o	Change require to requireNamespace for googleVis.
+
 Changes in tfplot version 2014.2-2
 
    o	Minor change (rep_len to rep) to accommodate older R versions.

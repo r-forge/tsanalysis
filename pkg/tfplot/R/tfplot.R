@@ -418,7 +418,7 @@ tfVisPlot <- function (x, tf = tframe(x), start = tfstart(tf), end = tfend(tf),
     nm <- seriesNames(x)
     names(seriesData) <- c("date", nm)
     
-    if (!require("googleVis")) stop("tfVisPlot requires googleVis")
+    if (!requireNamespace("googleVis")) stop("tfVisPlot requires googleVis")
     else  plot(googleVis::gvisLineChart(seriesData, xvar="date", yvar=nm,
          options=options, ...))
     cat("look for chart in web browser.\n")
