@@ -1,7 +1,7 @@
 Package: tsfa
 Version: 2014.10-1
 Title: Time Series Factor Analysis
-Description:  Extraction of Factors from Multivariate Time Series. See ?00tsfa-Intro for more details.
+Description:  Extraction of Factors from Multivariate Time Series. See '?00tsfa-Intro' for more details.
 Depends: R (>= 2.1.0), GPArotation (>= 2006.9-1), dse (>= 2006.1-1), EvalEst (>= 2006.1-1) 
 Imports: setRNG (>= 2004.4-1), tframe (>= 2011.3-1), tfplot (>= 2014.2-1)
 Suggests: CDNmoney, MASS
