@@ -1,0 +1,10 @@
+extra$
+^Makefile$
+(^|.*/)core$
+(^|.*/)run$
+FLAGS$
+^Rplots(.*).pdf$
+inst/doc/Rplots(.*).pdf$
+inst/doc/(^|.*)\.tex$
+.Rd2dvi(^|.*)
+(^|.*)\.ps$
