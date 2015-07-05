@@ -1,4 +1,7 @@
-importFrom("stats","coef")
+# importing all of stats clobbers simulate and acf from dse
+importFrom("stats", "coef", "density", "ksmooth", "runif", "var")
+import("graphics")
+importFrom("utils", "data")
 
 import("setRNG")
 import("tframe")

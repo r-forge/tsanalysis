@@ -8,6 +8,10 @@ Known Bugs
    o	A NOTE regarding no visible global function definition for tfstart and tfend
    	is produced in CRAN checks because of a bug in S4.
 
+Changes in tframePlus version 2015.7-1
+
+   o	Added default package imports as now required by CRAN.
+
 Changes in tframePlus version 2015.1-2
 
    o	added Known Bugs regarding require("zoo") and bug in S4.

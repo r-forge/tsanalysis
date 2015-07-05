@@ -4,6 +4,10 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
+Changes in dse version 2017.7-1
+
+   o	Added default package imports as now required by CRAN.
+
 Changes in dse version 2014.11-1
 
    o	Removed directory src-c with C code which has not been used recently.

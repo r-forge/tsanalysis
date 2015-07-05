@@ -1,5 +1,5 @@
 Package: EvalEst
-Version: 2015.4-2
+Version: 2015.7-1
 Title: Dynamic Systems Estimation - Extensions
 Description:  Provides functions for evaluating (time series) model
 	estimation methods. These facilitate Monte Carlo experiments of repeated
@@ -7,7 +7,7 @@ Description:  Provides functions for evaluating (time series) model
 	looking at the distribution of the results from these experiments,
 	including model roots (which are an equivalence class invariant).
 Depends: R (>= 2.5.0), tfplot, dse (>= 2007.10-1)
-Imports: setRNG, tframe (>= 2007.5-3) 
+Imports: setRNG, tframe (>= 2007.5-3), stats, graphics
 LazyLoad: yes
 License: GPL-2
 Copyright: 1993-1996,1998-2011 Bank of Canada. 1997,2012-2015 Paul Gilbert

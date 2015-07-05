@@ -1,3 +1,7 @@
+Changes in EvalEst version 2015.7-1
+
+   o	Added default package imports as now required by CRAN.
+
 Changes in EvalEst version 2015.4-2
 
    o	Additional minor adjustment in Description for CRAN editorial checks.
