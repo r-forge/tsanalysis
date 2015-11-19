@@ -277,7 +277,7 @@ tfXaxis <- function (x, L1 = NULL) {
    else {
      lab1 <- rep(L1, length.out=fr * length(at2))
      # arrange for not starting in first period of year
-     s <- fr - sum(at1 < (1 + at2[1]))
+     s <- fr - sum(at1 < (1 + at2[1] - 1e-5)) # less eps because date may fail < for Jan
      if (0 < s)  lab1 <- lab1[-seqN(s)]
      lab1 <- lab1[seqN(Tobs(x))]
      }
