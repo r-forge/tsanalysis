@@ -4,7 +4,9 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
-Changes in dse version 2017.7-1
+Changes in dse version 2015.12-1
+
+   o	Fixed bug passing xlab in tfplot methods for TSdata and TSestModel.
 
    o	Added default package imports as now required by CRAN.
 
