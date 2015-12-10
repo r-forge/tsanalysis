@@ -39,7 +39,8 @@ See package \pkg{googleVis} for more details.
  \dontrun{
   z <- ts(matrix(rnorm(1000),100,10), start=c(1982,1), frequency=12)
   seriesNames(z) <- paste("Series", 1:10) 
-  tfVisPlot(z, options=list(title="Random Number Series"))
+  if (requireNamespace("googleVis")) 
+     tfVisPlot(z, options=list(title="Random Number Series"))
   }
 }
 \keyword{ts}
