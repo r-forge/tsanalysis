@@ -3,6 +3,8 @@ import("numDeriv")
 import("dse")
 import("setRNG")
 
+importFrom("stats", "coef", "qf")
+
 
 S3method("print", "curvature")
 S3method("print", "curvatureArray")
