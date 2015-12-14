@@ -1,0 +1,8 @@
+importFrom("stats","ts", "tsp", "is.ts", "as.ts", "tsp<-", "window")
+importFrom("stats","start", "end", "frequency", "time", "aggregate")
+
+export(
+  "expandMtoW",
+  "expandQtoW",
+  "extractWeekly.daily"
+  )
