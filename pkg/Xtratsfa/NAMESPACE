@@ -1,6 +1,3 @@
-export("estTSF.R2M")
-export("estTSF.MCV")
-
 import("EvalEst",
        "GPArotation",
        "dse",
@@ -8,3 +5,9 @@ import("EvalEst",
        "tframe",
        "tfplot",
        "tsfa")
+
+importFrom("stats", "factanal", "loadings", "sd")
+
+export("estTSF.R2M")
+export("estTSF.MCV")
+
