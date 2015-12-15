@@ -1,3 +1,5 @@
+import("tframe", "tframePlus")
+
 importFrom("stats","ts", "tsp", "is.ts", "as.ts", "tsp<-", "window")
 importFrom("stats","start", "end", "frequency", "time", "aggregate")
 
