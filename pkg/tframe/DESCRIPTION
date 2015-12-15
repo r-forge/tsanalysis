@@ -1,5 +1,5 @@
 Package: tframe
-Version: 2015.7-1
+Version: 2015.12-1
 Title: Time Frame Coding Kernel
 Description: A kernel of functions for programming 
 	time series methods in a way that is relatively independently of the 
