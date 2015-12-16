@@ -157,6 +157,7 @@ tfOnePlot <- function(x, tf=tframe(x), start=tfstart(tf), end=tfend(tf),
 	mrL <- mrR <- mr
 	mrL[4] <- 0
 	mrR[2] <- 0
+	if (YaxisR) mrR[4] <- mrR[4] + 1  # add for right labels (default is 2.1 )
 	#mn <- min(x)
     	#mn <- mn - 0.01 * abs(mn)
     	#mx <- max(x)

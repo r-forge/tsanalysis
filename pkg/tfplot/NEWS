@@ -1,4 +1,6 @@
-Changes in tfplot version 2015.11-1
+Changes in tfplot version 2015.12-1
+
+   o	Increased split plot right margin size to avoid label truncation.
 
    o	Fixed date rounding that occasionally caused a Xaxis label shift by a 
    	month in split plots.

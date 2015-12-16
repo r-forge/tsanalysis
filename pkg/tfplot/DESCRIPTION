@@ -1,5 +1,5 @@
 Package: tfplot
-Version: 2015.11-1
+Version: 2015.12-1
 Title: Time Frame User Utilities
 Description: Utilities for simple manipulation and quick  	
 	plotting of time series data. These utilities use the tframe package
