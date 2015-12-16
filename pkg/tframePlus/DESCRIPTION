@@ -1,7 +1,7 @@
 Package: tframePlus
 Version: 2015.7-1
 Title: Time Frame Coding Kernel Extensions
-Description:  Extensions and additional tframe utilities.
+Description:  Extensions and additional 'tframe' utilities.
 Depends: R (>= 2.5.0), tframe (>= 2015.1-1)
 Imports: stats, utils, graphics, methods, timeSeries
 Suggests: tfplot, zoo, xts, its, tis, WriteXLS(>= 1.7.0)
