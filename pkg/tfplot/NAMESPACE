@@ -1,5 +1,5 @@
 importFrom("stats","ts", "as.ts", "frequency", "time", "cycle")
-importFrom("graphics", "plot", "lines", "axis", "par")
+importFrom("graphics", "plot", "lines", "axis", "par", "mtext")
 importFrom("grDevices", "as.graphicsAnnot")
 
 import("tframe")
