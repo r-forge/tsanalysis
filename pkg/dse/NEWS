@@ -4,6 +4,10 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
+Changes in dse version 2017.8-1
+
+   o	Corrected author field in CITATION to use person().
+
 Changes in dse version 2015.12-1
 
    o	Fixed bug passing xlab in tfplot methods for TSdata and TSestModel.
