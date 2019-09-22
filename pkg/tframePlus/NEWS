@@ -8,6 +8,11 @@ Known Bugs
    o	A NOTE regarding no visible global function definition for tfstart and tfend
    	is produced in CRAN checks because of a bug in S4.
 
+Changes in tframePlus version 20xx.x-x
+
+   o	Fixed Rbuildignore so that files from building vignettes are 
+    	not omitted in the package build.	
+
 Changes in tframePlus version 2016.7-1
 
    o	Removed its series representation as it is being archived on CRAN. 

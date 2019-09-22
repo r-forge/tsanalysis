@@ -1,3 +1,8 @@
+Changes in tfplot version 20xx.x-x
+
+   o	Fixed Rbuildignore so that files from building vignettes are 
+    	not omitted in the package build.	
+
 Changes in tfplot version 2015.12-1
 
    o	Increased split plot right margin size to avoid label truncation.

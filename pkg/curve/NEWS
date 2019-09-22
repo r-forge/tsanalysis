@@ -3,6 +3,11 @@ Known Bugs
 
    o	None for the moment.
 
+Changes in curve version 20xx.x-x
+
+   o	Fixed Rbuildignore so that files from building vignettes are 
+    	not omitted in the package build.	
+
 Changes in curve version 2014.2-1
 
    o	Minor changes to Depends and Imports for new package standards.

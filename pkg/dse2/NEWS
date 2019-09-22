@@ -1,3 +1,8 @@
+Changes in dse2 version 20xx.x-x
+
+   o	Fixed Rbuildignore so that files from building vignettes are 
+    	not omitted in the package build.	
+
 Changes in dse2 version 2013.9-1
 
    o	changed warning message about deprecated from .onLoad() to .onAttach()
