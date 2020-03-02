@@ -34,20 +34,20 @@ citEntry(entry="techreport",
   address =     "Ottawa, Canada",
   type =        "Working Paper",
   number =      "93-4",
-  url =    "http://www.bankofcanada.ca/1993/03/publications/research/working-paper-199/",
+  url =         "https://www.bankofcanada.ca/1993/03/working-paper-1993-00/",
   year =         1993,
   textVersion =   paste("Gilbert, P. D. (1993) ", 
        "State Space and ARMA Models: An Overview of the Equivalence ",
-          "Bank of Canada Working Paper 93-4. Ottawa, Canada", "<http://www.bankofcanada.ca/1993/03/publications/research/working-paper-199/>", sep="")
+          "Bank of Canada Working Paper 93-4. Ottawa, Canada", "<https://www.bankofcanada.ca/1993/03/working-paper-1993-00>", sep="")
   )
 
 citEntry(entry="manual",
   title        = "Brief User's Guide: Dynamic Systems Estimation",
   author       = person("Gilbert, P. D."),
   year         = "2006 or later",
-  url          = "http://cran.r-project.org/web/packages/dse/vignettes/Guide.pdf",
+  url          = "https://CRAN.R-project.org/package=dse/vignettes/Guide.pdf",
   textVersion =  paste("Gilbert, P. D. (2006 or later) ", 
        "Brief User's Guide: Dynamic Systems Estimation",
      " distributed with the dse package. ", 
-     "<http://cran.r-project.org/web/packages/dse/vignettes/Guide.pdf>", sep="")
+     "<https://CRAN.R-project.org/package=dse/vignettes/Guide.pdf>", sep="")
   )

@@ -1,5 +1,5 @@
 Package: dse
-Version: 2017.8-1
+Version: 2020.2-1
 Title: Dynamic Systems Estimation (Time Series Package)
 Description: Tools for multivariate, linear, time-invariant,
 	time series models. This includes ARMA and state-space representations,

@@ -4,10 +4,15 @@ Known Bugs
    o	Handling of initial conditions for the state space filter and smoother 
 	still needs work.
 
-Changes in dse version 20xx.x-x
+Changes in dse version 2020.2-1
+
+   o	Adjusted CITATION URLs for changes at CRAN and at the Bank of Canada.
+
+   o	Removed ... from documented arguments for horizonForecastsCompiled() as
+   	it was not in \usage. (Caught by R bug fix PR#16223.)
 
    o	Fixed Rbuildignore so that files from building vignettes are 
-    	not omitted in the package build.	
+    	not omitted in the source package build.	
 
 Changes in dse version 2017.8-1
 
