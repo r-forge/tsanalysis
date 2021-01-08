@@ -1,5 +1,5 @@
 Package: tsfa
-Version: 2015.7-1
+Version: 2021.1-1
 Title: Time Series Factor Analysis
 Description:  Extraction of Factors from Multivariate Time Series. See '?00tsfa-Intro' for more details.
 Depends: R (>= 2.1.0), GPArotation (>= 2006.9-1), dse (>= 2006.1-1), EvalEst (>= 2006.1-1) 
@@ -10,4 +10,4 @@ License: GPL-2
 Copyright: 2004-2011 Bank of Canada and Erik Meijer. 2012-2014 Paul Gilbert and Erik Meijer
 Author: Paul Gilbert and Erik Meijer <pgilbert.ttv9z@ncf.ca>
 Maintainer: Paul Gilbert <pgilbert.ttv9z@ncf.ca>
-URL: http://tsanalysis.r-forge.r-project.org/
+URL: https://tsanalysis.r-forge.r-project.org/
