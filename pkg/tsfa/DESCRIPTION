@@ -1,5 +1,5 @@
 Package: tsfa
-Version: 2021.1-1
+Version: 2021.1-3
 Title: Time Series Factor Analysis
 Description:  Extraction of Factors from Multivariate Time Series. See '?00tsfa-Intro' for more details.
 Depends: R (>= 2.1.0), GPArotation (>= 2006.9-1), dse (>= 2006.1-1), EvalEst (>= 2006.1-1) 

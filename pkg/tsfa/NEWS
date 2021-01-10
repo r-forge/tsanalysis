@@ -1,4 +1,7 @@
-Changes in tsfa version 2021.1-1
+Changes in tsfa version 2021.1-3
+
+   o	Modified latex \verb syntax for url to \url{} because \verb seems
+    	to be treated differently on some platforms.
 
    o	Updated URLs to working papers as web sites have been modified.
 
