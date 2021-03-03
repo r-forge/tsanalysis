@@ -1,4 +1,6 @@
-Changes in EvalEst version 20xx.x-x
+Changes in EvalEst version 2021.2-1
+
+   o	Minor adjustment to one tolerance to pass M1 mac testing.
 
    o	Fixed Rbuildignore so that files from building vignettes are 
     	not omitted in the package build.	

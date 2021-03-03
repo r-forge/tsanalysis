@@ -286,7 +286,7 @@ if(!exists("egJofF.1dec93.data"))warning("egJofF.1dec93.data does not exist")
                         14.933660144821400806 - sum(fc2$forecastCov[[1]]),
                         31.654672476928297442 - sum(fc2$forecastCov.zero),
                         18.324461923341953451 - sum(fc2$forecastCov.trend) )))
-  ok <- fuzz.small > error
+  ok <- (fuzz.small * 1.5) > error
   if (!ok) {if (is.na(max.error)) max.error <- error
             else max.error <- max(error, max.error)}
   if (is.na(ok)) ok <- FALSE

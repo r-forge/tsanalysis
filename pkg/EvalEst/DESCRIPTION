@@ -1,5 +1,5 @@
 Package: EvalEst
-Version: 2015.7-1
+Version: 2021.2-1
 Title: Dynamic Systems Estimation - Extensions
 Description:  Provides functions for evaluating (time series) model
 	estimation methods. These facilitate Monte Carlo experiments of repeated
