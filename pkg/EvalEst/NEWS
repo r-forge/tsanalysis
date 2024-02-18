@@ -1,3 +1,7 @@
+Changes in EvalEst version 2024.2-1
+
+   o	Removed is.R() and replaced with TRUE since is.R() is deprecated in R 4.4.0.
+
 Changes in EvalEst version 2021.2-1
 
    o	Minor adjustment to one tolerance to pass M1 mac testing.

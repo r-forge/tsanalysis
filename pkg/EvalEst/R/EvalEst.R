@@ -323,7 +323,8 @@ distribution.default <- function(obj, ..., bandwidth=0.2, series=NULL)
    par(mfcol=c(ncol(obj),1))
    for ( i in 1:ncol(obj))
       {if      (exists("density")) rd <- density(obj[,i], bw= bandwidth)
-       else if (exists("ksmooth") & !is.R()) rd <- ksmooth(obj[,i], bandwidth=bandwidth) 
+       #  'is.R' is deprecated in R 4.3.3 2024-02-02, replace with TRUE
+       else if (exists("ksmooth") & !TRUE) rd <- ksmooth(obj[,i], bandwidth=bandwidth) 
        else     stop("Neither ksmooth nor density are available.")
        plot(rd, type="l", ylab="density", ylim=c(0, max(rd$y)), xlab=names[i] )
       }
@@ -360,7 +361,7 @@ distribution.MonteCarloSimulations <- function(obj,
         {for (j in 1:length(periods)) 
           {if (exists("density")) plot(density(data[j,i,]), # -mean[j,i]
                  type="l",xlab=paste("Period",periods[j]),ylab=names[i])
-           else if (exists("ksmooth") & !is.R()) plot(ksmooth(data[j,i,], # -mean[j,i],
+           else if (exists("ksmooth") & !TRUE) plot(ksmooth(data[j,i,], # -mean[j,i],
                               bandwidth=var(data[j,i,])^0.5, kernel="parzen"),
                         type="l",xlab=paste("Period",periods[j]),ylab=names[i])
            else
@@ -674,7 +675,7 @@ distribution.rootsEstEval <- function(obj, ..., mod=TRUE, invert=FALSE, Sort=FAL
       if(!is.null(select)) r <- r[,select, drop=FALSE]
       par(mfcol=c(dim(r)[2],1))
       for ( i in 1:dim(r)[2])
-         {if      (exists("ksmooth") & !is.R()) rd <- ksmooth(r[,i], bandwidth=bandwidth) 
+         {if      (exists("ksmooth") & !TRUE) rd <- ksmooth(r[,i], bandwidth=bandwidth) 
           else if (exists("density")) rd <- density(r[,i], bw= bandwidth)
           else
         stop("Neither ksmooth nor density are available to calculate the plot.")
@@ -797,7 +798,7 @@ distribution.coefEstEval <- function(obj, ...,  Sort=FALSE, bandwidth=0.2,
                     mar=c(5.1, 4.1, 4.1, 2.1), no.readonly=TRUE)
       on.exit(par(old.par))
       for ( i in 1:ncol(r))
-         {if (is.R())     rd <- density(r[,i], bw=bandwidth)
+         {if (TRUE)     rd <- density(r[,i], bw=bandwidth)
           else            rd <- ksmooth(r[,i], bandwidth=bandwidth) # Splus
           plot(rd, type="l", ylim=c(0, max(rd$y)),
                ylab="density",  xlab=paste(xlab, i) , main="")
