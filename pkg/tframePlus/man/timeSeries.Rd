@@ -6,6 +6,8 @@
 \alias{Tobs.timeSeries}
 \alias{Tobs,timeSeries-method}
 \alias{Tobs.timeSeriestframe}
+\alias{tbind.timeSeriestframe}
+\alias{tbind.timeSeries}
 
 \alias{is.tframed.timeSeries}
 \alias{seriesNames<-,timeSeries-method}

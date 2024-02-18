@@ -1,5 +1,5 @@
 \name{tframe.tis}
-%%\alias{tfstart.tis}
+\alias{tfstart.tis}
 \alias{tfstart.tistframe}
 \alias{tfend.tis}
 \alias{tfend.tistframe}

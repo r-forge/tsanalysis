@@ -8,6 +8,10 @@ Known Bugs
    o	A NOTE regarding no visible global function definition for tfstart and tfend
    	is produced in CRAN checks because of a bug in S4.
 
+Changes in tframePlus version 2024.2-1
+
+   o	 usage fixes required by R 4.4.0.
+
 Changes in tframePlus version 2022.3-1
 
    o	Disabled part of tests/zoo2.rs which has changed in zoo. (The zoo change 
